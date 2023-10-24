@@ -4,6 +4,7 @@ import Benefits from "../components/Benefits";
 import HomeArticles from "../components/HomeArticles";
 import SignUpCTA from "../components/SignUpCTA";
 import { Container, Row, Col } from "react-bootstrap";
+import Footer from "../components/Footer";
 const HomePage = () => {
   const latestArticles = [
     {
@@ -70,6 +71,7 @@ const HomePage = () => {
           </Col>
         </Row>
       </Container>
+      <Footer />
     </>
   );
 };
