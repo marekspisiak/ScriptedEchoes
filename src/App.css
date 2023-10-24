@@ -2,3 +2,65 @@
   border-radius: 10px; /* Alebo akúkoľvek inú hodnotu podľa vašich preferencií */
   height: 60px;
 }
+
+/* Štýly pre hero sekciu */
+.hero-section {
+  height: 70vh;
+  background-color: #1e2a38; /* Tmavomodrá farba na základe screenshotu */
+  background-image: url("../public/download.jpg");
+  background-size: cover;
+  background-position: center;
+  background-blend-mode: overlay; /* To môže pomôcť ztmavnutiu obrázka tak, aby text bol čitateľnejší */
+}
+
+/* Štýly pre nadpis */
+.hero-section h1 {
+  color: white;
+  font-size: 3.5rem; /* Veľkosť písma na základe screenshotu */
+  font-weight: bold;
+  margin-bottom: 15px; /* Medzera medzi nadpisom a podnadpisom */
+}
+
+/* Štýly pre podnadpis */
+.hero-section p {
+  color: #b0c1d4; /* Svetlomodrá farba na základe screenshotu */
+  font-size: 1.5rem; /* Veľkosť písma na základe screenshotu */
+  width: 60%; /* Užší textový blok */
+  margin: 0 auto 30px; /* Centruje text a pridáva medzeru medzi textom a tlačidlom */
+  text-align: center;
+}
+
+/* Štýly pre tlačidlo */
+.hero-section .btn {
+  background-color: #e76f51; /* Oranžová farba tlačidla na základe screenshotu */
+  color: white;
+  font-size: 1.2rem;
+  padding: 10px 30px; /* Tlčší padding pre väčšie tlačidlo */
+  border: none;
+  border-radius: 30px; /* Zaoblené rohy */
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Prechodový efekt na hover */
+}
+
+.hero-section .btn:hover {
+  background-color: #d66347; /* Trochu tmavšia oranžová farba pri prejdení myšou */
+}
+
+/* Prednastavená veľkosť písma pre väčšie zariadenia */
+.hero-section h1 {
+  font-size: 3.5rem;
+}
+
+/* Menšia veľkosť písma pre tablety */
+@media (max-width: 992px) {
+  .hero-section h1 {
+    font-size: 3rem;
+  }
+}
+
+/* Ešte menšia veľkosť písma pre mobilné zariadenia */
+@media (max-width: 576px) {
+  .hero-section h1 {
+    font-size: 2.5rem;
+  }
+}
