@@ -2,6 +2,7 @@ import Header from "../components/Header";
 import HeroSection from "../components/HeroSection";
 import Benefits from "../components/Benefits";
 import HomeArticles from "../components/HomeArticles";
+import SignUpCTA from "../components/SignUpCTA";
 import { Container, Row, Col } from "react-bootstrap";
 const HomePage = () => {
   const latestArticles = [
@@ -65,8 +66,7 @@ const HomePage = () => {
         <Row className="signup-cta-section">
           <Col>
             {/* <SignUpCTA /> */}
-            <h2>Sign Up CTA Component Placeholder</h2>{" "}
-            {/* Iba pre demonstráciu */}
+            <SignUpCTA /> {/* Iba pre demonstráciu */}
           </Col>
         </Row>
       </Container>
