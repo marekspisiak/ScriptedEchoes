@@ -10,13 +10,19 @@ const HomePage = () => {
     {
       title: "Najnovší článok 1",
       description: "Popis článku...",
-      image: "path_to_image1.jpg",
+      image: "/holder.jpg",
       date: "24.10.2023",
     },
     {
       title: "Najnovší článok 2",
       description: "Popis článku...",
-      image: "path_to_image2.jpg",
+      image: "/holder.jpg",
+      date: "23.10.2023",
+    },
+    {
+      title: "Najnovší článok 2",
+      description: "Popis článku...",
+      image: "/holder.jpg",
       date: "23.10.2023",
     },
     // ... ďalšie články
@@ -26,13 +32,19 @@ const HomePage = () => {
     {
       title: "Populárny článok 1",
       description: "Popis článku...",
-      image: "path_to_image3.jpg",
+      image: "/holder.jpg",
       date: "15.10.2023",
     },
     {
       title: "Populárny článok 2",
       description: "Popis článku...",
-      image: "path_to_image4.jpg",
+      image: "/holder.jpg",
+      date: "10.10.2023",
+    },
+    {
+      title: "Populárny článok 2",
+      description: "Popis článku...",
+      image: "/holder.jpg",
       date: "10.10.2023",
     },
     // ... ďalšie články

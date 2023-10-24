@@ -64,3 +64,129 @@
     font-size: 2.5rem;
   }
 }
+
+body {
+  background-color: #f4f4f4; /* Mierne sivá farba */
+}
+
+/* Štýl pre karty výhod */
+.benefits-card {
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s;
+}
+
+.benefits-card:hover {
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+  transform: translateY(-3px);
+}
+
+.benefits-card .card-img-top {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  height: 120px;
+  object-fit: cover;
+}
+
+.benefits-card .card-title {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.benefits-card .card-text {
+  font-size: 1rem;
+  color: #777;
+}
+
+/* Štýl pre karty článkov */
+.article-card {
+  border: none; /* Odstrániť prednastavený rámček */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+}
+
+.article-card:hover {
+  transform: scale(1.03);
+}
+
+/* Obrázok karty */
+.article-card .card-img-top {
+  width: 100%;
+  height: 200px; /* Môžete upraviť výšku podľa potreby */
+  object-fit: cover;
+}
+
+/* Štýl pre nadpis a text karty */
+.article-card .card-title {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.article-card .card-text {
+  font-size: 14px;
+  color: #666;
+}
+
+/* Štýl pre dátum publikácie */
+.article-card .text-muted {
+  font-size: 12px;
+  color: #999;
+}
+
+.cta-container {
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.8
+  ); /* Polopriehľadné biele pozadie pre kontajner */
+  padding: 50px; /* Vnútorný odsadenie kontajnera */
+  border-radius: 10px; /* Zaoblené rohy */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Mierne tiene */
+}
+
+.cta-container h2 {
+  font-size: 2rem; /* Veľkosť písma pre nadpis */
+  margin-bottom: 1rem; /* Medzera medzi nadpisom a textom */
+  color: #333; /* Farba nadpisu */
+}
+
+.cta-container p {
+  font-size: 1.25rem; /* Veľkosť písma pre text */
+  margin-bottom: 2rem; /* Medzera medzi textom a tlačidlom */
+  color: #555; /* Farba textu */
+}
+
+.cta-container .btn-primary {
+  background-color: #2c3e50; /* Tmavosivá farba pozadia */
+  border-color: #2c3e50; /* Tmavosivá farba rámčeka */
+  color: #fff; /* Biela farba textu */
+}
+
+.cta-container .btn-primary:hover,
+.cta-container .btn-primary:focus {
+  background-color: #1a2836; /* Trochu tmavšia tmavosivá pre hover/focus stav */
+  border-color: #1a2836;
+  color: #fff; /* Biela farba textu pre hover/focus stav */
+}
+
+.articles-section {
+  margin-bottom: 40px; /* Medzera medzi rôznymi časťami obsahu */
+}
+
+.articles-section h2 {
+  font-size: 1.8rem; /* Veľkosť písma pre nadpis */
+  color: #333; /* Farba nadpisu */
+}
+
+.articles-section .btn-outline-primary {
+  border-color: #2c3e50; /* Tmavosivá farba rámčeka */
+  color: #2c3e50; /* Tmavosivá farba textu */
+}
+
+.articles-section .btn-outline-primary:hover,
+.articles-section .btn-outline-primary:focus {
+  background-color: #2c3e50; /* Tmavosivá farba pozadia pre hover/focus stav */
+  color: #fff; /* Biela farba textu pre hover/focus stav */
+}
