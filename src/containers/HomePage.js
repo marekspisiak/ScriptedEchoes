@@ -1,8 +1,40 @@
 import Header from "../components/Header";
 import HeroSection from "../components/HeroSection";
 import Benefits from "../components/Benefits";
+import HomeArticles from "../components/HomeArticles";
 import { Container, Row, Col } from "react-bootstrap";
 const HomePage = () => {
+  const latestArticles = [
+    {
+      title: "Najnovší článok 1",
+      description: "Popis článku...",
+      image: "path_to_image1.jpg",
+      date: "24.10.2023",
+    },
+    {
+      title: "Najnovší článok 2",
+      description: "Popis článku...",
+      image: "path_to_image2.jpg",
+      date: "23.10.2023",
+    },
+    // ... ďalšie články
+  ];
+
+  const popularArticles = [
+    {
+      title: "Populárny článok 1",
+      description: "Popis článku...",
+      image: "path_to_image3.jpg",
+      date: "15.10.2023",
+    },
+    {
+      title: "Populárny článok 2",
+      description: "Popis článku...",
+      image: "path_to_image4.jpg",
+      date: "10.10.2023",
+    },
+    // ... ďalšie články
+  ];
   return (
     <>
       <Header />
@@ -20,7 +52,11 @@ const HomePage = () => {
         <Row className="latest-articles-section mb-5">
           <Col>
             {/* <LatestArticles /> */}
-            <h2>Latest Articles Component Placeholder</h2>{" "}
+            <HomeArticles title="Najnovšie články" articles={latestArticles} />
+            <HomeArticles
+              title="Najpopulárnejšie články"
+              articles={popularArticles}
+            />{" "}
             {/* Iba pre demonstráciu */}
           </Col>
         </Row>
