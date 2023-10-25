@@ -255,42 +255,41 @@ body {
   text-decoration: underline;
 }
 
-/* Sidebar styles */
 .sidebar {
-  background-color: #1e2a38; /* Tmavomodrá farba z vašej stránky */
-  padding: 5px; /* Trochu vnútorného odsadenia pre lepší vzhľad */
-  border-radius: 5px; /* Zaoblené rohy */
+  background-color: #1e2a38;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* Nadpis "Kategórie" */
 .sidebar .navbar-text {
-  color: #eaeded; /* Svetlá farba textu */
-  font-size: 1.2rem; /* Trochu väčšie písmo pre nadpis */
-  margin-bottom: 10px; /* Odsadenie od tlačidla "hamburger" */
+  color: #eaeded;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
 }
 
-/* Štýly pre tlačidlo "hamburger" */
 .sidebar .navbar-toggler {
-  border-color: #eaeded; /* Svetlá farba okraja */
-  background-color: #2c3e50; /* Tmavá modrá farba tlačidla */
+  border-color: #eaeded;
+  background-color: #2c3e50;
+  color: #eaeded;
 }
 
-/* Štýly pre kategórie */
 .sidebar .list-group-item {
-  background-color: #2c3e50; /* Tmavá modrá farba pozadia */
-  color: #eaeded; /* Svetlá farba textu */
-  border: none; /* Žiadne okraje */
-  margin-bottom: 5px; /* Odsadenie medzi položkami */
-  border-radius: 5px; /* Zaoblené rohy */
+  background-color: #2c3e50;
+  color: #eaeded;
+  border: none;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  transition: background-color 0.3s;
 }
 
 .sidebar .list-group-item:hover {
-  background-color: #34495e; /* Trochu svetlejšia tmavá modrá farba pri hover efekte */
-  cursor: pointer; /* Ukazovateľ pri prejdení myšou */
+  background-color: #34495e;
+  cursor: pointer;
 }
 
 .filter-section {
-  background-color: #f1f1f1; /* Slightly lighter gray for better contrast */
+  background-color: #f1f1f1;
   padding: 15px;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -299,24 +298,24 @@ body {
 
 .filter-section .btn-outline-primary {
   border: none;
-  background-color: #282a36; /* Dark blue from your theme */
+  background-color: #282a36;
   color: #ffffff;
   border-radius: 5px;
   transition: background-color 0.3s ease;
 }
 
 .filter-section .btn-outline-primary:hover {
-  background-color: #1e2029; /* Slightly darker shade for hover */
+  background-color: #1e2029;
   color: #ffffff;
 }
 
 .filter-section input[type="text"] {
   border-radius: 5px;
-  border: 1px solid #c4c4c4; /* Slightly grayish border */
+  border: 1px solid #c4c4c4;
   transition: border-color 0.3s ease;
 }
 
 .filter-section input[type="text"]:focus {
-  border-color: #282a36; /* Dark blue focus border */
-  box-shadow: 0 0 0 0.2rem rgba(40, 42, 54, 0.25); /* Shadow with the dark blue color */
+  border-color: #282a36;
+  box-shadow: 0 0 0 0.2rem rgba(40, 42, 54, 0.25);
 }
