@@ -1,51 +1,45 @@
 .home-logo {
-  border-radius: 10px; /* Alebo akúkoľvek inú hodnotu podľa vašich preferencií */
+  border-radius: 10px;
   height: 60px;
 }
 
-/* Štýly pre hero sekciu */
 .hero-section-home-page {
   height: 70vh;
-  background-color: #1e2a38; /* Tmavomodrá farba na základe screenshotu */
+  background-color: #1e2a38;
   background-image: url("../public/heroBackground.png");
   background-size: cover;
   background-position: center;
 }
 
-/* Štýly pre nadpis */
 .hero-section-home-page h1 {
   color: #2c3e50;
-  font-size: 3.5rem; /* Veľkosť písma na základe screenshotu */
+  font-size: 3.5rem;
   font-weight: bold;
-  margin-bottom: 15px; /* Medzera medzi nadpisom a podnadpisom */
+  margin-bottom: 15px;
 }
 
-/* Štýly pre podnadpis */
 .hero-section-home-page p {
-  color: #b0c1d4; /* Svetlomodrá farba na základe screenshotu */
-  font-size: 1.5rem; /* Veľkosť písma na základe screenshotu */
-  width: 60%; /* Užší textový blok */
-  margin: 0 auto 30px; /* Centruje text a pridáva medzeru medzi textom a tlačidlom */
+  color: #b0c1d4;
+  font-size: 1.5rem;
+  width: 60%;
+  margin: 0 auto 30px;
   text-align: center;
 }
 
 .hero-section-home-page .btn:hover {
-  background-color: #d66347; /* Trochu tmavšia oranžová farba pri prejdení myšou */
+  background-color: #d66347;
 }
 
-/* Prednastavená veľkosť písma pre väčšie zariadenia */
 .hero-section-home-page h1 {
   font-size: 3.5rem;
 }
 
-/* Menšia veľkosť písma pre tablety */
 @media (max-width: 992px) {
   .hero-section-home-page h1 {
     font-size: 3rem;
   }
 }
 
-/* Ešte menšia veľkosť písma pre mobilné zariadenia */
 @media (max-width: 576px) {
   .hero-section-home-page h1 {
     font-size: 2.5rem;
@@ -53,10 +47,9 @@
 }
 
 body {
-  background-color: #f4f4f4; /* Mierne sivá farba */
+  background-color: #f4f4f4;
 }
 
-/* Štýl pre karty výhod */
 .benefits-card {
   background-color: #ffffff;
   border-radius: 10px;
@@ -86,9 +79,8 @@ body {
   color: #777;
 }
 
-/* Štýl pre karty článkov */
 .article-card {
-  border: none; /* Odstrániť prednastavený rámček */
+  border: none;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s;
 }
@@ -97,14 +89,12 @@ body {
   transform: scale(1.03);
 }
 
-/* Obrázok karty */
 .article-card .card-img-top {
   width: 100%;
-  height: 200px; /* Môžete upraviť výšku podľa potreby */
+  height: 200px;
   object-fit: cover;
 }
 
-/* Štýl pre nadpis a text karty */
 .article-card .card-title {
   font-size: 18px;
   font-weight: 600;
@@ -115,73 +105,66 @@ body {
   color: #666;
 }
 
-/* Štýl pre dátum publikácie */
 .article-card .text-muted {
   font-size: 12px;
   color: #999;
 }
 
 .cta-container {
-  background-color: rgba(
-    255,
-    255,
-    255,
-    0.8
-  ); /* Polopriehľadné biele pozadie pre kontajner */
-  padding: 50px; /* Vnútorný odsadenie kontajnera */
-  border-radius: 10px; /* Zaoblené rohy */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Mierne tiene */
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 50px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .cta-container h2 {
-  font-size: 2rem; /* Veľkosť písma pre nadpis */
-  margin-bottom: 1rem; /* Medzera medzi nadpisom a textom */
-  color: #333; /* Farba nadpisu */
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #333;
 }
 
 .cta-container p {
-  font-size: 1.25rem; /* Veľkosť písma pre text */
-  margin-bottom: 2rem; /* Medzera medzi textom a tlačidlom */
-  color: #555; /* Farba textu */
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+  color: #555;
 }
 
 .cta-container .btn-primary {
-  background-color: #2c3e50; /* Tmavosivá farba pozadia */
-  border-color: #2c3e50; /* Tmavosivá farba rámčeka */
-  color: #fff; /* Biela farba textu */
+  background-color: #2c3e50;
+  border-color: #2c3e50;
+  color: #fff;
 }
 
 .cta-container .btn-primary:hover,
 .cta-container .btn-primary:focus {
-  background-color: #1a2836; /* Trochu tmavšia tmavosivá pre hover/focus stav */
+  background-color: #1a2836;
   border-color: #1a2836;
-  color: #fff; /* Biela farba textu pre hover/focus stav */
+  color: #fff;
 }
 
 .articles-section {
-  margin-bottom: 40px; /* Medzera medzi rôznymi časťami obsahu */
+  margin-bottom: 40px;
 }
 
 .articles-section h2 {
-  font-size: 1.8rem; /* Veľkosť písma pre nadpis */
-  color: #333; /* Farba nadpisu */
+  font-size: 1.8rem;
+  color: #333;
 }
 
 .articles-section .btn-outline-primary {
-  border-color: #2c3e50; /* Tmavosivá farba rámčeka */
-  color: #2c3e50; /* Tmavosivá farba textu */
+  border-color: #2c3e50;
+  color: #2c3e50;
 }
 
 .articles-section .btn-outline-primary:hover,
 .articles-section .btn-outline-primary:focus {
-  background-color: #2c3e50; /* Tmavosivá farba pozadia pre hover/focus stav */
-  color: #fff; /* Biela farba textu pre hover/focus stav */
+  background-color: #2c3e50;
+  color: #fff;
 }
 
-/* Špecifická className pre komponent Header */
 .header-component {
-  background-color: #2c3e50; /* Tmavá modrá farba hlavičky */
-  border-bottom: 2px solid #34495e; /* Tenká čiara na spodnej časti hlavičky */
+  background-color: #2c3e50;
+  border-bottom: 2px solid #34495e;
   position: sticky;
   top: 0;
   z-index: 99;
@@ -189,44 +172,42 @@ body {
 
 .header-component .navbar-brand,
 .header-component .nav-link {
-  color: #eaeded; /* Svetlá farba textu odkazov v hlavičke */
-  font-weight: 500; /* Stredná hrúbka písma */
+  color: #eaeded;
+  font-weight: 500;
 }
 
 .header-component .navbar-brand:hover,
 .header-component .nav-link:hover {
-  color: #bdc3c7; /* Svetlošedá farba textu odkazov pri hover efekte */
-  text-decoration: underline; /* Podčiarknutie odkazu pri hover efekte */
+  color: #bdc3c7;
+  text-decoration: underline;
 }
 
 .header-component .btn-outline-primary {
-  border-color: #eaeded; /* Svetlošedá farba rámčeka tlačidla */
-  color: #eaeded; /* Svetlošedá farba textu tlačidla */
+  border-color: #eaeded;
+  color: #eaeded;
 }
 
 .header-component .btn-outline-primary:hover,
 .header-component .btn-outline-primary:focus {
-  background-color: #eaeded; /* Svetlošedá farba pozadia tlačidla pri hover/focus efekte */
-  color: #2c3e50; /* Tmavá modrá farba textu tlačidla pri hover/focus efekte */
+  background-color: #eaeded;
+  color: #2c3e50;
 }
 
 .start-writing-button {
-  background-color: #e76f51; /* Oranžová farba tlačidla na základe screenshotu */
+  background-color: #e76f51;
   color: white;
   font-size: 1.2rem;
-  padding: 10px 30px; /* Tlčší padding pre väčšie tlačidlo */
+  padding: 10px 30px;
   border: none;
-  border-radius: 30px; /* Zaoblené rohy */
+  border-radius: 30px;
   cursor: pointer;
-  transition: background-color 0.3s ease; /* Prechodový efekt na hover */
+  transition: background-color 0.3s ease;
 }
 
-/* Mobilné zariadenia - bočný panel je na vrchu */
 .sidebar {
   order: -1;
 }
 
-/* Stolné a tabletové zariadenia - bočný panel je vľavo */
 @media (min-width: 992px) {
   .sidebar {
     order: 0;
@@ -254,47 +235,76 @@ body {
 }
 
 .combined-form {
-  width: 350px; /* Šírka formulára */
-  padding: 30px; /* Odsadenie vnútra */
-  background-color: rgba(
-    28,
-    38,
-    56,
-    0.9
-  ); /* Tmavé, mierne priehľadné pozadie */
-  border-radius: 10px; /* Zaoblené rohy */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Tmieň okolo formulára */
+  width: 350px;
+  padding: 30px;
+  background-color: rgba(28, 38, 56, 0.9);
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 
 .combined-form h1,
 .combined-form label,
 .combined-form .additional-actions a {
-  color: #ffffff; /* Biele písmo */
+  color: #ffffff;
 }
 
 .combined-form .btn-primary {
-  background-color: #e76f51; /* Zlatá farba tlačidla */
-  border-color: #e76f51; /* Zlatá farba rámčeka tlačidla */
+  background-color: #e76f51;
+  border-color: #e76f51;
 }
 
 .combined-form .btn-primary:hover,
 .combined-form .btn-primary:focus {
-  background-color: #d66347; /* Trochu tmavšia zlatá pre hover/focus stav */
+  background-color: #d66347;
   border-color: #d66347;
 }
 
 .additional-actions {
-  display: flex; /* Aplikujeme flexbox na kontajner */
-  justify-content: space-between; /* Odsadenie medzi odkazmi */
-  margin-top: 15px; /* Odsadenie od spodnej časti prihlasovacieho tlačidla alebo nejakého iného prvku */
-  flex-wrap: wrap; /* Odkazy sa budú zalamovať na viacero riadkov */
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+  flex-wrap: wrap;
 }
 
 .additional-actions a {
-  margin: 0 10px; /* Odsadenie po stranách pre každý odkaz */
-  white-space: nowrap; /* Odkazy sa nebudú zalamovať */
+  margin: 0 10px;
+  white-space: nowrap;
 }
 
 .additional-actions a:hover {
-  text-decoration: underline; /* Podčiarknutie odkazu pri hover efekte */
+  text-decoration: underline;
+}
+
+/* Sidebar styles */
+.sidebar {
+  background-color: #1e2a38; /* Tmavomodrá farba z vašej stránky */
+  padding: 10px 15px; /* Trochu vnútorného odsadenia pre lepší vzhľad */
+  border-radius: 5px; /* Zaoblené rohy */
+}
+
+/* Nadpis "Kategórie" */
+.sidebar .navbar-text {
+  color: #eaeded; /* Svetlá farba textu */
+  font-size: 1.2rem; /* Trochu väčšie písmo pre nadpis */
+  margin-bottom: 10px; /* Odsadenie od tlačidla "hamburger" */
+}
+
+/* Štýly pre tlačidlo "hamburger" */
+.sidebar .navbar-toggler {
+  border-color: #eaeded; /* Svetlá farba okraja */
+  background-color: #2c3e50; /* Tmavá modrá farba tlačidla */
+}
+
+/* Štýly pre kategórie */
+.sidebar .list-group-item {
+  background-color: #2c3e50; /* Tmavá modrá farba pozadia */
+  color: #eaeded; /* Svetlá farba textu */
+  border: none; /* Žiadne okraje */
+  margin-bottom: 5px; /* Odsadenie medzi položkami */
+  border-radius: 5px; /* Zaoblené rohy */
+}
+
+.sidebar .list-group-item:hover {
+  background-color: #34495e; /* Trochu svetlejšia tmavá modrá farba pri hover efekte */
+  cursor: pointer; /* Ukazovateľ pri prejdení myšou */
 }

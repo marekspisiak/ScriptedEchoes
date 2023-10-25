@@ -8,8 +8,7 @@ function HomeArticles({ title, articles }) {
       <div className="d-flex justify-content-start align-items-center mb-3">
         <h2 className="mr-2" style={{ marginRight: "20px" }}>
           {title}
-        </h2>{" "}
-        {/* Menší margin-right pre h2 */}
+        </h2>
         <Button
           variant="outline-primary"
           size="sm"

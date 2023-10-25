@@ -21,7 +21,6 @@ function Benefits() {
         "Editujte a aktualizujte svoje články kedykoľvek potrebujete.",
       icon: "/holder.jpg",
     },
-    // Môžete pridať ďalšie výhody podľa potreby
   ];
 
   return (

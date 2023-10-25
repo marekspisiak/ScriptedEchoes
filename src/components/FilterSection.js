@@ -6,13 +6,12 @@ function FilterSection() {
   return (
     <Row className="filter-section">
       <Col md={12}>
-        <Form inline>
+        <Form className="d-flex">
           <Form.Control
             type="text"
             placeholder="Hľadať článok"
-            className="mr-sm-2"
+            className="mr-2 flex-grow-1"
           />
-          {/* ... môžete pridať ďalšie polia na filtrovanie, napr. podľa kategórie, dátumu, atď. */}
           <Button variant="outline-primary">Hľadať</Button>
         </Form>
       </Col>

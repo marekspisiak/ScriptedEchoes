@@ -25,7 +25,6 @@ const HomePage = () => {
       image: "/holder.jpg",
       date: "23.10.2023",
     },
-    // ... ďalšie články
   ];
 
   const popularArticles = [
@@ -47,39 +46,30 @@ const HomePage = () => {
       image: "/holder.jpg",
       date: "10.10.2023",
     },
-    // ... ďalšie články
   ];
   return (
     <>
       <Header />
       <HeroSection />
       <Container fluid className="main-container mt-5">
-        {/* Výhody písania na ScriptedEchoes */}
         <Row className="benefits-section mb-5">
           <Col>
-            {/* <Benefits /> */}
-            <Benefits /> {/* Iba pre demonstráciu */}
+            <Benefits />
           </Col>
         </Row>
-
-        {/* Najnovšie články */}
         <Row className="latest-articles-section mb-5">
           <Col>
-            {/* <LatestArticles /> */}
             <HomeArticles title="Najnovšie články" articles={latestArticles} />
             <HomeArticles
               title="Najpopulárnejšie články"
               articles={popularArticles}
-            />{" "}
-            {/* Iba pre demonstráciu */}
+            />
           </Col>
         </Row>
 
-        {/* Výzva na prihlásenie alebo vytvorenie účtu */}
         <Row className="signup-cta-section">
           <Col>
-            {/* <SignUpCTA /> */}
-            <SignUpCTA /> {/* Iba pre demonstráciu */}
+            <SignUpCTA />
           </Col>
         </Row>
       </Container>

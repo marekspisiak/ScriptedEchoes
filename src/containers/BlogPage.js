@@ -26,7 +26,6 @@ const BlogPage = () => {
       image: "/holder.jpg",
       date: "23.10.2023",
     },
-    // ... ďalšie články
   ];
 
   const popularArticles = [
@@ -48,7 +47,6 @@ const BlogPage = () => {
       image: "/holder.jpg",
       date: "10.10.2023",
     },
-    // ... ďalšie články
   ];
 
   const sidebarData = {
@@ -59,7 +57,6 @@ const BlogPage = () => {
       "Umenie",
       "Osobný rast",
       "Zábava",
-      // ... (môžeš pridať ďalšie kategórie podľa potreby)
     ],
   };
 
@@ -67,25 +64,20 @@ const BlogPage = () => {
     <>
       <Header />
       <Container fluid className="blog-container mt-5">
-        {/* Hero sekcia */}
         <Row className="blog-hero-section mb-5">
           <Col>
             <BlogHeroSection />
           </Col>
         </Row>
 
-        {/* Filter/Sekcia vyhľadávania */}
-        <Row className="filter-section mb-5">
-          <Col>
-            <FilterSection />
-          </Col>
-        </Row>
-
-        {/* Zoznam článkov a bočný panel */}
         <Row className="content-section mb-5">
+          {/* Sidebar: Filter a Kategórie */}
           <Col lg={3}>
+            <FilterSection />
             <Sidebar categories={sidebarData.categories} />
           </Col>
+
+          {/* Články */}
           <Col lg={9}>
             <Articles articles={latestArticles} />
           </Col>
