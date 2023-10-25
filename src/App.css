@@ -7,15 +7,14 @@
 .hero-section-home-page {
   height: 70vh;
   background-color: #1e2a38; /* Tmavomodrá farba na základe screenshotu */
-  background-image: url("../public/download.jpg");
+  background-image: url("../public/heroBackground.png");
   background-size: cover;
   background-position: center;
-  background-blend-mode: overlay; /* To môže pomôcť ztmavnutiu obrázka tak, aby text bol čitateľnejší */
 }
 
 /* Štýly pre nadpis */
 .hero-section-home-page h1 {
-  color: white;
+  color: #2c3e50;
   font-size: 3.5rem; /* Veľkosť písma na základe screenshotu */
   font-weight: bold;
   margin-bottom: 15px; /* Medzera medzi nadpisom a podnadpisom */
@@ -232,4 +231,70 @@ body {
   .sidebar {
     order: 0;
   }
+}
+
+.login-container {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url("../public/heroBackground.png");
+  background-size: cover;
+  background-position: center;
+}
+
+.login-container {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url("../public/heroBackground.png");
+  background-size: cover;
+  background-position: center;
+}
+
+.combined-form {
+  width: 350px; /* Šírka formulára */
+  padding: 30px; /* Odsadenie vnútra */
+  background-color: rgba(
+    28,
+    38,
+    56,
+    0.9
+  ); /* Tmavé, mierne priehľadné pozadie */
+  border-radius: 10px; /* Zaoblené rohy */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Tmieň okolo formulára */
+}
+
+.combined-form h1,
+.combined-form label,
+.combined-form .additional-actions a {
+  color: #ffffff; /* Biele písmo */
+}
+
+.combined-form .btn-primary {
+  background-color: #e76f51; /* Zlatá farba tlačidla */
+  border-color: #e76f51; /* Zlatá farba rámčeka tlačidla */
+}
+
+.combined-form .btn-primary:hover,
+.combined-form .btn-primary:focus {
+  background-color: #d66347; /* Trochu tmavšia zlatá pre hover/focus stav */
+  border-color: #d66347;
+}
+
+.additional-actions {
+  display: flex; /* Aplikujeme flexbox na kontajner */
+  justify-content: space-between; /* Odsadenie medzi odkazmi */
+  margin-top: 15px; /* Odsadenie od spodnej časti prihlasovacieho tlačidla alebo nejakého iného prvku */
+  flex-wrap: wrap; /* Odkazy sa budú zalamovať na viacero riadkov */
+}
+
+.additional-actions a {
+  margin: 0 10px; /* Odsadenie po stranách pre každý odkaz */
+  white-space: nowrap; /* Odkazy sa nebudú zalamovať */
+}
+
+.additional-actions a:hover {
+  text-decoration: underline; /* Podčiarknutie odkazu pri hover efekte */
 }
