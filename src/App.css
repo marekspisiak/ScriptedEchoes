@@ -204,26 +204,6 @@ body {
   transition: background-color 0.3s ease;
 }
 
-.sidebar {
-  order: -1;
-}
-
-@media (min-width: 992px) {
-  .sidebar {
-    order: 0;
-  }
-}
-
-.login-container {
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-image: url("../public/heroBackground.png");
-  background-size: cover;
-  background-position: center;
-}
-
 .login-container {
   height: 100vh;
   display: flex;
@@ -278,7 +258,7 @@ body {
 /* Sidebar styles */
 .sidebar {
   background-color: #1e2a38; /* Tmavomodrá farba z vašej stránky */
-  padding: 10px 15px; /* Trochu vnútorného odsadenia pre lepší vzhľad */
+  padding: 5px; /* Trochu vnútorného odsadenia pre lepší vzhľad */
   border-radius: 5px; /* Zaoblené rohy */
 }
 
@@ -307,4 +287,36 @@ body {
 .sidebar .list-group-item:hover {
   background-color: #34495e; /* Trochu svetlejšia tmavá modrá farba pri hover efekte */
   cursor: pointer; /* Ukazovateľ pri prejdení myšou */
+}
+
+.filter-section {
+  background-color: #f1f1f1; /* Slightly lighter gray for better contrast */
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.filter-section .btn-outline-primary {
+  border: none;
+  background-color: #282a36; /* Dark blue from your theme */
+  color: #ffffff;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.filter-section .btn-outline-primary:hover {
+  background-color: #1e2029; /* Slightly darker shade for hover */
+  color: #ffffff;
+}
+
+.filter-section input[type="text"] {
+  border-radius: 5px;
+  border: 1px solid #c4c4c4; /* Slightly grayish border */
+  transition: border-color 0.3s ease;
+}
+
+.filter-section input[type="text"]:focus {
+  border-color: #282a36; /* Dark blue focus border */
+  box-shadow: 0 0 0 0.2rem rgba(40, 42, 54, 0.25); /* Shadow with the dark blue color */
 }

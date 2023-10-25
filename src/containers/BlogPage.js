@@ -26,26 +26,11 @@ const BlogPage = () => {
       image: "/holder.jpg",
       date: "23.10.2023",
     },
-  ];
-
-  const popularArticles = [
     {
-      title: "Populárny článok 1",
+      title: "Najnovší článok 2",
       description: "Popis článku...",
       image: "/holder.jpg",
-      date: "15.10.2023",
-    },
-    {
-      title: "Populárny článok 2",
-      description: "Popis článku...",
-      image: "/holder.jpg",
-      date: "10.10.2023",
-    },
-    {
-      title: "Populárny článok 2",
-      description: "Popis článku...",
-      image: "/holder.jpg",
-      date: "10.10.2023",
+      date: "23.10.2023",
     },
   ];
 
@@ -71,13 +56,11 @@ const BlogPage = () => {
         </Row>
 
         <Row className="content-section mb-5">
-          {/* Sidebar: Filter a Kategórie */}
           <Col lg={3}>
             <FilterSection />
             <Sidebar categories={sidebarData.categories} />
           </Col>
 
-          {/* Články */}
           <Col lg={9}>
             <Articles articles={latestArticles} />
           </Col>

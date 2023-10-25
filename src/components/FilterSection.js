@@ -7,11 +7,7 @@ function FilterSection() {
     <Row className="filter-section">
       <Col md={12}>
         <Form className="d-flex">
-          <Form.Control
-            type="text"
-            placeholder="Hľadať článok"
-            className="mr-2 flex-grow-1"
-          />
+          <Form.Control type="text" placeholder="Hľadať článok" />
           <Button variant="outline-primary">Hľadať</Button>
         </Form>
       </Col>

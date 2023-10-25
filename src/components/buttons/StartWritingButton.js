@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 function StartWritingButton() {
   return (
-    <Link to="/blog">
+    <Link to="/register">
       <Button className="start-writing-button" variant="primary" size="lg">
         Začnite písať
       </Button>
