@@ -1,7 +1,5 @@
 import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Button from "react-bootstrap/esm/Button";
+import StartWritingButton from "./buttons/StartWritingButton";
 
 function HeroSection() {
   return (
@@ -19,7 +17,7 @@ function HeroSection() {
         Zdieľajte svoje skúsenosti, nápady a myšlienky so svetom na
         ScriptedEchoes.
       </p>
-      <Button size="lg">Začnite písať</Button>
+      <StartWritingButton />
     </Container>
   );
 }

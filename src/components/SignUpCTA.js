@@ -1,5 +1,7 @@
 import React from "react";
 import { Button, Container, Row, Col } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import StartWritingButton from "./buttons/StartWritingButton";
 
 function SignUpCTA() {
   return (
@@ -11,9 +13,7 @@ function SignUpCTA() {
             Zdieľajte svoje príbehy, skúsenosti a názory s komunitou. Začnite
             písať ešte dnes a dosiahnite široké publikum.
           </p>
-          <Button variant="primary" size="lg" href="/signup">
-            Začnite písať
-          </Button>
+          <StartWritingButton />
         </Col>
       </Row>
     </Container>
