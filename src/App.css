@@ -4,7 +4,7 @@
 }
 
 /* Štýly pre hero sekciu */
-.hero-section {
+.hero-section-home-page {
   height: 70vh;
   background-color: #1e2a38; /* Tmavomodrá farba na základe screenshotu */
   background-image: url("../public/download.jpg");
@@ -14,7 +14,7 @@
 }
 
 /* Štýly pre nadpis */
-.hero-section h1 {
+.hero-section-home-page h1 {
   color: white;
   font-size: 3.5rem; /* Veľkosť písma na základe screenshotu */
   font-weight: bold;
@@ -22,7 +22,7 @@
 }
 
 /* Štýly pre podnadpis */
-.hero-section p {
+.hero-section-home-page p {
   color: #b0c1d4; /* Svetlomodrá farba na základe screenshotu */
   font-size: 1.5rem; /* Veľkosť písma na základe screenshotu */
   width: 60%; /* Užší textový blok */
@@ -30,25 +30,25 @@
   text-align: center;
 }
 
-.hero-section .btn:hover {
+.hero-section-home-page .btn:hover {
   background-color: #d66347; /* Trochu tmavšia oranžová farba pri prejdení myšou */
 }
 
 /* Prednastavená veľkosť písma pre väčšie zariadenia */
-.hero-section h1 {
+.hero-section-home-page h1 {
   font-size: 3.5rem;
 }
 
 /* Menšia veľkosť písma pre tablety */
 @media (max-width: 992px) {
-  .hero-section h1 {
+  .hero-section-home-page h1 {
     font-size: 3rem;
   }
 }
 
 /* Ešte menšia veľkosť písma pre mobilné zariadenia */
 @media (max-width: 576px) {
-  .hero-section h1 {
+  .hero-section-home-page h1 {
     font-size: 2.5rem;
   }
 }
@@ -220,4 +220,16 @@ body {
   border-radius: 30px; /* Zaoblené rohy */
   cursor: pointer;
   transition: background-color 0.3s ease; /* Prechodový efekt na hover */
+}
+
+/* Mobilné zariadenia - bočný panel je na vrchu */
+.sidebar {
+  order: -1;
+}
+
+/* Stolné a tabletové zariadenia - bočný panel je vľavo */
+@media (min-width: 992px) {
+  .sidebar {
+    order: 0;
+  }
 }
