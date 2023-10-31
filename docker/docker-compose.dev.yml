@@ -2,10 +2,11 @@ version: "3.8"
 
 services:
   app:
-    container_name: scripted-echoes
-    image: scripted-echoes
+    container_name: scripted-echoes-dev
+    image: scripted-echoes-dev
     build:
       context: ..
+      target: development
       dockerfile: docker/Dockerfile
     ports:
       - "3000:3000"
