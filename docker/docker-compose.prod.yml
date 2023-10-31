@@ -3,7 +3,7 @@ version: "3.8"
 services:
   app:
     container_name: scripted-echoes-prod
-    image: scripted-echoes-prod
+    image: marekspisiak/scripted-echoes-prod:latest
     build:
       context: ..
       target: production
