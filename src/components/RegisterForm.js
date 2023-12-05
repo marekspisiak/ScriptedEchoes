@@ -1,5 +1,6 @@
 import { Form, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import LoginButton from "./buttons/LoginButton";
 
 function RegisterForm() {
   return (
@@ -33,6 +34,7 @@ function RegisterForm() {
       <div className="additional-actions">
         <Link to="/login">Máte už účet? Prihlásiť sa</Link>
       </div>
+      <LoginButton></LoginButton>
     </Form>
   );
 }

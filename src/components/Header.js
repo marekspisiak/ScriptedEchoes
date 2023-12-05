@@ -4,7 +4,13 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Button from "react-bootstrap/Button";
 
+import LoginButton from "./buttons/LoginButton";
+import LogoutButton from "./buttons/LogoutButton";
+
+import { useAuth0 } from "@auth0/auth0-react";
+
 const Header = () => {
+  const { isAuthenticated } = useAuth0();
   return (
     <Navbar expand="lg" className="header-component">
       <Container>
@@ -27,11 +33,7 @@ const Header = () => {
               Kontakt
             </Nav.Link>
           </Nav>
-          <Nav>
-            <Button as={Link} to="/login" variant="outline-primary">
-              Prihlásiť sa
-            </Button>
-          </Nav>
+          <Nav>{isAuthenticated ? <LogoutButton /> : <LoginButton />}</Nav>
         </Navbar.Collapse>
       </Container>
     </Navbar>
