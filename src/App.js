@@ -4,6 +4,7 @@ import BlogPage from "./containers/BlogPage";
 import LoginPage from "./containers/LoginPage";
 import RegisterPage from "./containers/RegisterPage";
 import CreatePostPage from "./containers/CreatePostPage";
+import EditProfilePage from "./containers/EditProfilePage";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import ScrollToTop from "./ScrollToTop";
@@ -31,6 +32,12 @@ function App() {
             path="/create"
             element={
               <ProtectedRoute path="/create" component={CreatePostPage} />
+            }
+          />
+          <Route
+            path="/editProfile"
+            element={
+              <ProtectedRoute path="/editProfile" component={EditProfilePage} />
             }
           />
         </Routes>
