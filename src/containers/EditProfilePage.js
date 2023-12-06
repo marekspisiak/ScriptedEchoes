@@ -3,10 +3,13 @@ import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import axios from "axios";
 
 import { useAuth0 } from "@auth0/auth0-react";
+import { useNavigate } from "react-router-dom";
+import LinkButton from "../components/buttons/LinkButton";
 
 const EditProfilePage = () => {
   const [username, setUsername] = useState("");
   const { user } = useAuth0();
+  const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -28,6 +31,7 @@ const EditProfilePage = () => {
     } catch (error) {
       console.error("Chyba pri aktualizácii profilu", error);
     }
+    navigate("/profile");
   };
 
   return (
@@ -50,9 +54,10 @@ const EditProfilePage = () => {
             <Button variant="primary" type="submit" className="mt-3">
               Uložiť Zmeny
             </Button>
-            <Button variant="secondary" className="mt-3 ms-2">
+
+            <LinkButton to="/profile" variant="secondary" className="mt-3 ms-2">
               Zrušiť
-            </Button>
+            </LinkButton>
           </Form>
         </Col>
       </Row>

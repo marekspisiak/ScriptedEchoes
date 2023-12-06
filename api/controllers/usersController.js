@@ -29,7 +29,7 @@ exports.getUserProfileById = async (req, res) => {
     const auth0Id = req.params.id;
     const user = await User.findOne({
       where: { auth0_id: auth0Id },
-      attributes: ["username", "email"], // Vyberá iba username a email
+      attributes: ["username", "email", "user_id"], // Vyberá iba username a email
     });
 
     if (user) {

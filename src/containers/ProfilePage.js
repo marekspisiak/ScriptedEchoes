@@ -15,7 +15,7 @@ const ProfilePage = () => {
       <Row className="justify-content-center">
         <Col md={6}>
           <ProfileDetailsCard
-            username={userProfile?.username}
+            username={`${userProfile?.username}#${userProfile?.user_id}`}
             email={userProfile?.email}
             isEditable={true} // Tlačidlo sa zobrazí
           />
