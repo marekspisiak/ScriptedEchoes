@@ -2,12 +2,13 @@ import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 
 import Button from "react-bootstrap/Button";
+import useHandleLogin from "../../hooks/useHandleLogin";
 
 const LoginButton = () => {
-  const { loginWithRedirect } = useAuth0();
+  const handleLogin = useHandleLogin();
 
   return (
-    <Button onClick={() => loginWithRedirect()} variant="outline-primary">
+    <Button onClick={() => handleLogin()} variant="outline-primary">
       Log In / Register
     </Button>
   );
