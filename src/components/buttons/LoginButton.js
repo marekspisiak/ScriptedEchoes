@@ -8,7 +8,7 @@ const LoginButton = () => {
 
   return (
     <Button onClick={() => loginWithRedirect()} variant="outline-primary">
-      Log In
+      Log In / Register
     </Button>
   );
 };

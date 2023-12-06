@@ -3,9 +3,11 @@ import HomePage from "./containers/HomePage";
 import BlogPage from "./containers/BlogPage";
 import LoginPage from "./containers/LoginPage";
 import RegisterPage from "./containers/RegisterPage";
+import CreatePostPage from "./containers/CreatePostPage";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import ScrollToTop from "./ScrollToTop";
+import ProtectedRoute from "./ProtectedRoute";
 
 import { Auth0Provider } from "@auth0/auth0-react";
 
@@ -25,6 +27,10 @@ function App() {
           <Route path="/blog" element={<BlogPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
+          <Route
+            path="/create"
+            element={<ProtectedRoute component={<CreatePostPage />} />}
+          />
         </Routes>
       </Router>
     </Auth0Provider>
