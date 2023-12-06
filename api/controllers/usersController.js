@@ -51,11 +51,25 @@ exports.createUser = async (req, res) => {
 // Aktualizácia používateľa
 exports.updateUser = async (req, res) => {
   try {
-    const updatedUser = await User.update(req.body, {
-      where: { user_id: req.params.id },
-    });
-    if (updatedUser) {
-      res.json(updatedUser);
+    // Vytiahnutie 'username' z 'req.body'
+    const { username } = req.body;
+
+    // Ak chcete pridať dodatočné overenie, môžete tu pridať logiku
+    if (!username) {
+      return res.status(400).send("Username je povinný");
+    }
+
+    // Aktualizujte užívateľa iba s 'username'
+    const result = await User.update(
+      { username },
+      {
+        where: { auth0_id: req.params.id },
+      }
+    );
+
+    // Sequelize 'update' vracia pole, kde prvý element je počet zmenených riadkov
+    if (result[0] > 0) {
+      res.send("Používateľ bol úspešne aktualizovaný");
     } else {
       res.status(404).send("Používateľ nebol nájdený");
     }
