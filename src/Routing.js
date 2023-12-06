@@ -15,6 +15,7 @@ import ScrollToTop from "./ScrollToTop";
 import ProtectedRoute from "./ProtectedRoute";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import ProfilePage from "./containers/ProfilePage";
 
 function Routing() {
   return (
@@ -59,6 +60,10 @@ function Routing() {
                 component={FinishSignupPage}
               />
             }
+          />
+          <Route
+            path="/profile"
+            element={<ProtectedRoute path="/profile" component={ProfilePage} />}
           />
         </Routes>
       </div>

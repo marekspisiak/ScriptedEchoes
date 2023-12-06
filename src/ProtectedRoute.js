@@ -12,7 +12,7 @@ function ProtectedRoute(props) {
     if (!isLoading && !isAuthenticated) {
       handleLogin();
     }
-  }, []);
+  }, [isLoading]);
 
   if (isLoading || !isAuthenticated) {
     return <div>Loading...</div>;

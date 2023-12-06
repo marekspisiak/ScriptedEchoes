@@ -24,6 +24,25 @@ exports.getUserById = async (req, res) => {
   }
 };
 
+exports.getUserProfileById = async (req, res) => {
+  try {
+    const auth0Id = req.params.id;
+    const user = await User.findOne({
+      where: { auth0_id: auth0Id },
+      attributes: ["username", "email"], // Vyberá iba username a email
+    });
+
+    if (user) {
+      res.json(user);
+    } else {
+      res.status(404).send("Užívateľ nebol nájdený");
+    }
+  } catch (error) {
+    console.error("Chyba pri získavaní užívateľa: ", error);
+    res.status(500).send("Interná chyba servera");
+  }
+};
+
 // Vytvorenie nového používateľa
 exports.createUser = async (req, res) => {
   try {

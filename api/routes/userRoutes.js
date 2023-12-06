@@ -8,6 +8,8 @@ router.get("/users", usersController.getAllUsers);
 // Získanie konkrétneho používateľa podľa ID
 router.get("/users/:id", usersController.getUserById);
 
+router.get("/users/profile/:id", usersController.getUserProfileById);
+
 // Vytvorenie nového používateľa
 router.post("/users", usersController.createUser);
 
