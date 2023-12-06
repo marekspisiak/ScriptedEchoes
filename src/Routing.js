@@ -34,9 +34,12 @@ function Routing() {
             }
           />
           <Route
-            path="/editProfile"
+            path="/edit-profile"
             element={
-              <ProtectedRoute path="/editProfile" component={EditProfilePage} />
+              <ProtectedRoute
+                path="/edit-profile"
+                component={EditProfilePage}
+              />
             }
           />
           <Route
