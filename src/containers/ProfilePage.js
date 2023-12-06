@@ -5,6 +5,7 @@ import ProfileDetailsCard from "../components/ProfileDetailsCard";
 import ChangePasswordCard from "../components/ChangePasswordCard";
 import { useAuth0 } from "@auth0/auth0-react";
 import useUserProfile from "../hooks/useUserProfile";
+import ChangeEmailCard from "../components/ChangeEmailCard";
 
 const ProfilePage = () => {
   const { user } = useAuth0();
@@ -22,15 +23,7 @@ const ProfilePage = () => {
 
           <ChangePasswordCard />
 
-          <Card>
-            <Card.Body>
-              <Card.Title>Zmena E-mailu</Card.Title>
-              <Card.Text>Aktualizujte váš kontaktný e-mail.</Card.Text>
-              <Link to="/change-email" className="btn btn-secondary">
-                Zmeniť E-mail
-              </Link>
-            </Card.Body>
-          </Card>
+          <ChangeEmailCard />
         </Col>
       </Row>
     </Container>
