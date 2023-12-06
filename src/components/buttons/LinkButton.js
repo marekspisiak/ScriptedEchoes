@@ -3,12 +3,10 @@ import React from "react";
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 
-const LinkButton = (props) => {
-  const { to } = props;
-  const { children } = props;
+const LinkButton = ({ to, children, ...rest }) => {
   return (
     <Link to={to}>
-      <Button>{children}</Button>
+      <Button {...rest}>{children}</Button>
     </Link>
   );
 };
