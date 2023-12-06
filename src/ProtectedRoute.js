@@ -1,14 +1,16 @@
 import { useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 
-function ProtectedRoute({ component: Component }) {
+function ProtectedRoute(props) {
+  const { component: Component } = props;
+  const { path } = props;
   const { isAuthenticated, isLoading, loginWithRedirect } = useAuth0();
 
   useEffect(() => {
     if (!isLoading && !isAuthenticated) {
       loginWithRedirect({
         authorizationParams: {
-          redirect_uri: `${window.location.origin}/create`,
+          redirect_uri: `${window.location.origin}${path}`,
         },
       });
     }
