@@ -19,12 +19,7 @@ const LoginCallback = () => {
     }
   }, [user, isAuthenticated, isLoading]);
 
-  return (
-    <>
-      <Header />
-      <Footer />
-    </>
-  );
+  return <></>;
 };
 
 export default LoginCallback;

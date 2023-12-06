@@ -47,7 +47,6 @@ const BlogPage = () => {
 
   return (
     <>
-      <Header />
       <Container fluid className="blog-container mt-5">
         <Row className="blog-hero-section mb-5">
           <Col>
@@ -66,7 +65,6 @@ const BlogPage = () => {
           </Col>
         </Row>
       </Container>
-      <Footer />
     </>
   );
 };

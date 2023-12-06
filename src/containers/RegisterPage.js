@@ -6,11 +6,9 @@ import RegisterForm from "../components/RegisterForm";
 const LoginPage = () => {
   return (
     <>
-      <Header />
       <Container fluid className="login-container">
         <RegisterForm />
       </Container>
-      <Footer />
     </>
   );
 };

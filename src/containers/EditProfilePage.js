@@ -6,11 +6,9 @@ import Footer from "../components/Footer";
 const EditProfilePage = () => {
   return (
     <>
-      <Header />
       <Container fluid className="login-container">
         <LoginForm />
       </Container>
-      <Footer />
     </>
   );
 };

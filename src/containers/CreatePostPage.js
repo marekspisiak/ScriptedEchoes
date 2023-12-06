@@ -6,13 +6,7 @@ import SignUpCTA from "../components/SignUpCTA";
 import { Container, Row, Col } from "react-bootstrap";
 import Footer from "../components/Footer";
 const CreatePostPage = () => {
-  return (
-    <>
-      <Header />
-
-      <Footer />
-    </>
-  );
+  return <></>;
 };
 
 export default CreatePostPage;

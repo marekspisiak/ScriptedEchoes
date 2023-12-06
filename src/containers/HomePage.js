@@ -49,7 +49,6 @@ const HomePage = () => {
   ];
   return (
     <>
-      <Header />
       <HeroSection />
       <Container fluid className="main-container mt-5">
         <Row className="benefits-section mb-5">
@@ -73,7 +72,6 @@ const HomePage = () => {
           </Col>
         </Row>
       </Container>
-      <Footer />
     </>
   );
 };

@@ -6,9 +6,7 @@ import Footer from "../components/Footer";
 const FinishSignupPage = () => {
   return (
     <>
-      <Header />
       <Container fluid className="login-container"></Container>
-      <Footer />
     </>
   );
 };
