@@ -27,9 +27,23 @@ exports.getUserById = async (req, res) => {
 // Vytvorenie nového používateľa
 exports.createUser = async (req, res) => {
   try {
+    // Skontrolujte, či už existuje užívateľ s poskytnutým auth0_id
+    const existingUser = await User.findOne({
+      where: { auth0_id: req.body.auth0_id },
+    });
+
+    if (existingUser) {
+      // Ak užívateľ existuje, vráťte príslušnú odpoveď
+      return res
+        .status(409)
+        .json({ message: "Užívateľ s daným Auth0 ID už existuje." });
+    }
+
+    // Ak užívateľ neexistuje, vytvorte nového užívateľa
     const newUser = await User.create(req.body);
     res.status(201).json(newUser);
   } catch (error) {
+    console.log(error);
     res.status(500).send(error.message);
   }
 };
