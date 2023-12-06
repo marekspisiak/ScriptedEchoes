@@ -29,7 +29,7 @@ function App() {
           <Route path="/register" element={<RegisterPage />} />
           <Route
             path="/create"
-            element={<ProtectedRoute component={<CreatePostPage />} />}
+            element={<ProtectedRoute component={CreatePostPage} />}
           />
         </Routes>
       </Router>
