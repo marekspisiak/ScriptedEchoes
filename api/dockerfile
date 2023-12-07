@@ -1,19 +1,13 @@
 FROM node:18 as development
 
-# Nastavte pracovný adresár
 WORKDIR /app
 
-# Kopírujte package.json a package-lock.json (ak existuje)
 COPY package*.json ./
 
-# Nainštalujte závislosti
 RUN npm install
 
-# Kopírujte zdrojový kód aplikácie
 COPY . .
 
-# Exponujte port, na ktorom beží vaša aplikácia
 EXPOSE 3001
 
-# Spustite aplikáciu
 CMD ["node", "app.js"]
