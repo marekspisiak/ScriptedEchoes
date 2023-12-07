@@ -5,34 +5,36 @@ import BlogHeroSection from "../components/BlogHeroSection";
 import FilterSection from "../components/FilterSection";
 import Articles from "../components/Articles";
 import Sidebar from "../components/Sidebar";
+import useFetchPosts from "../hooks/useFetchPosts";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const BlogPage = () => {
-  const latestArticles = [
-    {
-      title: "Najnovší článok 1",
-      description: "Popis článku...",
-      image: "/holder.jpg",
-      date: "24.10.2023",
-    },
-    {
-      title: "Najnovší článok 2",
-      description: "Popis článku...",
-      image: "/holder.jpg",
-      date: "23.10.2023",
-    },
-    {
-      title: "Najnovší článok 2",
-      description: "Popis článku...",
-      image: "/holder.jpg",
-      date: "23.10.2023",
-    },
-    {
-      title: "Najnovší článok 2",
-      description: "Popis článku...",
-      image: "/holder.jpg",
-      date: "23.10.2023",
-    },
-  ];
+  const { posts, loading, error } = useFetchPosts(
+    "http://localhost:3001/posts"
+  );
+  const [articles, setArticles] = useState([]);
+  useEffect(() => {
+    if (posts.length > 0) {
+      const updatedPosts = posts.map((post) => ({
+        ...post, // Zachová existujúce vlastnosti
+        description: "Popis článku...",
+        image: "/holder.jpg",
+      }));
+
+      setArticles(updatedPosts);
+    }
+  }, [posts]);
+
+  const deleteArticle = async (articleId) => {
+    try {
+      await axios.delete(`http://localhost:3001/posts/${articleId}`);
+      // Aktualizujte stav článkov po odstránení
+      setArticles(articles.filter((article) => article.post_id !== articleId));
+    } catch (error) {
+      console.error("Chyba pri odstraňovaní článku:", error);
+    }
+  };
 
   const sidebarData = {
     categories: [
@@ -61,7 +63,7 @@ const BlogPage = () => {
           </Col>
 
           <Col lg={9}>
-            <Articles articles={latestArticles} />
+            <Articles articles={articles} onDelete={deleteArticle} />
           </Col>
         </Row>
       </Container>

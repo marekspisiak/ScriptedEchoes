@@ -1,7 +1,12 @@
 import React from "react";
-import { Card, Row, Col } from "react-bootstrap";
+import { Card, Row, Col, Button } from "react-bootstrap";
 
-function Articles({ articles }) {
+function Articles({ articles, onDelete }) {
+  const handleDelete = (articleId) => {
+    // Volanie funkcie onDelete, ktorá bola poskytnutá ako prop
+    onDelete(articleId);
+  };
+
   return (
     <Row>
       {articles.map((article, index) => (
@@ -11,10 +16,18 @@ function Articles({ articles }) {
             <Card.Body>
               <Card.Title>{article.title}</Card.Title>
               <Card.Text>{article.description}</Card.Text>
-              <Card.Footer>
-                <small className="text-muted">{article.date}</small>
-              </Card.Footer>
             </Card.Body>
+            <Card.Footer>
+              <small className="text-muted">{article.created_at}</small>
+              <Button
+                variant="danger"
+                size="sm"
+                onClick={() => handleDelete(article.post_id)}
+                className="float-right"
+              >
+                Delete
+              </Button>
+            </Card.Footer>
           </Card>
         </Col>
       ))}
