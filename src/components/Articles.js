@@ -1,7 +1,9 @@
 import React from "react";
 import { Card, Row, Col, Button } from "react-bootstrap";
+import { useUser } from "../contexts/UserContext";
 
 function Articles({ articles, onDelete }) {
+  const { userProfile } = useUser();
   const handleDelete = (articleId) => {
     // Volanie funkcie onDelete, ktorá bola poskytnutá ako prop
     onDelete(articleId);
@@ -19,14 +21,16 @@ function Articles({ articles, onDelete }) {
             </Card.Body>
             <Card.Footer>
               <small className="text-muted">{article.created_at}</small>
-              <Button
-                variant="danger"
-                size="sm"
-                onClick={() => handleDelete(article.post_id)}
-                className="float-right"
-              >
-                Delete
-              </Button>
+              {article?.author_id === userProfile?.user_id ? (
+                <Button
+                  variant="danger"
+                  size="sm"
+                  onClick={() => handleDelete(article.post_id)}
+                  className="float-right"
+                >
+                  Delete
+                </Button>
+              ) : null}
             </Card.Footer>
           </Card>
         </Col>
