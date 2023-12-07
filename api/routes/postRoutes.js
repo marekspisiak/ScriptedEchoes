@@ -12,9 +12,6 @@ router.get("/posts/:id", postsController.getPostById);
 // Vytvorenie nového používateľa
 router.post("/posts", postsController.createPost);
 
-// Aktualizácia používateľa
-router.put("/posts/:id", postsController.updatePost);
-
 // Odstránenie používateľa
 router.delete("/posts/:id", jwtCheck, postsController.deletePost);
 

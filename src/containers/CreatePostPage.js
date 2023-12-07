@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form, Button, Container, Row, Col } from "react-bootstrap";
+import { Form, Button, Container, Row, Col, Alert } from "react-bootstrap";
 import { useUser } from "../contexts/UserContext";
 import axios from "axios";
 
@@ -7,9 +7,13 @@ const CreatePostPage = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const { userProfile } = useUser();
+  const [message, setMessage] = useState(null);
+  const [error, setError] = useState(null);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setMessage(null);
+    setError(null);
 
     try {
       const response = await axios.post("http://localhost:3001/posts", {
@@ -19,9 +23,12 @@ const CreatePostPage = () => {
       });
 
       console.log("Nový príspevok bol pridaný:", response.data);
-      // Po úspešnom pridaní môžete presmerovať užívateľa alebo zobraziť správu
+      setMessage(`Príspevok ${title} bol úspešne pridaný.`);
+      setTitle("");
+      setContent("");
     } catch (error) {
       console.error("Chyba pri pridávaní príspevku:", error);
+      setError("Nepodarilo sa pridať príspevok. Skúste to znova.");
     }
   };
 
@@ -30,6 +37,10 @@ const CreatePostPage = () => {
       <Row className="justify-content-md-center">
         <Col md={6}>
           <h1>Pridať Nový Blog</h1>
+
+          {message && <Alert variant="success">{message}</Alert>}
+          {error && <Alert variant="danger">{error}</Alert>}
+
           <Form onSubmit={handleSubmit}>
             <Form.Group controlId="blogTitle">
               <Form.Label>Názov</Form.Label>

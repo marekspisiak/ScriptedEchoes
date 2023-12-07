@@ -35,22 +35,6 @@ exports.createPost = async (req, res) => {
   }
 };
 
-// Aktualizácia príspevku
-exports.updatePost = async (req, res) => {
-  try {
-    const updatedPost = await Post.update(req.body, {
-      where: { post_id: req.params.id },
-    });
-    if (updatedPost) {
-      res.json(updatedPost);
-    } else {
-      res.status(404).send("Príspevok nebol nájdený");
-    }
-  } catch (error) {
-    res.status(500).send(error.message);
-  }
-};
-
 // Odstránenie príspevku
 exports.deletePost = async (req, res) => {
   try {

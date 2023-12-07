@@ -70,45 +70,35 @@ exports.createUser = async (req, res) => {
 // Aktualizácia používateľa
 exports.updateUser = async (req, res) => {
   try {
-    // Vytiahnutie 'username' z 'req.body'
     const { username } = req.body;
 
-    // Ak chcete pridať dodatočné overenie, môžete tu pridať logiku
+    // Regulárny výraz pre kontrolu platnosti username
+    const validUsernameRegex = /^[a-zA-Z0-9_-]+$/;
+
+    // Skontrolujte, či bol username poskytnutý
     if (!username) {
       return res.status(400).send("Username je povinný");
+    }
+
+    // Skontrolujte, či username spĺňa kritériá platnosti
+    if (!validUsernameRegex.test(username)) {
+      return res.status(400).send("Neplatný formát užívateľského mena");
     }
 
     // Aktualizujte užívateľa iba s 'username'
     const result = await User.update(
       { username },
-      {
-        where: { auth0_id: req.params.id },
-      }
+      { where: { auth0_id: req.params.id } }
     );
 
-    // Sequelize 'update' vracia pole, kde prvý element je počet zmenených riadkov
+    // Odpoveď v prípade úspechu
     if (result[0] > 0) {
-      res.send("Používateľ bol úspešne aktualizovaný");
+      res.send("Užívateľ bol úspešne aktualizovaný.");
     } else {
-      res.status(404).send("Používateľ nebol nájdený");
+      res.status(404).send("Užívateľ nebol nájdený alebo žiadna zmena.");
     }
   } catch (error) {
-    res.status(500).send(error.message);
-  }
-};
-
-// Odstránenie používateľa
-exports.deleteUser = async (req, res) => {
-  try {
-    const deleteUser = await User.destroy({
-      where: { user_id: req.params.id },
-    });
-    if (deleteUser) {
-      res.status(204).send();
-    } else {
-      res.status(404).send("Používateľ nebol nájdený");
-    }
-  } catch (error) {
-    res.status(500).send(error.message);
+    console.error("Chyba pri aktualizácii užívateľa:", error);
+    res.status(500).send("Interná chyba servera");
   }
 };
