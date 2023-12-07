@@ -1,7 +1,7 @@
 import React from "react";
 import Articles from "../../components/Articles";
-import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import Button from "../../components/buttons/Button";
 
 function HomeArticles({ title, articles }) {
   return (
@@ -11,9 +11,7 @@ function HomeArticles({ title, articles }) {
           {title}
         </h2>
         <Link to="/blog">
-          <Button variant="outline-primary" size="sm">
-            Zobraziť všetko
-          </Button>
+          <Button variant="primary">Zobraziť všetko</Button>
         </Link>
       </div>
 

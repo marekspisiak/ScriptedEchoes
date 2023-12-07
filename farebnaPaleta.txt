@@ -1,0 +1,5 @@
+Základná Farba: #2c3e50 (tmavomodrá)
+Svetlé Odtiene: #3d566e, #5a7389 (svetlejšie odtiene modrej)
+Kontrastné Farby: #FFFFFF (biela), #f2f2f2 (svetlosivá)
+Akcentné Farby: #a7be8b (bledá zelená), #e1a07a (terakota)
+Pozadie: #f2f2f2 (svetlosivá), #FFFFFF (biela)

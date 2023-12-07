@@ -42,7 +42,13 @@ const Header = () => {
               <></>
             )}
           </Nav>
-          <Nav>{isAuthenticated ? <LogoutButton /> : <LoginButton />}</Nav>
+          <Nav>
+            {isAuthenticated ? (
+              <LogoutButton />
+            ) : (
+              <LoginButton variant={"secondary"} />
+            )}
+          </Nav>
         </Navbar.Collapse>
       </Container>
     </Navbar>

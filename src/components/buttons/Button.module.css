@@ -1,0 +1,57 @@
+@import '../../variables.module.css';
+
+/* Button.module.css */
+.button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.button-primary {
+    background-color: var(--primary-color); /* Tmavomodrá */
+    color: var(--secondary-color); /* Biela */
+}
+
+.button-primary:hover {
+    background-color: var(--light-primary); /* Svetlejšia odtieň modrej */
+}
+
+.button-secondary {
+    background-color: var(--secondary-color); /* Biela */
+    color: var(--primary-color); /* Tmavomodrá */
+    border: 2px solid var(--primary-color);
+}
+
+.button-secondary:hover {
+    background-color: var(--light-primary); /* Svetlejšia odtieň modrej */
+    color: var(--secondary-color); /* Biela */
+}
+
+.button-accent {
+    background-color: var(--accent-color); /* Terakota */
+    color: var(--secondary-color); /* Biela */
+}
+
+.button-accent:hover {
+    background-color: var(--tertiary-color); /* Bledá zelená */
+}
+
+.button-highlight {
+    background-color: var(--accent-color); /* Terakota */
+    color: var(--secondary-color); /* Biela */
+    padding: 15px 30px;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.button-highlight:hover {
+    transform: translateY(-2px);
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+}

@@ -1,5 +1,6 @@
 import Container from "react-bootstrap/Container";
 import StartWritingButton from "../../components/buttons/StartWritingButton";
+import LinkButton from "../../components/buttons/LinkButton";
 
 function HeroSection() {
   return (
@@ -9,7 +10,9 @@ function HeroSection() {
         Zdieľajte svoje skúsenosti, nápady a myšlienky so svetom na
         ScriptedEchoes.
       </p>
-      <StartWritingButton />
+      <LinkButton to="/create" variant={"highlight"}>
+        Začnite písať
+      </LinkButton>
     </Container>
   );
 }

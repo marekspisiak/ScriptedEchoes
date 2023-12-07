@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { Form, Button, Container, Row, Col, Alert } from "react-bootstrap";
+import { Form, Container, Row, Col, Alert } from "react-bootstrap";
 import { useUser } from "../../contexts/UserContext";
 import axios from "axios";
+import Button from "../../components/buttons/Button";
 
 const CreatePostPage = () => {
   const [title, setTitle] = useState("");
@@ -68,7 +69,7 @@ const CreatePostPage = () => {
               />
             </Form.Group>
 
-            <Button className="btn-basic mt-3" type="submit">
+            <Button className="m-3" type="submit" variant={"primary"}>
               Pridať Blog
             </Button>
           </Form>

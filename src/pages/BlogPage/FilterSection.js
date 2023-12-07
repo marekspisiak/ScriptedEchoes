@@ -1,6 +1,7 @@
 // components/FilterSection.jsx
 
-import { Form, Button, Row, Col } from "react-bootstrap";
+import { Form, Row, Col } from "react-bootstrap";
+import Button from "../../components/buttons/Button";
 
 function FilterSection() {
   return (
@@ -8,7 +9,7 @@ function FilterSection() {
       <Col md={12}>
         <Form className="d-flex">
           <Form.Control type="text" placeholder="Hľadať článok" />
-          <Button variant="outline-primary">Hľadať</Button>
+          <Button variant="primary">Hľadať</Button>
         </Form>
       </Col>
     </Row>
