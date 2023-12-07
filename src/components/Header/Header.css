@@ -1,5 +1,4 @@
 @import "../../theme.module.css";
-/* header.module.css */
 header {
     background-color: var(--primary-color); 
     color: var(--secondary-color); 

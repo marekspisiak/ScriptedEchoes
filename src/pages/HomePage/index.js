@@ -1,5 +1,5 @@
 import Header from "../../components/Header/Header";
-import HeroSection from "./HeroSection";
+import HeroSection from "./HeroSection/HeroSection";
 import Benefits from "./Benefits";
 import HomeArticles from "./HomeArticles";
 import SignUpCTA from "./SignUpCTA";
