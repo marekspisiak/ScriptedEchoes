@@ -13,7 +13,7 @@ const ProfileDetailsCard = ({ username, email, isEditable }) => {
           <strong>E-mail:</strong> {email}
         </Card.Text>
         {isEditable && (
-          <Link to="/edit-profile" className="btn btn-primary">
+          <Link to="/edit-profile" className="btn btn-basic">
             Editovať Profil
           </Link>
         )}

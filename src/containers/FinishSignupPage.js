@@ -12,12 +12,12 @@ const FinishSignupPage = () => {
             Ďakujeme za registráciu. Dokončite svoj profil pre najlepší zážitok.
           </p>
           <div className="mt-4">
-            <LinkButton to="/edit-profile" className="">
+            <LinkButton to="/edit-profile" className="btn-flashy m-2">
               Dokončiť Profil Teraz
             </LinkButton>
             <LinkButton
               to={sessionStorage.getItem("lastVisitedRoute") || "/"}
-              className=""
+              className="btn-basic m-2"
             >
               Urobím To Neskôr
             </LinkButton>

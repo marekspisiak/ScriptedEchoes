@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 function StartWritingButton() {
   return (
     <Link to="/create">
-      <Button className="start-writing-button" variant="primary" size="lg">
+      <Button variant="start-writing" size="lg">
         Začnite písať
       </Button>
     </Link>

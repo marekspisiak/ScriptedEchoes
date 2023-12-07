@@ -28,9 +28,9 @@ const ProfilePage = () => {
             isEditable={true} // Tlačidlo sa zobrazí
           />
 
-          <ChangePasswordCard />
+          {/* <ChangePasswordCard />
 
-          <ChangeEmailCard />
+          <ChangeEmailCard /> */}
         </Col>
       </Row>
     </Container>

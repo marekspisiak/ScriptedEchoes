@@ -19,7 +19,7 @@ function Articles({ articles, onDelete }) {
               <Card.Title>{article.title}</Card.Title>
               <Card.Text>{article.description}</Card.Text>
             </Card.Body>
-            <Card.Footer>
+            <Card.Footer className="d-flex justify-content-around align-items-center">
               <small className="text-muted">{article.created_at}</small>
               {article?.author_id === userProfile?.user_id ? (
                 <Button

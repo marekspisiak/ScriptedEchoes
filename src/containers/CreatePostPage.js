@@ -63,7 +63,7 @@ const CreatePostPage = () => {
               />
             </Form.Group>
 
-            <Button variant="primary" type="submit">
+            <Button className="btn-basic mt-3" type="submit">
               Pridať Blog
             </Button>
           </Form>

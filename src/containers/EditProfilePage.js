@@ -65,7 +65,7 @@ const EditProfilePage = () => {
               <div className="error-message text-danger">{errorMessage}</div>
             )}
 
-            <Button variant="primary" type="submit" className="mt-3">
+            <Button type="submit" className="mt-3" variant="basic">
               Uložiť Zmeny
             </Button>
 
