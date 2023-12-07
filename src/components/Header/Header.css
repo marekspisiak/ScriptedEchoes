@@ -1,0 +1,29 @@
+@import "../../theme.module.css";
+/* header.module.css */
+header {
+    background-color: var(--primary-color); 
+    color: var(--secondary-color); 
+}
+
+header .navbar-brand {
+    color: var(--secondary-color); 
+}
+
+header .navbar-brand:hover {
+    color: var(--accent-color); 
+}
+
+header p {
+    color: var(--secondary-color);
+}
+
+header .nav-link {
+    color: var(--secondary-color); 
+    transition: color 0.3s ease; 
+}
+
+header .nav-link:hover {
+    color: var(--accent-color); 
+}
+
+

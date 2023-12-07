@@ -10,12 +10,10 @@ import LoginCallback from "./pages/LoginCallbackPage";
 import FinishSignupPage from "./pages/FinishSignupPage";
 import ProfilePage from "./pages/ProfilePage";
 
-import "bootstrap/dist/css/bootstrap.min.css";
-import "./App.css";
 import ScrollToTop from "./ScrollToTop";
 import ProtectedRoute from "./ProtectedRoute";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
+import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
 import { useUser } from "./contexts/UserContext";
 import useUserProfile from "./hooks/useUserProfile";
 import { useEffect } from "react";

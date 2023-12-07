@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Container, Row, Col, Form, Button } from "react-bootstrap";
+import { Container, Row, Col, Form } from "react-bootstrap";
+import Button from "../../components/buttons/Button";
 import axios from "axios";
 
 import { useAuth0 } from "@auth0/auth0-react";
@@ -62,11 +63,11 @@ const EditProfilePage = () => {
               <div className="error-message text-danger">{errorMessage}</div>
             )}
 
-            <Button type="submit" className="mt-3" variant="basic">
+            <Button type="submit" className="mt-3" variant="primary">
               Uložiť Zmeny
             </Button>
 
-            <LinkButton to="/profile" variant="secondary" className="mt-3 ms-2">
+            <LinkButton to="/profile" variant="secondary" className="m-3">
               Zrušiť
             </LinkButton>
           </Form>

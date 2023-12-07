@@ -11,7 +11,7 @@ function HomeArticles({ title, articles }) {
           {title}
         </h2>
         <Link to="/blog">
-          <Button variant="primary">Zobraziť všetko</Button>
+          <Button variant="secondary">Zobraziť všetko</Button>
         </Link>
       </div>
 

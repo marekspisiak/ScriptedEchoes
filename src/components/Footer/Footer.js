@@ -1,9 +1,10 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
+import "./Footer.css";
 
 function Footer() {
   return (
-    <footer className="bg-dark text-white py-4">
+    <footer className="p-3">
       <Container>
         <Row>
           <Col md={4}>
@@ -15,17 +16,11 @@ function Footer() {
           </Col>
           <Col md={4}>
             <h5>Užitočné odkazy</h5>
-            <ul>
-              <li>
-                <a href="/about">O nás</a>
-              </li>
-              <li>
-                <a href="/contact">Kontakt</a>
-              </li>
-              <li>
-                <a href="/terms">Obchodné podmienky</a>
-              </li>
-            </ul>
+            <a href="/about">O nás</a>
+            <br />
+            <a href="/contact">Kontakt</a>
+            <br />
+            <a href="/terms">Obchodné podmienky</a>
           </Col>
           <Col md={4}>
             <h5>Sledujte nás</h5>

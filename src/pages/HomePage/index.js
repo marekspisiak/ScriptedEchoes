@@ -1,10 +1,10 @@
-import Header from "../../components/Header";
+import Header from "../../components/Header/Header";
 import HeroSection from "./HeroSection";
 import Benefits from "./Benefits";
 import HomeArticles from "./HomeArticles";
 import SignUpCTA from "./SignUpCTA";
 import { Container, Row, Col } from "react-bootstrap";
-import Footer from "../../components/Footer";
+import Footer from "../../components/Footer/Footer";
 const HomePage = () => {
   const latestArticles = [
     {
