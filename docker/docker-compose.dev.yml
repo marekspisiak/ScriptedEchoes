@@ -29,5 +29,20 @@ services:
     volumes:
       - mysql-data:/var/lib/mysql
 
+  api:
+    container_name: api-dev
+    image: api-dev
+    build:
+      context: ../api  # Predpokladám, že váš API kód je v adresári 'api'
+      target: development
+      dockerfile: dockerfile  # Uistite sa, že máte Dockerfile v adresári 'api'
+    ports:
+      - "3001:3001"  # Port pre API
+    volumes:
+      - ../api:/app  # Zmena kontextu pre API
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+
 volumes:
   mysql-data:
