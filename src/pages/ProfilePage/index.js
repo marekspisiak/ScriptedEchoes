@@ -1,11 +1,9 @@
 import { useEffect, React } from "react";
 import { Container, Row, Col, Button, Card } from "react-bootstrap";
-import ProfileDetailsCard from "../components/ProfileDetailsCard";
-import ChangePasswordCard from "../components/ChangePasswordCard";
-import ChangeEmailCard from "../components/ChangeEmailCard";
-import { useUser } from "../contexts/UserContext";
+import ProfileDetailsCard from "../../components/cards/ProfileDetailsCard";
+import { useUser } from "../../contexts/UserContext";
 import { useAuth0 } from "@auth0/auth0-react";
-import useUserProfile from "../hooks/useUserProfile";
+import useUserProfile from "../../hooks/useUserProfile";
 
 const ProfilePage = () => {
   const { user, isAuthenticated } = useAuth0();

@@ -1,11 +1,9 @@
-import Header from "../components/Header";
-import Footer from "../components/Footer";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
-import BlogHeroSection from "../components/BlogHeroSection";
-import FilterSection from "../components/FilterSection";
-import Articles from "../components/Articles";
-import Sidebar from "../components/Sidebar";
-import useFetchPosts from "../hooks/useFetchPosts";
+import BlogHeroSection from "../../components/BlogHeroSection";
+import FilterSection from "../../components/FilterSection";
+import Articles from "../../components/Articles";
+import Sidebar from "../../components/Sidebar";
+import useFetchPosts from "../../hooks/useFetchPosts";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";

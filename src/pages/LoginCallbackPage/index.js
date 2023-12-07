@@ -3,7 +3,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-const LoginCallback = () => {
+const LoginCallbackPage = () => {
   const [registered, setRegistered] = useState(0);
   const { user, isAuthenticated, isLoading, getAccessTokenSilently } =
     useAuth0();
@@ -47,4 +47,4 @@ const LoginCallback = () => {
   return <></>;
 };
 
-export default LoginCallback;
+export default LoginCallbackPage;

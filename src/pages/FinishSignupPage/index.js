@@ -1,6 +1,6 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import LinkButton from "../components/buttons/LinkButton";
+import LinkButton from "../../components/buttons/LinkButton";
 
 const FinishSignupPage = () => {
   return (
