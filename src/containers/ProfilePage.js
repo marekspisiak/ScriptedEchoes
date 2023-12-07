@@ -1,15 +1,12 @@
 import { useEffect, React } from "react";
 import { Container, Row, Col, Button, Card } from "react-bootstrap";
-import { Link } from "react-router-dom";
 import ProfileDetailsCard from "../components/ProfileDetailsCard";
 import ChangePasswordCard from "../components/ChangePasswordCard";
-import { useAuth0 } from "@auth0/auth0-react";
-import useUserProfile from "../hooks/useUserProfile";
 import ChangeEmailCard from "../components/ChangeEmailCard";
+import { useUser } from "../contexts/UserContext";
 
 const ProfilePage = () => {
-  const { user } = useAuth0();
-  const { userProfile, loading, error } = useUserProfile(user.sub);
+  const { userProfile } = useUser();
 
   return (
     <Container className="mt-5">
