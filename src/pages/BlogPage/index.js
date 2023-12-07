@@ -1,7 +1,7 @@
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import BlogHeroSection from "./BlogHeroSection";
 import FilterSection from "./FilterSection";
-import Articles from "../../components/Articles";
+import Articles from "../../components/Articles/Articles";
 import Sidebar from "./Sidebar";
 import useFetchPosts from "../../hooks/useFetchPosts";
 import { useEffect, useState } from "react";

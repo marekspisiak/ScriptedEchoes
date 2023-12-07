@@ -2,9 +2,12 @@
 header {
     background-color: var(--primary-color); 
     color: var(--secondary-color); 
+    position: sticky;
+    top:0;
+    z-index: 99;
 }
 
-header .navbar-brand {
+header .navbar-brand,header .navbar-brand:focus {
     color: var(--secondary-color); 
 }
 
@@ -16,7 +19,7 @@ header p {
     color: var(--secondary-color);
 }
 
-header .nav-link {
+header .nav-link,  header .nav-link:focus {
     color: var(--secondary-color); 
     transition: color 0.3s ease; 
 }
@@ -24,5 +27,6 @@ header .nav-link {
 header .nav-link:hover {
     color: var(--accent-color); 
 }
+
 
 
