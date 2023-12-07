@@ -1,6 +1,6 @@
 import Header from "../../components/Header/Header";
 import HeroSection from "./HeroSection/HeroSection";
-import Benefits from "./Benefits";
+import Benefits from "./Benefits/Benefits";
 import HomeArticles from "./HomeArticles";
 import SignUpCTA from "./SignUpCTA";
 import { Container, Row, Col } from "react-bootstrap";

@@ -1,5 +1,6 @@
 import React from "react";
 import { Card, Row, Col } from "react-bootstrap";
+import "./Benefits.css";
 
 function Benefits() {
   const benefitsData = [
