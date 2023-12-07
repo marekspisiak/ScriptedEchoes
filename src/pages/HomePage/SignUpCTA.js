@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, Container, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import StartWritingButton from "./buttons/StartWritingButton";
+import StartWritingButton from "../../components/buttons/StartWritingButton";
 
 function SignUpCTA() {
   return (

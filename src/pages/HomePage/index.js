@@ -1,8 +1,8 @@
 import Header from "../../components/Header";
-import HeroSection from "../../components/HeroSection";
-import Benefits from "../../components/Benefits";
-import HomeArticles from "../../components/HomeArticles";
-import SignUpCTA from "../../components/SignUpCTA";
+import HeroSection from "./HeroSection";
+import Benefits from "./Benefits";
+import HomeArticles from "./HomeArticles";
+import SignUpCTA from "./SignUpCTA";
 import { Container, Row, Col } from "react-bootstrap";
 import Footer from "../../components/Footer";
 const HomePage = () => {

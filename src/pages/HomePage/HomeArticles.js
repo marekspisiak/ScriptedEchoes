@@ -1,5 +1,5 @@
 import React from "react";
-import Articles from "./Articles";
+import Articles from "../../components/Articles";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 

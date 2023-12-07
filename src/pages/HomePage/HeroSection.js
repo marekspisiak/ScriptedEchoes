@@ -1,5 +1,5 @@
 import Container from "react-bootstrap/Container";
-import StartWritingButton from "./buttons/StartWritingButton";
+import StartWritingButton from "../../components/buttons/StartWritingButton";
 
 function HeroSection() {
   return (
