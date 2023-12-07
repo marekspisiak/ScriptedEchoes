@@ -15,6 +15,12 @@ const CreatePostPage = () => {
     setMessage(null);
     setError(null);
 
+    // Kontrola, či sú políčka vyplnené
+    if (!title.trim() || !content.trim()) {
+      setError("Prosím, vyplňte názov a obsah blogu.");
+      return;
+    }
+
     try {
       const response = await axios.post("http://localhost:3001/posts", {
         title,
