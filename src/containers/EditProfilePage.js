@@ -31,6 +31,7 @@ const EditProfilePage = () => {
     } catch (error) {
       console.error("Chyba pri aktualizácii profilu", error);
     }
+
     navigate("/profile");
   };
 

@@ -33,6 +33,15 @@ const Header = () => {
               Kontakt
             </Nav.Link>
           </Nav>
+          <Nav>
+            {isAuthenticated ? (
+              <Nav.Link as={Link} to="/profile">
+                Profil
+              </Nav.Link>
+            ) : (
+              <></>
+            )}
+          </Nav>
           <Nav>{isAuthenticated ? <LogoutButton /> : <LoginButton />}</Nav>
         </Navbar.Collapse>
       </Container>
