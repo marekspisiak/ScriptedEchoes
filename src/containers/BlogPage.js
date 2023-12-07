@@ -8,11 +8,14 @@ import Sidebar from "../components/Sidebar";
 import useFetchPosts from "../hooks/useFetchPosts";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const BlogPage = () => {
   const { posts, loading, error } = useFetchPosts(
     "http://localhost:3001/posts"
   );
+  const { getAccessTokenSilently } = useAuth0();
+
   const [articles, setArticles] = useState([]);
   useEffect(() => {
     if (posts.length > 0) {
@@ -28,7 +31,15 @@ const BlogPage = () => {
 
   const deleteArticle = async (articleId) => {
     try {
-      await axios.delete(`http://localhost:3001/posts/${articleId}`);
+      // Získajte JWT token pre autorizáciu
+      const accessToken = await getAccessTokenSilently();
+
+      await axios.delete(`http://localhost:3001/posts/${articleId}`, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
+
       // Aktualizujte stav článkov po odstránení
       setArticles(articles.filter((article) => article.post_id !== articleId));
     } catch (error) {

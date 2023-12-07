@@ -8,11 +8,22 @@ import LinkButton from "../components/buttons/LinkButton";
 
 const EditProfilePage = () => {
   const [username, setUsername] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   const { user } = useAuth0();
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    // Regulárny výraz na kontrolu povolených znakov v užívateľskom mene
+    const validUsernameRegex = /^[a-zA-Z0-9_-]+$/;
+
+    if (!validUsernameRegex.test(username)) {
+      setErrorMessage(
+        "Užívateľské meno môže obsahovať len písmená, čísla, pomlčky a podčiarkovníky, a nesmie obsahovať medzery."
+      );
+      return;
+    }
 
     try {
       // Tu nahraďte skutočným auth0_id užívateľa
@@ -27,12 +38,10 @@ const EditProfilePage = () => {
       );
 
       console.log("Profil aktualizovaný", response.data);
-      // Tu môžete pridať ďalšiu logiku, napr. presmerovanie alebo zobrazenie správy
+      navigate("/profile");
     } catch (error) {
       console.error("Chyba pri aktualizácii profilu", error);
     }
-
-    navigate("/profile");
   };
 
   return (
@@ -51,6 +60,10 @@ const EditProfilePage = () => {
                 onChange={(e) => setUsername(e.target.value)}
               />
             </Form.Group>
+
+            {errorMessage && (
+              <div className="error-message text-danger">{errorMessage}</div>
+            )}
 
             <Button variant="primary" type="submit" className="mt-3">
               Uložiť Zmeny

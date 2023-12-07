@@ -11,6 +11,7 @@ function App() {
       clientId="jAs3G0RPYsvmlsnfF2XurxhRW8EI3uYf"
       authorizationParams={{
         redirect_uri: `${window.location.origin}/login-callback`,
+        audience: "localhost:3001",
       }}
     >
       <Routing />

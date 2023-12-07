@@ -1,8 +1,17 @@
 const express = require("express");
 const cors = require("cors");
+const { auth } = require("express-oauth2-jwt-bearer");
 
 const sequelize = require("./database");
-require("./models/associateModels");
+require("./models/associateModels"); // Import všetkých modelov
+
+const jwtCheck = auth({
+  audience: "localhost:3001",
+  issuerBaseURL: "https://dev-lvx04gpir514yisr.us.auth0.com/",
+  tokenSigningAlg: "RS256",
+});
+
+module.exports = jwtCheck;
 
 // ... zvyšok vášho kódu pre Express app
 

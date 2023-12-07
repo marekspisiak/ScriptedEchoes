@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const postsController = require("../controllers/postsController");
+const jwtCheck = require("../app");
 
 // Získanie všetkých používateľov
 router.get("/posts", postsController.getAllPosts);
@@ -15,6 +16,6 @@ router.post("/posts", postsController.createPost);
 router.put("/posts/:id", postsController.updatePost);
 
 // Odstránenie používateľa
-router.delete("/posts/:id", postsController.deletePost);
+router.delete("/posts/:id", jwtCheck, postsController.deletePost);
 
 module.exports = router;
