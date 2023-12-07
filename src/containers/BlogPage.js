@@ -20,7 +20,7 @@ const BlogPage = () => {
   useEffect(() => {
     if (posts.length > 0) {
       const updatedPosts = posts.map((post) => ({
-        ...post, // Zachová existujúce vlastnosti
+        ...post,
         description: "Popis článku...",
         image: "/holder.jpg",
       }));
@@ -31,7 +31,6 @@ const BlogPage = () => {
 
   const deleteArticle = async (articleId) => {
     try {
-      // Získajte JWT token pre autorizáciu
       const accessToken = await getAccessTokenSilently();
 
       await axios.delete(`http://localhost:3001/posts/${articleId}`, {
@@ -40,7 +39,6 @@ const BlogPage = () => {
         },
       });
 
-      // Aktualizujte stav článkov po odstránení
       setArticles(articles.filter((article) => article.post_id !== articleId));
     } catch (error) {
       console.error("Chyba pri odstraňovaní článku:", error);

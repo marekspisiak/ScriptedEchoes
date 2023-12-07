@@ -15,7 +15,6 @@ const EditProfilePage = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    // Regulárny výraz na kontrolu povolených znakov v užívateľskom mene
     const validUsernameRegex = /^[a-zA-Z0-9_-]+$/;
 
     if (!validUsernameRegex.test(username)) {
@@ -26,10 +25,8 @@ const EditProfilePage = () => {
     }
 
     try {
-      // Tu nahraďte skutočným auth0_id užívateľa
       const auth0_id = user.sub;
 
-      // Odoslanie požiadavky na aktualizáciu
       const response = await axios.put(
         `http://localhost:3001/users/${auth0_id}`,
         {

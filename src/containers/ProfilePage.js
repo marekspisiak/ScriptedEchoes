@@ -25,7 +25,7 @@ const ProfilePage = () => {
           <ProfileDetailsCard
             username={`${userProfile?.username}#${userProfile?.user_id}`}
             email={userProfile?.email}
-            isEditable={true} // Tlačidlo sa zobrazí
+            isEditable={true}
           />
 
           {/* <ChangePasswordCard />

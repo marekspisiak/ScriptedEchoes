@@ -1,7 +1,7 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../database");
-const User = require("./user"); // Import modelu User
-const Post = require("./post"); // Import modelu Post
+const User = require("./user");
+const Post = require("./post");
 
 const Comment = sequelize.define(
   "Comment",
@@ -15,7 +15,7 @@ const Comment = sequelize.define(
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: Post, // Referencia na model Post
+        model: Post,
         key: "post_id",
       },
     },
@@ -23,7 +23,7 @@ const Comment = sequelize.define(
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: User, // Referencia na model User
+        model: User,
         key: "user_id",
       },
     },
@@ -33,7 +33,7 @@ const Comment = sequelize.define(
     },
     created_at: {
       type: DataTypes.DATE,
-      defaultValue: DataTypes.NOW, // Zmenené na DataTypes.NOW
+      defaultValue: DataTypes.NOW,
     },
   },
   {

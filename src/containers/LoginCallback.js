@@ -11,17 +11,12 @@ const LoginCallback = () => {
 
   const registerUser = async () => {
     try {
-      // Získajte access token od Auth0
       const accessToken = await getAccessTokenSilently();
-
-      // Tento accessToken sa pošle ako Bearer Token v HTTP Header
       const response = await axios.post(
         "http://localhost:3001/users",
         {
-          auth0_id: user.sub, // "sub" je ID užívateľa v Auth0
+          auth0_id: user.sub,
           email: user.email,
-
-          // Prípadne ďalšie poľa, ak sú potrebné
         },
         {
           headers: {

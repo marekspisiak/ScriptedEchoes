@@ -23,7 +23,7 @@ const User = sequelize.define(
     },
     created_at: {
       type: DataTypes.DATE,
-      defaultValue: DataTypes.NOW, // Zmenené na DataTypes.NOW
+      defaultValue: DataTypes.NOW,
     },
   },
   {

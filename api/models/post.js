@@ -1,6 +1,6 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../database");
-const User = require("./user"); // Ako príklad, upravte podľa vašej cesty
+const User = require("./user");
 
 const Post = sequelize.define(
   "Post",
@@ -28,11 +28,11 @@ const Post = sequelize.define(
     },
     created_at: {
       type: DataTypes.DATE,
-      defaultValue: DataTypes.NOW, // Zmenené tu
+      defaultValue: DataTypes.NOW,
     },
     updated_at: {
       type: DataTypes.DATE,
-      defaultValue: DataTypes.NOW, // Ak chcete, že updated_at má tiež predvolenú hodnotu
+      defaultValue: DataTypes.NOW,
     },
   },
   {

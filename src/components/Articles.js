@@ -5,7 +5,6 @@ import { useUser } from "../contexts/UserContext";
 function Articles({ articles, onDelete }) {
   const { userProfile } = useUser();
   const handleDelete = (articleId) => {
-    // Volanie funkcie onDelete, ktorá bola poskytnutá ako prop
     onDelete(articleId);
   };
 
