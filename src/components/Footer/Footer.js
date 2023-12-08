@@ -1,20 +1,20 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import "./Footer.css";
+import styles from "./Footer.module.scss";
 
 function Footer() {
   return (
-    <footer className="p-3">
+    <footer className={`${styles.footerContainer} p-3`}>
       <Container>
         <Row>
-          <Col md={4}>
+          <Col md={4} className={`${styles.footerBlock}`}>
             <h5>ScriptedEchoes</h5>
             <p>
               Zdieľajte svoje príbehy, skúsenosti a názory s komunitou na našom
               blogovom portáli.
             </p>
           </Col>
-          <Col md={4}>
+          <Col md={4} className={`${styles.footerBlock}`}>
             <h5>Užitočné odkazy</h5>
             <a href="/about">O nás</a>
             <br />
@@ -22,7 +22,7 @@ function Footer() {
             <br />
             <a href="/terms">Obchodné podmienky</a>
           </Col>
-          <Col md={4}>
+          <Col md={4} className={`${styles.footerBlock}`}>
             <h5>Sledujte nás</h5>
             <a href="#">Facebook</a>
             <br />

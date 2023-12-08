@@ -1,6 +1,5 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./theme.module.css";
-import "./global.css";
+import "./global.scss";
 
 import { Auth0Provider } from "@auth0/auth0-react";
 import Routing from "./Routing";

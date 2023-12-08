@@ -1,6 +1,6 @@
 import Container from "react-bootstrap/Container";
 import LinkButton from "../../../components/buttons/LinkButton";
-import "./HeroSection.css";
+//import "./HeroSection.css";
 
 function HeroSection() {
   return (
