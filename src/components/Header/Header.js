@@ -1,5 +1,3 @@
-//import "./Header.css";
-
 import { Link } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
@@ -10,18 +8,20 @@ import LogoutButton from "../buttons/LogoutButton";
 
 import { useAuth0 } from "@auth0/auth0-react";
 
+import styles from "./Header.module.scss";
+
 const Header = () => {
   const { isAuthenticated } = useAuth0();
   return (
-    <header>
+    <header className={`${styles.header}`}>
       <Navbar expand="lg">
         <Container>
-          <Navbar.Brand as={Link} to="/">
+          <Navbar.Brand as={Link} to="/" className={styles.brand}>
             ScriptedEchoes
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto">
+            <Nav className={`${styles.headerBlock} me-auto`}>
               <Nav.Link as={Link} to="/">
                 Domov
               </Nav.Link>

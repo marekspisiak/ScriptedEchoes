@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Row, Col, Button } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 import { useUser } from "../../contexts/UserContext";
 import ArticleCard from "../cards/Article/ArticleCard";
 
