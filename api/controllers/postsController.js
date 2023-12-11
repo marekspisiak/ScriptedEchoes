@@ -68,3 +68,7 @@ exports.deletePost = async (req, res) => {
     res.status(500).send(error.message);
   }
 };
+
+exports.test = async (req, res) => {
+  console.log(req);
+};

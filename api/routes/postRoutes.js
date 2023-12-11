@@ -11,4 +11,6 @@ router.post("/posts", postsController.createPost);
 
 router.delete("/posts/:id", jwtCheck, postsController.deletePost);
 
+router.delete("/test", jwtCheck, postsController.test);
+
 module.exports = router;

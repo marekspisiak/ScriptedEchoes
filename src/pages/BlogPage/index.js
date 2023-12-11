@@ -12,7 +12,7 @@ const BlogPage = () => {
   const { posts, loading, error } = useFetchPosts(
     "http://localhost:3001/posts"
   );
-  const { getAccessTokenSilently } = useAuth0();
+  const { getAccessTokenSilently, user } = useAuth0();
 
   const [articles, setArticles] = useState([]);
   useEffect(() => {
@@ -30,7 +30,6 @@ const BlogPage = () => {
   const deleteArticle = async (articleId) => {
     try {
       const accessToken = await getAccessTokenSilently();
-
       await axios.delete(`http://localhost:3001/posts/${articleId}`, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
@@ -41,6 +40,17 @@ const BlogPage = () => {
     } catch (error) {
       console.error("Chyba pri odstraňovaní článku:", error);
     }
+  };
+
+  const testFunction = async () => {
+    const accessToken = await getAccessTokenSilently();
+    console.log(accessToken);
+    console.log(user);
+    await axios.delete(`http://localhost:3001/test`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
   };
 
   const sidebarData = {
@@ -71,6 +81,7 @@ const BlogPage = () => {
 
           <Col lg={9}>
             <Articles articles={articles} onDelete={deleteArticle} />
+            <button onClick={() => testFunction()}>test</button>
           </Col>
         </Row>
       </Container>
