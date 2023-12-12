@@ -14,22 +14,8 @@ import ScrollToTop from "./ScrollToTop";
 import ProtectedRoute from "./ProtectedRoute";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
-import { useUser } from "./contexts/UserContext";
-import useUserProfile from "./hooks/useUserProfile";
-import { useEffect } from "react";
 
 function Routing() {
-  const { user, isAuthenticated } = useAuth0();
-  const { loading, error, userProfile } = useUserProfile(user?.sub);
-  const { saveUserProfile } = useUser();
-
-  useEffect(() => {
-    if (isAuthenticated && user && userProfile) {
-      saveUserProfile(userProfile);
-      console.log(userProfile);
-    }
-  }, [user, isAuthenticated, saveUserProfile, userProfile]);
-
   return (
     <Router>
       <ScrollToTop />

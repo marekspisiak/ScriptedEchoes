@@ -13,7 +13,7 @@ const BlogPage = () => {
   const { posts, loading, error } = useFetchPosts(
     "http://localhost:3001/posts"
   );
-  const { userProfile } = useUser();
+  const { userProfile, accessToken } = useUser();
 
   const [articles, setArticles] = useState([]);
   useEffect(() => {
@@ -30,7 +30,6 @@ const BlogPage = () => {
 
   const deleteArticle = async (articleId) => {
     try {
-      const accessToken = userProfile?.token;
       await axios.delete(`http://localhost:3001/posts/${articleId}`, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
@@ -44,13 +43,11 @@ const BlogPage = () => {
   };
 
   const testFunction = async () => {
-    const accessToken = userProfile?.token;
     const response = await axios.get(`http://localhost:3001/auth`, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
     });
-    console.log(response.data.token);
   };
 
   const sidebarData = {

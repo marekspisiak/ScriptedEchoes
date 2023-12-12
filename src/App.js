@@ -1,8 +1,9 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./global.scss";
 
-import { Auth0Provider } from "@auth0/auth0-react";
+import { Auth0Provider, User } from "@auth0/auth0-react";
 import Routing from "./Routing";
+import { UserProvider } from "./contexts/UserContext";
 
 function App() {
   return (
@@ -14,7 +15,9 @@ function App() {
         audience: "localhost:3001",
       }}
     >
-      <Routing />
+      <UserProvider>
+        <Routing />
+      </UserProvider>
     </Auth0Provider>
   );
 }
