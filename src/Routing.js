@@ -26,6 +26,7 @@ function Routing() {
   useEffect(() => {
     if (isAuthenticated && user && userProfile) {
       saveUserProfile(userProfile);
+      console.log(userProfile);
     }
   }, [user, isAuthenticated, saveUserProfile, userProfile]);
 

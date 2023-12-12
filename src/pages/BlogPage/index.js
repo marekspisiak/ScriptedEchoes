@@ -7,12 +7,13 @@ import useFetchPosts from "../../hooks/useFetchPosts";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
+import { useUser } from "../../contexts/UserContext";
 
 const BlogPage = () => {
   const { posts, loading, error } = useFetchPosts(
     "http://localhost:3001/posts"
   );
-  const { getAccessTokenSilently, user } = useAuth0();
+  const { userProfile } = useUser();
 
   const [articles, setArticles] = useState([]);
   useEffect(() => {
@@ -29,7 +30,7 @@ const BlogPage = () => {
 
   const deleteArticle = async (articleId) => {
     try {
-      const accessToken = await getAccessTokenSilently();
+      const accessToken = userProfile?.token;
       await axios.delete(`http://localhost:3001/posts/${articleId}`, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
@@ -43,14 +44,13 @@ const BlogPage = () => {
   };
 
   const testFunction = async () => {
-    const accessToken = await getAccessTokenSilently();
-    console.log(accessToken);
-    console.log(user);
-    await axios.delete(`http://localhost:3001/test`, {
+    const accessToken = userProfile?.token;
+    const response = await axios.get(`http://localhost:3001/auth`, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
     });
+    console.log(response.data.token);
   };
 
   const sidebarData = {

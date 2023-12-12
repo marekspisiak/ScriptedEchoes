@@ -1,7 +1,7 @@
 const express = require("express");
+require("dotenv").config();
 const cors = require("cors");
 const { auth } = require("express-oauth2-jwt-bearer");
-
 const sequelize = require("./database");
 require("./models/associateModels");
 
@@ -16,6 +16,8 @@ module.exports = jwtCheck;
 const userRoutes = require("./routes/userRoutes");
 const postRoutes = require("./routes/postRoutes");
 //const commentRoutes = require("./routes/commentRoutes");
+const authRoutes = require("./routes/authRoutes");
+const testRoutes = require("./routes/testRoutes");
 
 const app = express();
 
@@ -25,8 +27,10 @@ app.use(express.json());
 app.use("/", userRoutes);
 app.use("/", postRoutes);
 //app.use("/", commentRoutes);
+app.use("/", authRoutes);
+app.use("/", testRoutes);
 
-app.get("/", (req, res) => {
+app.use("/", (req, res) => {
   res.send("Welcome to the ScriptedEchoes API!");
 });
 

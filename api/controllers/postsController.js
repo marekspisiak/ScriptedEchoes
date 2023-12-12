@@ -41,6 +41,7 @@ exports.createPost = async (req, res) => {
 
 exports.deletePost = async (req, res) => {
   try {
+    console.log(req.auth);
     const auth0Id = req.auth.payload.sub;
     const postId = req.params.id;
 
@@ -67,8 +68,4 @@ exports.deletePost = async (req, res) => {
   } catch (error) {
     res.status(500).send(error.message);
   }
-};
-
-exports.test = async (req, res) => {
-  console.log(req);
 };
