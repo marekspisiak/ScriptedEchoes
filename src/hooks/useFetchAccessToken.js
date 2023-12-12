@@ -29,7 +29,7 @@ const useFetchAccessToken = () => {
 
   useEffect(() => {
     fetchAccessToken();
-  }, [loadingAuth0]);
+  }, [loadingAuth0, isAuthenticated]);
 
   return { accessToken, loading, error };
 };
