@@ -7,12 +7,15 @@ import useUserProfile from "../hooks/useUserProfile";
 const UserContext = createContext(null);
 
 export const UserProvider = ({ children }) => {
-  const { accessToken, error, loading } = useFetchAccessToken();
+  const { accessToken, loading: isLoading } = useFetchAccessToken();
+  const isAuthenticated = !!accessToken;
   const { user } = useAuth0();
   const { userProfile } = useUserProfile(user?.sub);
 
   return (
-    <UserContext.Provider value={{ userProfile, accessToken }}>
+    <UserContext.Provider
+      value={{ userProfile, accessToken, isAuthenticated, isLoading }}
+    >
       {children}
     </UserContext.Provider>
   );

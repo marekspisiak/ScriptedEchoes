@@ -7,6 +7,9 @@ const useUserProfile = (userId) => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    if (!userId) {
+      return;
+    }
     const fetchUserProfile = async () => {
       try {
         const response = await axios.get(

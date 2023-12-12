@@ -1,18 +1,18 @@
 import { useEffect } from "react";
-import { useAuth0 } from "@auth0/auth0-react";
+import { useUser } from "./contexts/UserContext";
 
 import useHandleLogin from "./hooks/useHandleLogin";
 
 function ProtectedRoute(props) {
   const { component: Component } = props;
-  const { isAuthenticated, isLoading } = useAuth0();
+  const { isAuthenticated, isLoading } = useUser();
   const handleLogin = useHandleLogin();
 
   useEffect(() => {
     if (!isLoading && !isAuthenticated) {
       handleLogin();
     }
-  }, [isLoading]);
+  }, [isLoading, isAuthenticated, handleLogin]);
 
   if (isLoading || !isAuthenticated) {
     return <div>Loading...</div>;

@@ -6,9 +6,12 @@ const useFetchAccessToken = () => {
   const [accessToken, setAccessToken] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const { loadingAuth0, getAccessTokenSilently } = useAuth0();
+  const { loadingAuth0, getAccessTokenSilently, isAuthenticated } = useAuth0();
 
   const fetchAccessToken = async () => {
+    if (!isAuthenticated) {
+      return;
+    }
     try {
       const auth0AccessToken = await getAccessTokenSilently();
       const response = await axios.get(`http://localhost:3001/auth`, {

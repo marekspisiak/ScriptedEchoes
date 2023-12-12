@@ -41,15 +41,8 @@ exports.createPost = async (req, res) => {
 
 exports.deletePost = async (req, res) => {
   try {
-    console.log(req.auth);
-    const auth0Id = req.auth.payload.sub;
+    const user_id = req.auth.payload.user_id;
     const postId = req.params.id;
-
-    const user = await User.findOne({ where: { auth0_id: auth0Id } });
-
-    if (!user) {
-      return res.status(404).send("Užívateľ nebol nájdený");
-    }
 
     const post = await Post.findOne({ where: { post_id: postId } });
 
@@ -57,7 +50,7 @@ exports.deletePost = async (req, res) => {
       return res.status(404).send("Príspevok nebol nájdený");
     }
 
-    if (post.author_id !== user.user_id) {
+    if (post.author_id !== user_id) {
       return res
         .status(403)
         .send("Nemáte oprávnenie odstrániť tento príspevok");
