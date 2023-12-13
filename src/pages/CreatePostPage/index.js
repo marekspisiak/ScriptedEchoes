@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { Form, Container, Row, Col, Alert } from "react-bootstrap";
-import { useUser } from "../../contexts/UserContext";
+import { useAuth } from "../../contexts/UserContext";
 import axios from "axios";
 import Button from "../../components/buttons/Button";
 
 const CreatePostPage = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const { userProfile } = useUser();
+  const { userProfile } = useAuth();
   const [message, setMessage] = useState(null);
   const [error, setError] = useState(null);
 

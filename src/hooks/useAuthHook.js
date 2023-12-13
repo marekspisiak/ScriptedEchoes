@@ -1,20 +1,17 @@
 import { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
+import useHandleLogin from "./useHandleLogin";
 
-const useAuth = () => {
+const useAuthHook = () => {
   const [accessToken, setAccessToken] = useState(null);
   const [error, setError] = useState(null);
   const [isAuthenticated2, setIsAuthenticated2] = useState(false);
   const [userProfile, setUserProfile] = useState(null);
+  const handleLogin = useHandleLogin();
 
-  const {
-    getAccessTokenSilently,
-    isAuthenticated,
-    isLoading,
-    loginWithRedirect,
-    user,
-  } = useAuth0();
+  const { getAccessTokenSilently, isAuthenticated, isLoading, user } =
+    useAuth0();
   const [loading, setLoading] = useState(isLoading);
 
   useEffect(() => {
@@ -26,11 +23,12 @@ const useAuth = () => {
     }
   }, [isLoading, isAuthenticated]);
 
-  const getAccessToken = async () => accessToken || fetchAccessToken();
-
-  const handleLogin = () => {
-    sessionStorage.setItem("lastVisitedRoute", window.location.pathname);
-    loginWithRedirect();
+  const getAccessToken = () => {
+    if (accessToken !== null) {
+      return accessToken;
+    } else {
+      handleLogin();
+    }
   };
 
   const fetchUserProfile = useCallback(async () => {
@@ -85,10 +83,11 @@ const useAuth = () => {
 
   return {
     getAccessToken,
-    loading,
+    isLoading: loading,
     error,
     isAuthenticated: isAuthenticated2,
+    user: userProfile,
   };
 };
 
-export default useAuth;
+export default useAuthHook;

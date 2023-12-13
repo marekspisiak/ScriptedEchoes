@@ -1,12 +1,12 @@
 import { useEffect } from "react";
-import { useUser } from "./contexts/UserContext";
+import { useAuth } from "./contexts/UserContext";
 
 import useHandleLogin from "./hooks/useHandleLogin";
 import { Button } from "react-bootstrap";
 
 function ProtectedRoute(props) {
   const { component: Component } = props;
-  const { isAuthenticated, isLoading } = useUser();
+  const { isAuthenticated, isLoading } = useAuth();
   const handleLogin = useHandleLogin();
 
   useEffect(() => {

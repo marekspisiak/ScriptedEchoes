@@ -3,9 +3,11 @@ import HeroSection from "./HeroSection/HeroSection";
 import Benefits from "./Benefits/Benefits";
 import HomeArticles from "./HomeArticles";
 import SignUpCTA from "./SignUpCTA";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Button } from "react-bootstrap";
 import Footer from "../../components/Footer/Footer";
+import { useAuth } from "../../contexts/UserContext";
 const HomePage = () => {
+  const { getAccessToken } = useAuth();
   const latestArticles = [
     {
       title: "Najnovší článok 1",
@@ -49,6 +51,7 @@ const HomePage = () => {
   ];
   return (
     <>
+      <Button onClick={() => console.log(getAccessToken())}>Test</Button>
       <HeroSection />
       <Container fluid className="main-container mt-5">
         <Row className="benefits-section mb-5">

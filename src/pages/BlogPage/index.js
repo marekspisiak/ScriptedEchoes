@@ -7,13 +7,13 @@ import useFetchPosts from "../../hooks/useFetchPosts";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
-import { useUser } from "../../contexts/UserContext";
+import { useAuth } from "../../contexts/UserContext";
 
 const BlogPage = () => {
   const { posts, loading, error } = useFetchPosts(
     "http://localhost:3001/posts"
   );
-  const { accessToken } = useUser();
+  const { accessToken } = useAuth();
 
   const [articles, setArticles] = useState([]);
   useEffect(() => {

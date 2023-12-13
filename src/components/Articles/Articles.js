@@ -1,10 +1,10 @@
 import React from "react";
 import { Row, Col } from "react-bootstrap";
-import { useUser } from "../../contexts/UserContext";
+import { useAuth } from "../../contexts/UserContext";
 import ArticleCard from "../cards/Article/ArticleCard";
 
 function Articles({ articles, onDelete }) {
-  const { userProfile } = useUser();
+  const { userProfile } = useAuth();
   const handleDelete = (articleId) => {
     onDelete(articleId);
   };
