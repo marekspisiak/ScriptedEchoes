@@ -4,10 +4,11 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const LoginCallbackPage = () => {
-  const [registered, setRegistered] = useState(0);
   const { user, isAuthenticated, isLoading, getAccessTokenSilently } =
     useAuth0();
   const navigate = useNavigate();
+
+  return null;
 
   const registerUser = async () => {
     try {
