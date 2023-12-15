@@ -1,14 +1,15 @@
 import React from "react";
-import { Button, Container, Row, Col } from "react-bootstrap";
-import LinkButton from "../../components/buttons/LinkButton";
+import { Container, Row, Col } from "react-bootstrap";
+import LinkButton from "../../../components/buttons/LinkButton";
+import styles from "./SignUpCTA.module.scss";
 
 function SignUpCTA() {
   return (
-    <Container className="cta-container text-center my-5">
+    <Container className={`${styles.ctaContainer}`}>
       <Row>
         <Col>
-          <h2>Staňte sa autorom na ScriptedEchoes</h2>
-          <p>
+          <h2 className={styles.header}>Staňte sa autorom na ScriptedEchoes</h2>
+          <p className={styles.text}>
             Zdieľajte svoje príbehy, skúsenosti a názory s komunitou. Začnite
             písať ešte dnes a dosiahnite široké publikum.
           </p>

@@ -1,8 +1,9 @@
 import HeroSection from "./HeroSection/HeroSection";
 import Benefits from "./Benefits/Benefits";
 import HomeArticles from "./HomeArticles/HomeArticles";
-import SignUpCTA from "./SignUpCTA";
+import SignUpCTA from "./SignUpCTA/SignUpCTA";
 import { Container, Row, Col } from "react-bootstrap";
+import styles from "./HomePage.module.scss";
 const HomePage = () => {
   const latestArticles = [
     {
@@ -46,17 +47,21 @@ const HomePage = () => {
     },
   ];
   return (
-    <>
+    <div className={styles.container}>
       <HeroSection />
-      <Container fluid className="main-container mt-5">
-        <Row className="benefits-section mb-5">
+      <Container fluid>
+        <Row>
           <Col>
             <Benefits />
           </Col>
         </Row>
-        <Row className="latest-articles-section mb-5">
+        <Row>
           <Col>
             <HomeArticles title="Najnovšie články" articles={latestArticles} />
+          </Col>
+        </Row>
+        <Row>
+          <Col>
             <HomeArticles
               title="Najpopulárnejšie články"
               articles={popularArticles}
@@ -64,13 +69,13 @@ const HomePage = () => {
           </Col>
         </Row>
 
-        <Row className="signup-cta-section">
+        <Row>
           <Col>
             <SignUpCTA />
           </Col>
         </Row>
       </Container>
-    </>
+    </div>
   );
 };
 
