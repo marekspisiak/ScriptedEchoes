@@ -1,49 +1,22 @@
 import { useEffect, useState } from "react";
-import { useAuth0 } from "@auth0/auth0-react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import { useAuth } from "../../contexts/UserContext";
 
 const LoginCallbackPage = () => {
-  const { user, isAuthenticated, isLoading, getAccessTokenSilently } =
-    useAuth0();
+  const { user, isAuthenticated, isLoading } = useAuth();
   const navigate = useNavigate();
 
-  return null;
-
-  const registerUser = async () => {
-    try {
-      const accessToken = await getAccessTokenSilently();
-      const response = await axios.post(
-        "http://localhost:3001/users",
-        {
-          auth0_id: user.sub,
-          email: user.email,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        }
-      );
-
-      console.log("Užívateľ bol vytvorený", response.data);
-    } catch (error) {
-      console.error("Chyba pri vytváraní užívateľa", error);
-    }
-  };
-
   useEffect(() => {
+    //TODO mozno upravit aby sa to vykonavalo naozaj len po registracii
     if (isAuthenticated && !isLoading) {
-      if (true) {
-        registerUser();
-
+      if (user?.username === "anonym") {
         navigate("/finish-signup");
       } else {
         const redirectPath = sessionStorage.getItem("lastVisitedRoute") || "/";
         navigate(redirectPath);
       }
     }
-  }, [isAuthenticated]);
+  }, [isAuthenticated, isLoading, navigate, user?.username]);
 
   return <></>;
 };

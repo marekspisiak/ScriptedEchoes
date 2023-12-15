@@ -15,7 +15,6 @@ const useAuthHook = () => {
   const [loading, setLoading] = useState(isLoading);
   //nikde v aplikacii sa nesmie pouzivat cisto isLoading z auth0 lebo moze dojst k nesychronnemu rerenderu.
 
-  console.log("user", user);
   useEffect(() => {
     if (isLoading) {
       setLoading(true);
