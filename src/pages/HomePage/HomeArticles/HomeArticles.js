@@ -1,7 +1,7 @@
 import React from "react";
-import Articles from "../../components/Articles/Articles";
+import Articles from "../../../components/Articles/Articles";
 import { Link } from "react-router-dom";
-import Button from "../../components/buttons/Button";
+import Button from "../../../components/buttons/Button";
 
 function HomeArticles({ title, articles }) {
   return (

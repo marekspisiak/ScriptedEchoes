@@ -1,6 +1,6 @@
 import HeroSection from "./HeroSection/HeroSection";
 import Benefits from "./Benefits/Benefits";
-import HomeArticles from "./HomeArticles";
+import HomeArticles from "./HomeArticles/HomeArticles";
 import SignUpCTA from "./SignUpCTA";
 import { Container, Row, Col } from "react-bootstrap";
 const HomePage = () => {
