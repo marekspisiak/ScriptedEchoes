@@ -13,13 +13,13 @@ function ArticleCard({ article, onDelete, userProfile }) {
       <Card.Img
         variant="top"
         src={article.image}
-        className={styles.articleCardCardImgTop}
+        className={styles.articleCardImgTop}
       />
       <Card.Body>
-        <Card.Title className={styles.articleCardCardTitle}>
+        <Card.Title className={styles.articleCardTitle}>
           {article.title}
         </Card.Title>
-        <Card.Text className={styles.articleCardCardText}>
+        <Card.Text className={styles.articleCardText}>
           {article.description}
         </Card.Text>
       </Card.Body>

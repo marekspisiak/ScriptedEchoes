@@ -1,6 +1,6 @@
 import React from "react";
 import { Card, Row, Col } from "react-bootstrap";
-//import "./Benefits.css";
+import BenefitsCard from "../../../components/cards/BenefitsCard/BenefitsCard";
 
 function Benefits() {
   const benefitsData = [
@@ -28,13 +28,7 @@ function Benefits() {
     <Row className="justify-content-md-center">
       {benefitsData.map((benefit, index) => (
         <Col md={4} key={index}>
-          <Card className="mb-4 benefits-card">
-            <Card.Img variant="top" src={benefit.icon} />
-            <Card.Body>
-              <Card.Title>{benefit.title}</Card.Title>
-              <Card.Text>{benefit.description}</Card.Text>
-            </Card.Body>
-          </Card>
+          <BenefitsCard benefit={benefit} />
         </Col>
       ))}
     </Row>

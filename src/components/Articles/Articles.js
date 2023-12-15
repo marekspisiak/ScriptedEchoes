@@ -1,7 +1,7 @@
 import React from "react";
 import { Row, Col } from "react-bootstrap";
 import { useAuth } from "../../contexts/UserContext";
-import ArticleCard from "../cards/Article/ArticleCard";
+import ArticleCard from "../cards/ArticleCard/ArticleCard";
 
 function Articles({ articles, onDelete }) {
   const { userProfile } = useAuth();
