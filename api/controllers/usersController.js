@@ -41,27 +41,27 @@ exports.getUserProfileById = async (req, res) => {
   }
 };
 
-exports.getUserProfile = async (req, res) => {
-  //console.log(req.auth.payload);
-  //res.status(404).send("Užívateľ nebol nájdený");
-  return;
-  try {
-    const auth0Id = req.params.id;
-    const user = await User.findOne({
-      where: { auth0_id: auth0Id },
-      attributes: ["username", "email", "user_id"],
-    });
+// exports.getUserProfile = async (req, res) => {
+//   //console.log(req.auth.payload);
+//   //res.status(404).send("Užívateľ nebol nájdený");
+//   return;
+//   try {
+//     const auth0Id = req.params.id;
+//     const user = await User.findOne({
+//       where: { auth0_id: auth0Id },
+//       attributes: ["username", "email", "user_id"],
+//     });
 
-    if (user) {
-      res.json(user);
-    } else {
-      res.status(404).send("Užívateľ nebol nájdený");
-    }
-  } catch (error) {
-    console.error("Chyba pri získavaní užívateľa: ", error);
-    res.status(500).send("Interná chyba servera");
-  }
-};
+//     if (user) {
+//       res.json(user);
+//     } else {
+//       res.status(404).send("Užívateľ nebol nájdený");
+//     }
+//   } catch (error) {
+//     console.error("Chyba pri získavaní užívateľa: ", error);
+//     res.status(500).send("Interná chyba servera");
+//   }
+// };
 
 // exports.createUser = async (req, res) => {
 //   try {
@@ -82,35 +82,35 @@ exports.getUserProfile = async (req, res) => {
 //   }
 // };
 
-exports.updateUser = async (req, res) => {
-  try {
-    const { username } = req.body;
+// exports.updateUser = async (req, res) => {
+//   try {
+//     const { username } = req.body;
 
-    const validUsernameRegex = /^[a-zA-Z0-9_-]+$/;
+//     const validUsernameRegex = /^[a-zA-Z0-9_-]+$/;
 
-    if (!username) {
-      return res.status(400).send("Username je povinný");
-    }
+//     if (!username) {
+//       return res.status(400).send("Username je povinný");
+//     }
 
-    if (!validUsernameRegex.test(username)) {
-      return res.status(400).send("Neplatný formát užívateľského mena");
-    }
+//     if (!validUsernameRegex.test(username)) {
+//       return res.status(400).send("Neplatný formát užívateľského mena");
+//     }
 
-    const result = await User.update(
-      { username },
-      { where: { auth0_id: req.params.id } }
-    );
+//     const result = await User.update(
+//       { username },
+//       { where: { auth0_id: req.params.id } }
+//     );
 
-    if (result[0] > 0) {
-      res.send("Užívateľ bol úspešne aktualizovaný.");
-    } else {
-      res.status(404).send("Užívateľ nebol nájdený alebo žiadna zmena.");
-    }
-  } catch (error) {
-    console.error("Chyba pri aktualizácii užívateľa:", error);
-    res.status(500).send("Interná chyba servera");
-  }
-};
+//     if (result[0] > 0) {
+//       res.send("Užívateľ bol úspešne aktualizovaný.");
+//     } else {
+//       res.status(404).send("Užívateľ nebol nájdený alebo žiadna zmena.");
+//     }
+//   } catch (error) {
+//     console.error("Chyba pri aktualizácii užívateľa:", error);
+//     res.status(500).send("Interná chyba servera");
+//   }
+// };
 
 exports.changeUsername = async (req, res) => {
   try {
