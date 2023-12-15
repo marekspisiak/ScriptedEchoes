@@ -4,7 +4,7 @@ import { useAuth } from "../../contexts/UserContext";
 import ArticleCard from "../cards/ArticleCard/ArticleCard";
 
 function Articles({ articles, onDelete }) {
-  const { userProfile } = useAuth();
+  const { user } = useAuth();
   const handleDelete = (articleId) => {
     onDelete(articleId);
   };
@@ -16,7 +16,7 @@ function Articles({ articles, onDelete }) {
           <ArticleCard
             article={article}
             onDelete={handleDelete}
-            userProfile={userProfile}
+            userProfile={user}
           />
         </Col>
       ))}
