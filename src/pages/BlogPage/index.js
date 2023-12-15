@@ -6,7 +6,6 @@ import Sidebar from "./Sidebar";
 import useFetchPosts from "../../hooks/useFetchPosts";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { useAuth0 } from "@auth0/auth0-react";
 import { useAuth } from "../../contexts/UserContext";
 
 const BlogPage = () => {

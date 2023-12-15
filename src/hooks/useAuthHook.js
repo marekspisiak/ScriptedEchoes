@@ -13,6 +13,9 @@ const useAuthHook = () => {
   const { getAccessTokenSilently, isAuthenticated, isLoading, user } =
     useAuth0();
   const [loading, setLoading] = useState(isLoading);
+  //nikde v aplikacii sa nesmie pouzivat cisto isLoading z auth0 lebo moze dojst k nesychronnemu rerenderu.
+
+  console.log("rerender");
 
   useEffect(() => {
     if (isLoading) {
@@ -23,25 +26,7 @@ const useAuthHook = () => {
     }
   }, [isLoading, isAuthenticated]);
 
-  const getAccessToken = () => {
-    if (accessToken !== null) {
-      return accessToken;
-    } else {
-      handleLogin();
-    }
-  };
-
-  const fetchUserProfile = useCallback(async () => {
-    try {
-      const response = await axios.get(
-        `http://localhost:3001/users/profile/${user?.sub}`
-      );
-
-      setUserProfile(response.data);
-    } catch (err) {
-      setError(err);
-    }
-  }, [user]);
+  const getAccessToken = () => accessToken ?? handleLogin();
 
   const fetchAccessToken = useCallback(async () => {
     try {
@@ -52,24 +37,55 @@ const useAuthHook = () => {
         },
       });
       setAccessToken(response.data.token);
-      return response.data.token;
+      setUserProfile(response.data.user);
     } catch (err) {
       setError(err);
     }
   }, [getAccessTokenSilently]);
 
+  const changeUsername = async (newUsername) => {
+    if (!accessToken) {
+      return;
+    }
+
+    const validUsernameRegex = /^[a-zA-Z0-9_-]+$/;
+
+    if (!validUsernameRegex.test(newUsername)) {
+      throw new Error(
+        "Užívateľské meno môže obsahovať len písmená, čísla, pomlčky a podčiarkovníky, a nesmie obsahovať medzery."
+      );
+    }
+
+    try {
+      const response = await axios.patch(
+        `http://localhost:3001/users/username`,
+        {
+          username: newUsername,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      );
+      setUserProfile((prev) => ({ ...prev, username: newUsername }));
+    } catch (err) {
+      setError(err);
+    }
+  };
+
   const autentificationProcess = useCallback(async () => {
+    console.log("autentificationProcess");
     try {
       setLoading(true);
       await fetchAccessToken();
-      await fetchUserProfile();
       setIsAuthenticated2(true);
     } catch (err) {
       setError(err);
     } finally {
       setLoading(false);
     }
-  }, [fetchAccessToken, fetchUserProfile]);
+  }, [fetchAccessToken]);
 
   useEffect(() => {
     //ak by sa uzivatel nahodou niekde inde odhlasil pomocou funkcie logout, tak sa v auth0 isAuthenticated zmeni na false co spusti tento hook a vymazu sa jeho udaje
@@ -87,6 +103,7 @@ const useAuthHook = () => {
     error,
     isAuthenticated: isAuthenticated2,
     user: userProfile,
+    changeUsername,
   };
 };
 

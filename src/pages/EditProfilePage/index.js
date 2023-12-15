@@ -1,44 +1,26 @@
 import React, { useState } from "react";
 import { Container, Row, Col, Form } from "react-bootstrap";
 import Button from "../../components/buttons/Button";
-import axios from "axios";
 
-import { useAuth0 } from "@auth0/auth0-react";
+import { useAuth } from "../../contexts/UserContext";
 import { useNavigate } from "react-router-dom";
 import LinkButton from "../../components/buttons/LinkButton";
 
 const EditProfilePage = () => {
   const [username, setUsername] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  const { user } = useAuth0();
+  const { changeUsername } = useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const validUsernameRegex = /^[a-zA-Z0-9_-]+$/;
-
-    if (!validUsernameRegex.test(username)) {
-      setErrorMessage(
-        "Užívateľské meno môže obsahovať len písmená, čísla, pomlčky a podčiarkovníky, a nesmie obsahovať medzery."
-      );
-      return;
-    }
-
     try {
-      const auth0_id = user.sub;
-
-      const response = await axios.put(
-        `http://localhost:3001/users/${auth0_id}`,
-        {
-          username: username,
-        }
-      );
-
-      console.log("Profil aktualizovaný", response.data);
+      await changeUsername(username);
       navigate("/profile");
     } catch (error) {
-      console.error("Chyba pri aktualizácii profilu", error);
+      console.log(error.message);
+      setErrorMessage(error.message);
     }
   };
 

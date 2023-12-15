@@ -6,12 +6,12 @@ import Navbar from "react-bootstrap/Navbar";
 import LoginButton from "../buttons/LoginButton";
 import LogoutButton from "../buttons/LogoutButton";
 
-import { useAuth0 } from "@auth0/auth0-react";
+import { useAuth } from "../../contexts/UserContext";
 
 import styles from "./Header.module.scss";
 
 const Header = () => {
-  const { isAuthenticated } = useAuth0();
+  const { isAuthenticated } = useAuth();
   return (
     <header className={`${styles.header}`}>
       <Navbar expand="lg">

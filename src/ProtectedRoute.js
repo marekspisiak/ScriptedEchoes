@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { useAuth } from "./contexts/UserContext";
 
 import useHandleLogin from "./hooks/useHandleLogin";
-import { Button } from "react-bootstrap";
 
 function ProtectedRoute(props) {
   const { component: Component } = props;

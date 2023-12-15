@@ -1,5 +1,4 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { useAuth0 } from "@auth0/auth0-react";
 import HomePage from "./pages/HomePage";
 import BlogPage from "./pages/BlogPage";
 import LoginPage from "./pages/LoginPage";
