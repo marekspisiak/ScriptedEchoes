@@ -1,6 +1,6 @@
 import React from "react";
 import { Card } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import LinkButton from "../buttons/LinkButton";
 
 const ProfileDetailsCard = ({ username, email, isEditable }) => {
   return (
@@ -13,9 +13,9 @@ const ProfileDetailsCard = ({ username, email, isEditable }) => {
           <strong>E-mail:</strong> {email}
         </Card.Text>
         {isEditable && (
-          <Link to="/edit-profile" className="btn btn-basic">
+          <LinkButton to="/edit-profile" variant="primary">
             Editovať Profil
-          </Link>
+          </LinkButton>
         )}
       </Card.Body>
     </Card>

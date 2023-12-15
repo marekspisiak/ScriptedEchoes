@@ -35,7 +35,7 @@ const Header = () => {
                 Kontakt
               </Nav.Link>
             </Nav>
-            <Nav>
+            <Nav className={`${styles.headerBlock}`}>
               {isAuthenticated ? (
                 <Nav.Link as={Link} to="/profile">
                   Profil
