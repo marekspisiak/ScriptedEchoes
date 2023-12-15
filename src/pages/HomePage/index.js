@@ -2,8 +2,7 @@ import HeroSection from "./HeroSection/HeroSection";
 import Benefits from "./Benefits/Benefits";
 import HomeArticles from "./HomeArticles";
 import SignUpCTA from "./SignUpCTA";
-import { Container, Row, Col, Button } from "react-bootstrap";
-import { useAuth } from "../../contexts/UserContext";
+import { Container, Row, Col } from "react-bootstrap";
 const HomePage = () => {
   const latestArticles = [
     {
