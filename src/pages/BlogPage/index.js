@@ -12,7 +12,8 @@ const BlogPage = () => {
   const { posts, loading, error } = useFetchPosts(
     "http://localhost:3001/posts"
   );
-  const { accessToken } = useAuth();
+  const { getAccessToken } = useAuth();
+  const accessToken = getAccessToken();
 
   const [articles, setArticles] = useState([]);
   useEffect(() => {

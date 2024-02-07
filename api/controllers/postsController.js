@@ -24,7 +24,8 @@ exports.getPostById = async (req, res) => {
 };
 
 exports.createPost = async (req, res) => {
-  const { title, content, author_id } = req.body;
+  const { title, content } = req.body;
+  const author_id = req.auth.payload.user_id;
 
   if (!title || !content || !author_id) {
     return res.status(400).send("Názov, obsah a autor sú povinné údaje.");
@@ -42,6 +43,7 @@ exports.createPost = async (req, res) => {
 exports.deletePost = async (req, res) => {
   try {
     const user_id = req.auth.payload.user_id;
+    console.log(user_id);
     const postId = req.params.id;
 
     const post = await Post.findOne({ where: { post_id: postId } });

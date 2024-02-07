@@ -7,7 +7,7 @@ import Button from "../../components/buttons/Button";
 const CreatePostPage = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const { userProfile } = useAuth();
+  const { getAccessToken } = useAuth();
   const [message, setMessage] = useState(null);
   const [error, setError] = useState(null);
 
@@ -22,11 +22,20 @@ const CreatePostPage = () => {
     }
 
     try {
-      const response = await axios.post("http://localhost:3001/posts", {
-        title,
-        content,
-        author_id: userProfile?.user_id,
-      });
+      const accessToken = getAccessToken(); // Získanie access tokenu
+
+      const response = await axios.post(
+        "http://localhost:3001/posts",
+        {
+          title,
+          content,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`, // Posielanie access tokenu v hlavičke
+          },
+        }
+      );
 
       console.log("Nový príspevok bol pridaný:", response.data);
       setMessage(`Príspevok ${title} bol úspešne pridaný.`);
