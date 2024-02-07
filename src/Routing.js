@@ -8,6 +8,7 @@ import EditProfilePage from "./pages/EditProfilePage";
 import LoginCallback from "./pages/LoginCallbackPage";
 import FinishSignupPage from "./pages/FinishSignupPage";
 import ProfilePage from "./pages/ProfilePage";
+import ViewBlogPage from "./pages/ViewBlogPage";
 
 import ScrollToTop from "./ScrollToTop";
 import ProtectedRoute from "./ProtectedRoute";
@@ -23,6 +24,7 @@ function Routing() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/blog" element={<BlogPage />} />
+          <Route path="/viewBlog" element={<ViewBlogPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route

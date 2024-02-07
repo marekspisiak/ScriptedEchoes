@@ -1,0 +1,33 @@
+// BlogContent.module.scss
+.blogContent {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #333;
+
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: #000;
+  }
+
+  p {
+    margin-bottom: 1rem;
+  }
+
+  a {
+    color: #007bff;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  // Prispôsobte štýly pre obrázky, videá, a iné elementy podľa potreby
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
