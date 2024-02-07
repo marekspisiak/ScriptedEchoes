@@ -9,6 +9,7 @@ import LogoutButton from "../buttons/LogoutButton";
 import { useAuth } from "../../contexts/UserContext";
 
 import styles from "./Header.module.scss";
+import ProfileButton from "../ProfileButton/ProfileButton";
 
 const Header = () => {
   const { isAuthenticated } = useAuth();
@@ -35,18 +36,9 @@ const Header = () => {
                 Kontakt
               </Nav.Link>
             </Nav>
-            <Nav className={`${styles.headerBlock}`}>
-              {isAuthenticated ? (
-                <Nav.Link as={Link} to="/profile">
-                  Profil
-                </Nav.Link>
-              ) : (
-                <></>
-              )}
-            </Nav>
             <Nav>
               {isAuthenticated ? (
-                <LogoutButton />
+                <ProfileButton />
               ) : (
                 <LoginButton variant={"secondary"} />
               )}

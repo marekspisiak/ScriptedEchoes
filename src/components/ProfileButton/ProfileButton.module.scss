@@ -1,0 +1,41 @@
+@import "../../theme.scss";
+
+.profileButton {
+  position: relative;
+  cursor: pointer;
+  font-family: $primary-font; // Použitie primárneho písma
+
+  .profileImage {
+    width: 40px; // Prispôsobte veľkosť podľa potreby
+    height: 40px; // Prispôsobte veľkosť podľa potreby
+    border-radius: 50%;
+    border: 2px solid $primary-color; // Prispôsobte rámček s primárnou farbou
+  }
+
+  .dropdownToggle {
+    display: none; // Skryje štandardný toggle element dropdownu
+  }
+
+  .dropdownMenu {
+    background-color: $secondary-color; // Použitie sekundárnej farby pre pozadie
+    border: 1px solid $light-primary; // Lehký rámček pre lepšiu viditeľnosť
+    color: $text-color; // Použitie štandardnej farby textu
+
+    // Špecifický štýl pre odkazy len v rámci .dropdownMenu
+    a {
+      color: $primary-color; // Farba odkazov zodpovedajúca primárnej farbe
+
+      border-radius: 10px; // Pridanie zaoblených rohov
+      &:hover {
+        background-color: $accent-color; // Zvýraznenie pri prejdení myšou s akcentnou farbou
+      }
+    }
+    .logout {
+      color: $dark-red-color; // Farba odkazov zodpovedajúca primárnej farbe
+      &:hover {
+        background-color: $red-color;
+        color: $secondary-color; // Zvýraznenie pri prejdení myšou s akcentnou farbou
+      }
+    }
+  }
+}

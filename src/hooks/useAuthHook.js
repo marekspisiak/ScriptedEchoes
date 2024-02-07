@@ -10,7 +10,7 @@ const useAuthHook = () => {
   const [userProfile, setUserProfile] = useState(null);
   const handleLogin = useHandleLogin();
 
-  const { getAccessTokenSilently, isAuthenticated, isLoading, user } =
+  const { getAccessTokenSilently, isAuthenticated, isLoading, user, logout } =
     useAuth0();
   const [loading, setLoading] = useState(isLoading);
   //nikde v aplikacii sa nesmie pouzivat cisto isLoading z auth0 lebo moze dojst k nesychronnemu rerenderu.
@@ -101,6 +101,7 @@ const useAuthHook = () => {
     isAuthenticated: isAuthenticated2,
     user: userProfile,
     changeUsername,
+    logout,
   };
 };
 

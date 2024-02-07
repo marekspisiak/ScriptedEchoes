@@ -1,0 +1,14 @@
+$primary-color: #2c3e50;
+$light-primary: #3d566e;
+$secondary-color: #FFFFFF;
+$tertiary-color: #a7be8b;
+$accent-color: #e1a07a;
+$background-color: #f2f2f2;
+$red-color: #c94c4c;
+$dark-red-color: #a83232;
+
+$primary-font: 'Open Sans', sans-serif;
+
+$base-font-size: 16px;
+$heading-font-size: 2em;
+$text-color: #333333;
