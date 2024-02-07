@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Dropdown } from "react-bootstrap";
 import styles from "./ProfileButton.module.scss";
 import useAuthHook from "../../hooks/useAuthHook";
+import { Link } from "react-router-dom";
 import LogoutButton from "../buttons/LogoutButton";
 
 const ProfileButton = () => {
@@ -27,8 +28,12 @@ const ProfileButton = () => {
         <Dropdown.Toggle as="div" className={styles.dropdownToggle} />
 
         <Dropdown.Menu className={styles.dropdownMenu}>
-          <Dropdown.Item href="#action1">Možnosť 1</Dropdown.Item>
-          <Dropdown.Item href="#action2">Možnosť 2</Dropdown.Item>
+          <Dropdown.Item as={Link} to={"/profile"}>
+            Profil
+          </Dropdown.Item>
+          <Dropdown.Item as={Link} to={"/profile  "}>
+            Príspevky
+          </Dropdown.Item>
           <Dropdown.Item className={styles.logout} onClick={logout}>
             Odhlásiť
           </Dropdown.Item>
