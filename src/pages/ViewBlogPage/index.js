@@ -5,17 +5,28 @@ import BlogContent from "./BlogContent/BlogContent"; // Predpokladá, že existu
 import BlogFooter from "./BlogFooter/BlogFooter"; // Predpokladá, že existuje komponent pre zobrazenie pätičky alebo metadát blogu
 import { useParams } from "react-router-dom"; // Ak používate React Router pre navigáciu
 import styles from "./ViewBlogPage.module.scss"; // SCSS moduly pre štýlovanie
+import axios from "axios";
 
 const ViewBlogPage = () => {
   const [blogData, setBlogData] = useState(null);
+
   const { blogId } = useParams(); // Získanie ID blogu z URL, ak používate React Router
 
   useEffect(() => {
-    // Tu by ste mali načítať dáta blogu z API alebo inej služby podľa blogId
-    fetchBlogData(blogId).then((data) => {
-      setBlogData(data);
-    });
-  }, [blogId]);
+    const fetchBlogData = async (id) => {
+      try {
+        const response = await axios.get(`http://localhost:3001/posts/${id}`);
+        setBlogData(response.data);
+      } catch (error) {
+        console.error("Error fetching blog data:", error);
+        // Ošetrenie chyby, napríklad nastavenie stavu chyby alebo zobrazenie správy používateľovi
+      }
+    };
+
+    if (blogId) {
+      fetchBlogData(blogId);
+    }
+  }, [blogId]); // Závislosť na blogId zaručí, že useEffect bu
 
   if (!blogData) {
     return <div>Loading...</div>; // Zobrazenie načítavacieho stavu, kým sa dáta nenačítajú

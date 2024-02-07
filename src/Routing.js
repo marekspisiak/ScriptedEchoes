@@ -24,7 +24,7 @@ function Routing() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/blog" element={<BlogPage />} />
-          <Route path="/viewBlog" element={<ViewBlogPage />} />
+          <Route path="/blog/:blogId" element={<ViewBlogPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route
