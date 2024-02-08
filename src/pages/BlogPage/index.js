@@ -41,14 +41,6 @@ const BlogPage = () => {
     }
   };
 
-  const testFunction = async () => {
-    const response = await axios.get(`http://localhost:3001/auth`, {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    });
-  };
-
   const sidebarData = {
     categories: [
       "Technológia",
@@ -77,7 +69,6 @@ const BlogPage = () => {
 
           <Col lg={9}>
             <Articles articles={articles} onDelete={deleteArticle} />
-            <button onClick={() => testFunction()}>test</button>
           </Col>
         </Row>
       </Container>
