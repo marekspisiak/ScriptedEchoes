@@ -20,7 +20,6 @@ const BlogPage = () => {
     if (posts.length > 0) {
       const updatedPosts = posts.map((post) => ({
         ...post,
-        description: "Popis článku...",
         image: "/holder.jpg",
       }));
 

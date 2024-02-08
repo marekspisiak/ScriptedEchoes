@@ -10,24 +10,22 @@ function ArticleCard({ article, onDelete, userProfile }) {
   };
 
   return (
-    <Card
-      className={`mb-4 ${styles.articleCard}`}
-      as={Link}
-      to={`/blog/${article.post_id}`}
-    >
-      <Card.Img
-        variant="top"
-        src={article.image}
-        className={styles.articleCardImgTop}
-      />
-      <Card.Body>
-        <Card.Title className={styles.articleCardTitle}>
-          {article.title}
-        </Card.Title>
-        <Card.Text className={styles.articleCardText}>
-          {article.description}
-        </Card.Text>
-      </Card.Body>
+    <Card className={`mb-4 ${styles.articleCard}`}>
+      <Link to={`/blog/${article.post_id}`}>
+        <Card.Img
+          variant="top"
+          src={article.image}
+          className={styles.articleCardImgTop}
+        />
+        <Card.Body>
+          <Card.Title className={styles.articleCardTitle}>
+            {article.title}
+          </Card.Title>
+          <Card.Text className={styles.articleCardText}>
+            {article.description}
+          </Card.Text>
+        </Card.Body>
+      </Link>
       <Card.Footer
         className={`d-flex justify-content-around align-items-center ${styles.articleCardTextMuted}`}
       >
