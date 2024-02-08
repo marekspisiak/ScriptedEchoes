@@ -23,13 +23,23 @@ const EditBlog = ({ author_id, post_id }) => {
       console.error("Chyba pri odstraňovaní článku:", error);
     }
   };
+
+  const editArticle = () => {
+    navigate(`/blog/${post_id}/edit`);
+  };
+
   return (
     <Row>
       <Col>
         {author_id === user?.user_id ? (
-          <Button variant="danger" onClick={() => deleteArticle(post_id)}>
-            Delete
-          </Button>
+          <>
+            <Button variant="primary" onClick={() => editArticle()}>
+              Edit
+            </Button>
+            <Button variant="danger" onClick={() => deleteArticle(post_id)}>
+              Delete
+            </Button>
+          </>
         ) : null}
       </Col>
     </Row>
