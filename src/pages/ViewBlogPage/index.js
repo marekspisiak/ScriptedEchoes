@@ -41,6 +41,8 @@ const ViewBlogPage = () => {
     { author: "Janko", content: "Nesúhlasím s tvojím názorom." },
   ];
 
+  console.log(blogData);
+
   return (
     <Container className={styles.viewBlogPage}>
       <Row>
@@ -57,7 +59,7 @@ const ViewBlogPage = () => {
         <Col>
           <BlogFooter
             creationDate={blogData.created_at}
-            updateDate={blogData.updateDate}
+            updateDate={blogData.updated_at}
           />
         </Col>
       </Row>
