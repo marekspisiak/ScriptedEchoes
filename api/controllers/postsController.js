@@ -19,14 +19,6 @@ exports.getPostById = async (req, res) => {
           attributes: ["username"], // Vyberieme len meno užívateľa
         },
       ],
-      attributes: [
-        "post_id",
-        "title",
-        "content",
-        "created_at",
-        "updated_at",
-        "description",
-      ], // Vyberieme len potrebné atribúty z postu
     });
 
     if (post) {

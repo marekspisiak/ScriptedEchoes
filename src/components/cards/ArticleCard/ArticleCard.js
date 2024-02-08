@@ -3,6 +3,7 @@ import { Card } from "react-bootstrap";
 import Button from "../../buttons/Button";
 import styles from "./ArticleCard.module.scss";
 import { Link } from "react-router-dom";
+import { formatDate } from "../../../modules/formatDate";
 
 function ArticleCard({ article, onDelete, userProfile }) {
   const handleDelete = (articleId) => {
@@ -29,7 +30,7 @@ function ArticleCard({ article, onDelete, userProfile }) {
       <Card.Footer
         className={`d-flex justify-content-around align-items-center ${styles.articleCardTextMuted}`}
       >
-        <small>{article.created_at}</small>
+        <small>{formatDate(article.created_at)}</small>
         {article?.author_id === userProfile?.user_id ? (
           <Button
             variant="danger"

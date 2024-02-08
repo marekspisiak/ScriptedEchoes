@@ -6,6 +6,7 @@ import BlogFooter from "./BlogFooter/BlogFooter"; // Predpokladá, že existuje 
 import { useParams } from "react-router-dom"; // Ak používate React Router pre navigáciu
 import styles from "./ViewBlogPage.module.scss"; // SCSS moduly pre štýlovanie
 import axios from "axios";
+import EditBlog from "./EditBlog";
 
 const ViewBlogPage = () => {
   const [blogData, setBlogData] = useState(null);
@@ -37,6 +38,7 @@ const ViewBlogPage = () => {
       <Row>
         <Col>
           <BlogHeader title={blogData.title} author={blogData.User.username} />
+          <EditBlog author_id={blogData.author_id} post_id={blogData.post_id} />
         </Col>
       </Row>
       <Row>
