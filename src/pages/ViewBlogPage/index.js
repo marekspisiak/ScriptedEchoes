@@ -9,6 +9,7 @@ import axios from "axios";
 import EditBlog from "./EditBlog";
 import Loading from "../../components/Loading";
 import CommentForm from "./CommentSection/CommentForm";
+import CommentList from "./CommentSection/CommentList";
 
 const ViewBlogPage = () => {
   const [blogData, setBlogData] = useState(null);
@@ -34,6 +35,11 @@ const ViewBlogPage = () => {
   if (!blogData) {
     return <Loading />; // Zobrazenie načítavacieho stavu, kým sa dáta nenačítajú
   }
+
+  const comments = [
+    { author: "Patrik", content: "Super článok!" },
+    { author: "Janko", content: "Nesúhlasím s tvojím názorom." },
+  ];
 
   return (
     <Container className={styles.viewBlogPage}>
@@ -61,8 +67,18 @@ const ViewBlogPage = () => {
         </Col>
       </Row>
       <Row>
+        <Col>
+          <h2>Komentáre</h2>
+        </Col>
+      </Row>
+      <Row>
         <Col className="mg-5">
           <CommentForm></CommentForm>
+        </Col>
+      </Row>
+      <Row>
+        <Col className="mg-5">
+          <CommentList comments={comments}></CommentList>
         </Col>
       </Row>
       {/* Tu môžete pridať ďalšie komponenty, napríklad pre zobrazenie komentárov alebo súvisiacich článkov */}

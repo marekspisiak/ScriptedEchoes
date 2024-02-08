@@ -1,27 +1,21 @@
-@import "../../../theme.scss";
+@import "../../../theme.scss"; // Uistite sa, že cesta k súboru s premennými je správna
+
 .commentCard {
-  background-color: $backgroundColor;
-  border: 1px solid $lightPrimary;
-  border-radius: 8px;
-  padding: 20px;
-  margin-bottom: 16px;
-  font-family: $primaryFont;
-  color: $textColor;
+  margin-bottom: 1rem;
+  background-color: $background-color;
+  border-color: $light-primary;
 }
 
 .commentAuthor {
-  color: $primaryColor;
-  font-size: 1.25rem; // Alternatíva k $headingFontSize, ak chcete použiť relatívnu veľkosť
-  margin-bottom: 10px;
+  color: $primary-color;
 }
 
 .commentContent {
-  font-size: $baseFontSize;
-  margin-bottom: 12px;
+  color: $text-color;
 }
 
 .commentCreatedAt {
-  color: $tertiaryColor;
+  color: $tertiary-color;
   font-size: 0.875rem; // Menšia veľkosť pre dátum
   text-align: right;
 }

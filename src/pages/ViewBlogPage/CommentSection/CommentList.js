@@ -1,19 +1,21 @@
 import React from "react";
-import Comment from "./Comment";
-import styles from "./CommentList.module.scss";
+import CommentCard from "../../../components/cards/CommentCard/CommentCard";
+import ListGroup from "react-bootstrap/ListGroup";
+import styles from "./CommentList.module.scss"; // Predpokladajme, že tu máte definované CSS moduly
 
 const CommentList = ({ comments }) => {
   return (
-    <div className={styles.commentList}>
+    <ListGroup className={styles.commentList}>
       {comments.map((comment) => (
-        <Comment
-          key={comment.id}
-          author={comment.author}
-          content={comment.content}
-          createdAt={comment.createdAt}
-        />
+        <ListGroup.Item key={comment.id} className={styles.commentListItem}>
+          <CommentCard
+            author={comment.author}
+            content={comment.content}
+            createdAt={comment.createdAt}
+          />
+        </ListGroup.Item>
       ))}
-    </div>
+    </ListGroup>
   );
 };
 
