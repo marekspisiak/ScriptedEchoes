@@ -24,15 +24,20 @@ exports.getPostById = async (req, res) => {
 };
 
 exports.createPost = async (req, res) => {
-  const { title, content } = req.body;
+  const { title, content, description } = req.body;
   const author_id = req.auth.payload.user_id;
 
-  if (!title || !content || !author_id) {
+  if (!title || !content || !author_id || !description) {
     return res.status(400).send("Názov, obsah a autor sú povinné údaje.");
   }
 
   try {
-    const newPost = await Post.create({ title, content, author_id });
+    const newPost = await Post.create({
+      title,
+      content,
+      author_id,
+      description,
+    });
     res.status(201).json(newPost);
   } catch (error) {
     console.error("Chyba pri vytváraní príspevku:", error);

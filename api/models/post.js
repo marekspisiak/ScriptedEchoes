@@ -19,7 +19,7 @@ const Post = sequelize.define(
       },
     },
     title: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(20),
       allowNull: false,
     },
     content: {
@@ -33,6 +33,10 @@ const Post = sequelize.define(
     updated_at: {
       type: DataTypes.DATE,
       defaultValue: DataTypes.NOW,
+    },
+    description: {
+      type: DataTypes.STRING(45),
+      allowNull: false,
     },
   },
   {

@@ -2,6 +2,7 @@ import React from "react";
 import { Card } from "react-bootstrap";
 import Button from "../../buttons/Button";
 import styles from "./ArticleCard.module.scss";
+import { Link } from "react-router-dom";
 
 function ArticleCard({ article, onDelete, userProfile }) {
   const handleDelete = (articleId) => {
@@ -9,7 +10,11 @@ function ArticleCard({ article, onDelete, userProfile }) {
   };
 
   return (
-    <Card className={`mb-4 ${styles.articleCard}`}>
+    <Card
+      className={`mb-4 ${styles.articleCard}`}
+      as={Link}
+      to={`/blog/${article.post_id}`}
+    >
       <Card.Img
         variant="top"
         src={article.image}

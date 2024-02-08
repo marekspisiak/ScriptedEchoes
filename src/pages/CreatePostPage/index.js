@@ -7,6 +7,7 @@ import Button from "../../components/buttons/Button";
 const CreatePostPage = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const [description, setDescription] = useState("");
   const { getAccessToken } = useAuth();
   const [message, setMessage] = useState(null);
   const [error, setError] = useState(null);
@@ -29,6 +30,7 @@ const CreatePostPage = () => {
         {
           title,
           content,
+          description,
         },
         {
           headers: {
@@ -64,6 +66,16 @@ const CreatePostPage = () => {
                 placeholder="Zadajte názov blogu"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
+              />
+            </Form.Group>
+
+            <Form.Group controlId="blogDescription">
+              <Form.Label>Popisok</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Zadajte popis blogu"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
               />
             </Form.Group>
 
