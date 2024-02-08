@@ -3,6 +3,7 @@ import { Form, Container, Row, Col, Alert } from "react-bootstrap";
 import { useAuth } from "../../contexts/UserContext";
 import axios from "axios";
 import Button from "../../components/buttons/Button";
+import { useParams } from "react-router-dom";
 
 const EditPostPage = () => {
   const [title, setTitle] = useState("");
@@ -11,6 +12,7 @@ const EditPostPage = () => {
   const { getAccessToken } = useAuth();
   const [message, setMessage] = useState(null);
   const [error, setError] = useState(null);
+  const { blogId } = useParams();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -25,8 +27,8 @@ const EditPostPage = () => {
     try {
       const accessToken = getAccessToken(); // Získanie access tokenu
 
-      const response = await axios.post(
-        "http://localhost:3001/posts",
+      const response = await axios.patch(
+        "http://localhost:3001/posts/" + blogId,
         {
           title,
           content,
@@ -42,6 +44,7 @@ const EditPostPage = () => {
       console.log("Nový príspevok bol pridaný:", response.data);
       setMessage(`Príspevok ${title} bol úspešne pridaný.`);
       setTitle("");
+      setDescription("");
       setContent("");
     } catch (error) {
       console.error("Chyba pri pridávaní príspevku:", error);

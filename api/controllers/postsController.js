@@ -81,3 +81,31 @@ exports.deletePost = async (req, res) => {
     res.status(500).send(error.message);
   }
 };
+
+exports.updatePost = async (req, res) => {
+  try {
+    const user_id = req.auth.payload.user_id;
+    const postId = req.params.id;
+    const { title, content, description } = req.body;
+
+    const post = await Post.findOne({ where: { post_id: postId } });
+
+    if (!post) {
+      return res.status(404).send("Príspevok nebol nájdený");
+    }
+
+    if (post.author_id !== user_id) {
+      return res.status(403).send("Nemáte oprávnenie upraviť tento príspevok");
+    }
+
+    await Post.update(
+      { title, content, description },
+      {
+        where: { post_id: postId },
+      }
+    );
+    res.status(204).send();
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+};
