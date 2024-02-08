@@ -16,13 +16,17 @@ exports.getPostById = async (req, res) => {
       include: [
         {
           model: User,
-          attributes: ["username"], // Vyberieme len meno užívateľa
+          attributes: ["username", "user_id"], // Vyberieme len meno užívateľa
         },
       ],
     });
 
     if (post) {
-      res.json(post);
+      const result = {
+        ...post.get({ plain: true }), // Konvertuje Sequelize model na obyčajný objekt
+        User: { username: `${post.User.username}#${post.User.user_id}` }, // Pridáme username priamo do objektu
+      };
+      res.json(result);
     } else {
       res.status(404).send("Príspevok nebol nájdený");
     }

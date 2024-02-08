@@ -9,6 +9,7 @@ import LoginCallback from "./pages/LoginCallbackPage";
 import FinishSignupPage from "./pages/FinishSignupPage";
 import ProfilePage from "./pages/ProfilePage";
 import ViewBlogPage from "./pages/ViewBlogPage";
+import EditPostPage from "./pages/EditPostPage";
 
 import ScrollToTop from "./ScrollToTop";
 import ProtectedRoute from "./ProtectedRoute";
