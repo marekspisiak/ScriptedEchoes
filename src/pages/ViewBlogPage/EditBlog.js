@@ -34,7 +34,7 @@ const EditBlog = ({ author_id, post_id }) => {
         {author_id === user?.user_id ? (
           <>
             <Button variant="primary" onClick={() => editArticle()}>
-              Edit
+              Editovať
             </Button>
             <Button variant="danger" onClick={() => deleteArticle(post_id)}>
               Delete

@@ -1,0 +1,27 @@
+@import "../../../theme.scss";
+.commentCard {
+  background-color: $backgroundColor;
+  border: 1px solid $lightPrimary;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 16px;
+  font-family: $primaryFont;
+  color: $textColor;
+}
+
+.commentAuthor {
+  color: $primaryColor;
+  font-size: 1.25rem; // Alternatíva k $headingFontSize, ak chcete použiť relatívnu veľkosť
+  margin-bottom: 10px;
+}
+
+.commentContent {
+  font-size: $baseFontSize;
+  margin-bottom: 12px;
+}
+
+.commentCreatedAt {
+  color: $tertiaryColor;
+  font-size: 0.875rem; // Menšia veľkosť pre dátum
+  text-align: right;
+}
