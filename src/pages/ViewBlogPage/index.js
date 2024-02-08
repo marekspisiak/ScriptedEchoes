@@ -7,6 +7,7 @@ import { useParams } from "react-router-dom"; // Ak používate React Router pre
 import styles from "./ViewBlogPage.module.scss"; // SCSS moduly pre štýlovanie
 import axios from "axios";
 import EditBlog from "./EditBlog";
+import Loading from "../../components/Loading";
 
 const ViewBlogPage = () => {
   const [blogData, setBlogData] = useState(null);
@@ -30,7 +31,7 @@ const ViewBlogPage = () => {
   }, [blogId]); // Závislosť na blogId zaručí, že useEffect bu
 
   if (!blogData) {
-    return <div>Loading...</div>; // Zobrazenie načítavacieho stavu, kým sa dáta nenačítajú
+    return <Loading />; // Zobrazenie načítavacieho stavu, kým sa dáta nenačítajú
   }
 
   return (
@@ -38,7 +39,6 @@ const ViewBlogPage = () => {
       <Row>
         <Col>
           <BlogHeader title={blogData.title} author={blogData.User.username} />
-          <EditBlog author_id={blogData.author_id} post_id={blogData.post_id} />
         </Col>
       </Row>
       <Row>
@@ -52,6 +52,11 @@ const ViewBlogPage = () => {
             creationDate={blogData.created_at}
             updateDate={blogData.updateDate}
           />
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <EditBlog author_id={blogData.author_id} post_id={blogData.post_id} />
         </Col>
       </Row>
       {/* Tu môžete pridať ďalšie komponenty, napríklad pre zobrazenie komentárov alebo súvisiacich článkov */}

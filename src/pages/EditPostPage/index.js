@@ -1,18 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Form, Container, Row, Col, Alert } from "react-bootstrap";
 import { useAuth } from "../../contexts/UserContext";
 import axios from "axios";
 import Button from "../../components/buttons/Button";
 import { useParams } from "react-router-dom";
+import LinkButton from "../../components/buttons/LinkButton";
+import PermissionDenied from "../../components/PermissionDenied";
 
 const EditPostPage = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [description, setDescription] = useState("");
-  const { getAccessToken } = useAuth();
+  const { getAccessToken, user } = useAuth();
   const [message, setMessage] = useState(null);
   const [error, setError] = useState(null);
   const { blogId } = useParams();
+  const [authorId, setAuthorId] = useState(null);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -41,27 +44,43 @@ const EditPostPage = () => {
         }
       );
 
-      console.log("Nový príspevok bol pridaný:", response.data);
-      setMessage(`Príspevok ${title} bol úspešne pridaný.`);
+      console.log("Príspevok bol editovaný:", response.data);
+      setMessage(`Príspevok ${title} bol úspešne editovaný.`);
       setTitle("");
       setDescription("");
       setContent("");
     } catch (error) {
-      console.error("Chyba pri pridávaní príspevku:", error);
-      setError("Nepodarilo sa pridať príspevok. Skúste to znova.");
+      console.error("Chyba pri editovaní príspevku:", error);
+      setError("Nepodarilo sa editovať príspevok. Skúste to znova.");
     }
   };
+
+  useEffect(() => {
+    const fetchBlogData = async (id) => {
+      try {
+        const response = await axios.get(`http://localhost:3001/posts/${id}`);
+        setTitle(response.data.title);
+        setDescription(response.data.description);
+        setContent(response.data.content);
+        setAuthorId(response.data.author_id);
+      } catch (error) {
+        console.error("Error fetching blog data:", error);
+        // Ošetrenie chyby, napríklad nastavenie stavu chyby alebo zobrazenie správy používateľovi
+      }
+    };
+    fetchBlogData(blogId);
+  }, [blogId]);
 
   const lengthLimits = {
     title: 20,
     description: 45,
   };
 
-  return (
+  return authorId === user.user_id ? (
     <Container>
       <Row className="justify-content-md-center">
         <Col md={6}>
-          <h1>Pridať Nový Blog</h1>
+          <h1>Editovať blog</h1>
 
           {message && <Alert variant="success">{message}</Alert>}
           {error && <Alert variant="danger">{error}</Alert>}
@@ -107,12 +126,21 @@ const EditPostPage = () => {
             </Form.Group>
 
             <Button className="m-3" type="submit" variant={"primary"}>
-              Pridať Blog
+              Uložiť zmeny
             </Button>
+            <LinkButton
+              className="m-3"
+              variant={"secondary"}
+              to={`/blog/${blogId}`}
+            >
+              Zahodiť zmeny
+            </LinkButton>
           </Form>
         </Col>
       </Row>
     </Container>
+  ) : (
+    PermissionDenied()
   );
 };
 

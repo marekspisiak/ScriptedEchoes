@@ -1,0 +1,22 @@
+.permissionDenied {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: #f8d7da; // Svetlo červené pozadie pre upozornenie
+  color: #721c24; // Tmavo červená farba textu pre kontrast
+  border: 1px solid #f5c6cb; // Okraj okolo komponentu
+  padding: 20px;
+  margin: 30px;
+  border-radius: 8px; // Zaoblené rohy
+}
+
+h2 {
+  margin-bottom: 20px; // Medzera pod nadpisom
+  color: #721c24;
+}
+
+p {
+  font-size: 16px; // Veľkosť textu
+}

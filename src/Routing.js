@@ -21,8 +21,8 @@ function Routing() {
   return (
     <Router>
       <ScrollToTop />
+      <Header />
       <div className="content">
-        <Header />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/blog" element={<BlogPage />} />

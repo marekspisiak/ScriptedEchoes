@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useAuth } from "./contexts/UserContext";
 
 import useHandleLogin from "./hooks/useHandleLogin";
+import Loading from "./components/Loading";
 
 function ProtectedRoute(props) {
   const { component: Component } = props;
@@ -15,11 +16,7 @@ function ProtectedRoute(props) {
   }, [isLoading, isAuthenticated, handleLogin]);
 
   if (isLoading || !isAuthenticated) {
-    return (
-      <>
-        <div>Loading...</div>
-      </>
-    );
+    return <Loading />;
   }
 
   return <Component />;
