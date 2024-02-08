@@ -49,6 +49,11 @@ const CreatePostPage = () => {
     }
   };
 
+  const lengthLimits = {
+    title: 20,
+    description: 45,
+  };
+
   return (
     <Container>
       <Row className="justify-content-md-center">
@@ -66,7 +71,11 @@ const CreatePostPage = () => {
                 placeholder="Zadajte názov blogu"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
+                maxLength={lengthLimits.title}
               />
+              <Form.Text>
+                Zostáva {lengthLimits.title - title.length} znakov
+              </Form.Text>
             </Form.Group>
 
             <Form.Group controlId="blogDescription">
@@ -76,7 +85,11 @@ const CreatePostPage = () => {
                 placeholder="Zadajte popis blogu"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
+                maxLength={lengthLimits.description}
               />
+              <Form.Text>
+                Zostáva {lengthLimits.description - description.length} znakov
+              </Form.Text>
             </Form.Group>
 
             <Form.Group controlId="blogContent">

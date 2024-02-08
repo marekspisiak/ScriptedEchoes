@@ -27,6 +27,7 @@
 
   &TextMuted {
     font-size: 12px;
-    color: #999;
+    color: $light-primary;
+    cursor: default;
   }
 }
