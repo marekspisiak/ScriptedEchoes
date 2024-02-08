@@ -18,7 +18,7 @@ const CreatePostPage = () => {
     setError(null);
 
     if (!title.trim() || !content.trim()) {
-      setError("Prosím, vyplňte názov a obsah blogu.");
+      setError("Prosím, vyplňte názov, popisok a obsah blogu.");
       return;
     }
 
