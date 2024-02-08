@@ -36,7 +36,7 @@ const ViewBlogPage = () => {
     <Container className={styles.viewBlogPage}>
       <Row>
         <Col>
-          <BlogHeader title={blogData.title} author={blogData.author} />
+          <BlogHeader title={blogData.title} author={blogData.User.username} />
         </Col>
       </Row>
       <Row>
@@ -46,7 +46,10 @@ const ViewBlogPage = () => {
       </Row>
       <Row>
         <Col>
-          <BlogFooter date={blogData.date} />
+          <BlogFooter
+            creationDate={blogData.created_at}
+            updateDate={blogData.updateDate}
+          />
         </Col>
       </Row>
       {/* Tu môžete pridať ďalšie komponenty, napríklad pre zobrazenie komentárov alebo súvisiacich článkov */}

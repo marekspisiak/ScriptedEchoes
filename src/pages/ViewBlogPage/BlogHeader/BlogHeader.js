@@ -7,7 +7,7 @@ const BlogHeader = ({ title, author }) => {
     <Row className={styles.blogHeader}>
       <Col>
         <h1 className={styles.title}>{title}</h1>
-        <p className={styles.author}>By {author}</p>
+        <p className={styles.author}>Vytvoril {author}</p>
       </Col>
     </Row>
   );

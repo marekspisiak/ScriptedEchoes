@@ -12,7 +12,23 @@ exports.getAllPosts = async (req, res) => {
 
 exports.getPostById = async (req, res) => {
   try {
-    const post = await Post.findByPk(req.params.id);
+    const post = await Post.findByPk(req.params.id, {
+      include: [
+        {
+          model: User,
+          attributes: ["username"], // Vyberieme len meno užívateľa
+        },
+      ],
+      attributes: [
+        "post_id",
+        "title",
+        "content",
+        "created_at",
+        "updated_at",
+        "description",
+      ], // Vyberieme len potrebné atribúty z postu
+    });
+
     if (post) {
       res.json(post);
     } else {
