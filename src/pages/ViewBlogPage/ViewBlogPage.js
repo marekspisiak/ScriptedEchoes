@@ -18,6 +18,7 @@ const ViewBlogPage = () => {
   const { blogId } = useParams(); // Získanie ID blogu z URL, ak používate React Router
 
   useEffect(() => {
+    console.log("fetching");
     const fetchBlogData = async (id) => {
       try {
         const response = await axios.get(`http://localhost:3001/posts/${id}`);

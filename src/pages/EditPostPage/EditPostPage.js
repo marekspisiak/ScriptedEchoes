@@ -6,24 +6,21 @@ import Button from "../../components/buttons/Button";
 import { useParams } from "react-router-dom";
 import LinkButton from "../../components/buttons/LinkButton";
 import PermissionDenied from "../../components/PermissionDenied";
+import PostForm from "../../components/PostForm";
+import useResultMessage from "../../hooks/useResultMessage";
 
 const EditPostPage = () => {
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
-  const [description, setDescription] = useState("");
   const { getAccessToken, user } = useAuth();
-  const [message, setMessage] = useState(null);
-  const [error, setError] = useState(null);
   const { blogId } = useParams();
   const [authorId, setAuthorId] = useState(null);
+  const [ResultComponent, successMessage, errorMessage] = useResultMessage();
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [content, setContent] = useState("");
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    setMessage(null);
-    setError(null);
-
+  const handleSubmit = async ({ title, content, description }) => {
     if (!title.trim() || !content.trim()) {
-      setError("Prosím, vyplňte názov, popisok a obsah blogu.");
+      errorMessage("Prosím, vyplňte názov, popisok a obsah blogu.");
       return;
     }
 
@@ -45,13 +42,10 @@ const EditPostPage = () => {
       );
 
       console.log("Príspevok bol editovaný:", response.data);
-      setMessage(`Príspevok ${title} bol úspešne editovaný.`);
-      setTitle("");
-      setDescription("");
-      setContent("");
+      successMessage(`Príspevok ${title} bol úspešne editovaný.`);
     } catch (error) {
       console.error("Chyba pri editovaní príspevku:", error);
-      setError("Nepodarilo sa editovať príspevok. Skúste to znova.");
+      errorMessage("Nepodarilo sa editovať príspevok. Skúste to znova.");
     }
   };
 
@@ -71,71 +65,18 @@ const EditPostPage = () => {
     fetchBlogData(blogId);
   }, [blogId]);
 
-  const lengthLimits = {
-    title: 20,
-    description: 45,
-  };
-
   return authorId === user.user_id ? (
     <Container>
-      <Row className="justify-content-md-center">
+      <Row className="justify-content-md-center mt-3">
         <Col md={6}>
           <h1>Editovať blog</h1>
-
-          {message && <Alert variant="success">{message}</Alert>}
-          {error && <Alert variant="danger">{error}</Alert>}
-
-          <Form onSubmit={handleSubmit}>
-            <Form.Group controlId="blogTitle">
-              <Form.Label>Názov</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Zadajte názov blogu"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-                maxLength={lengthLimits.title}
-              />
-              <Form.Text>
-                Zostáva {lengthLimits.title - title.length} znakov
-              </Form.Text>
-            </Form.Group>
-
-            <Form.Group controlId="blogDescription">
-              <Form.Label>Popisok</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Zadajte popis blogu"
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-                maxLength={lengthLimits.description}
-              />
-              <Form.Text>
-                Zostáva {lengthLimits.description - description.length} znakov
-              </Form.Text>
-            </Form.Group>
-
-            <Form.Group controlId="blogContent">
-              <Form.Label>Obsah</Form.Label>
-              <Form.Control
-                as="textarea"
-                rows={5}
-                placeholder="Zadajte obsah blogu"
-                value={content}
-                onChange={(e) => setContent(e.target.value)}
-              />
-            </Form.Group>
-
-            <Button className="m-3" type="submit" variant={"primary"}>
-              Uložiť zmeny
-            </Button>
-            <LinkButton
-              className="m-3"
-              variant={"secondary"}
-              to={`/blog/${blogId}`}
-            >
-              Zahodiť zmeny
-            </LinkButton>
-          </Form>
+          {ResultComponent}
+          <PostForm
+            handleSubmitParent={handleSubmit}
+            initialTitle={title}
+            initialDescription={description}
+            initialContent={content}
+          ></PostForm>
         </Col>
       </Row>
     </Container>
