@@ -10,13 +10,12 @@ import EditBlog from "./EditBlog";
 import Loading from "../../components/Loading";
 import CommentForm from "./CommentSection/CommentForm";
 import CommentList from "./CommentSection/CommentList";
-import { useAuth } from "../../contexts/UserContext";
 
 const ViewBlogPage = () => {
   const [blogData, setBlogData] = useState(null);
+  const [reloadComments, setReloadComments] = useState(false); // [1
 
   const { blogId } = useParams(); // Získanie ID blogu z URL, ak používate React Router
-  const { getAccessToken } = useAuth();
 
   useEffect(() => {
     const fetchBlogData = async (id) => {
@@ -70,12 +69,18 @@ const ViewBlogPage = () => {
       </Row>
       <Row>
         <Col className="mg-5">
-          <CommentForm postId={blogData.post_id}></CommentForm>
+          <CommentForm
+            postId={blogData.post_id}
+            setReloadComments={setReloadComments}
+          ></CommentForm>
         </Col>
       </Row>
       <Row>
         <Col className="mg-5">
-          <CommentList postId={blogData.post_id}></CommentList>
+          <CommentList
+            postId={blogData.post_id}
+            key={reloadComments} // [1] Zmena kľúča spôsobí, že sa komponent zresetuje a znova načíta dáta
+          ></CommentList>
         </Col>
       </Row>
       {/* Tu môžete pridať ďalšie komponenty, napríklad pre zobrazenie komentárov alebo súvisiacich článkov */}

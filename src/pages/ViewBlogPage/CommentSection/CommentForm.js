@@ -7,7 +7,7 @@ import Button from "../../../components/buttons/Button";
 import useResultMessage from "../../../hooks/useResultMessage";
 import { useNavigate } from "react-router-dom";
 
-const CommentForm = ({ postId }) => {
+const CommentForm = ({ postId, setReloadComments }) => {
   const [content, setContent] = useState("");
   const { isAuthenticated, getAccessToken } = useAuth();
   const [ResultComponent, successMessage, errorMessage] = useResultMessage();
@@ -39,6 +39,8 @@ const CommentForm = ({ postId }) => {
         }
       );
 
+      setReloadComments((oldValue) => !oldValue);
+
       // Po úspešnom odoslaniu
       console.log("Comment created:", response.data);
       successMessage("Komentár bol úspešne pridaný.");
@@ -48,8 +50,6 @@ const CommentForm = ({ postId }) => {
     } catch (error) {
       console.error("Error creating comment:", error);
       errorMessage("Nepodarilo sa pridať komentár.");
-    } finally {
-      refreshPage();
     }
   };
 

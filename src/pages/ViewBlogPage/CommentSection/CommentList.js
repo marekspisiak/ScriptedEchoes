@@ -6,10 +6,10 @@ import styles from "./CommentList.module.scss";
 import { useAuth } from "../../../contexts/UserContext";
 
 const CommentList = ({ postId }) => {
-  const [comments, setComments] = useState([]);
   const [hasMore, setHasMore] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const { getAccessToken } = useAuth();
+  const [comments, setComments] = useState([]);
 
   const fetchComments = async () => {
     try {

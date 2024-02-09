@@ -1,21 +1,33 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import Alert from "react-bootstrap/Alert";
 
 const useResultMessage = () => {
   const [message, setMessage] = useState("");
   const [messageType, setMessageType] = useState("success");
   const [isVisible, setIsVisible] = useState(false);
+  const [timeoutId, setTimeoutId] = useState(null);
 
-  const showMessage = useCallback((msg, type) => {
-    setMessage(msg);
-    setMessageType(type);
-    setIsVisible(true);
+  const showMessage = useCallback(
+    (msg, type) => {
+      setMessage(msg);
+      setMessageType(type);
+      setIsVisible(true);
 
-    setTimeout(() => {
-      setIsVisible(false);
-      setMessage("");
-    }, 5000);
-  }, []);
+      // Zrušenie existujúceho časovača
+      if (timeoutId) clearTimeout(timeoutId);
+
+      // Nastavenie nového časovača
+      const newTimeoutId = setTimeout(() => {
+        setIsVisible(false);
+        setMessage("");
+        setTimeoutId(null); // Reset identifikátora časovača po skončení
+      }, 5000);
+
+      // Uloženie identifikátora nového časovača
+      setTimeoutId(newTimeoutId);
+    },
+    [timeoutId]
+  );
 
   const success = useCallback(
     (msg) => {
@@ -30,6 +42,13 @@ const useResultMessage = () => {
     },
     [showMessage]
   );
+
+  // Čistenie na odpojenie komponentu
+  useEffect(() => {
+    return () => {
+      if (timeoutId) clearTimeout(timeoutId);
+    };
+  }, [timeoutId]);
 
   const MessageComponent = isVisible ? (
     <Alert variant={messageType}>{message}</Alert>

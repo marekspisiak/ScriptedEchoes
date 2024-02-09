@@ -73,16 +73,40 @@ const commentsController = {
       const { content } = req.body;
       const post_id = req.params.postId;
       const author_id = req.auth.payload.user_id;
+
+      // Overenie, či príspevok existuje
       const post = await Post.findByPk(post_id);
       if (!post) {
         return res.status(404).send("Post not found");
       }
+
+      // Vytvorenie komentára
       const comment = await Comment.create({
         post_id,
         author_id,
         content,
       });
-      res.status(201).json(comment);
+
+      // Načítanie informácií o používateľovi
+      const user = await User.findByPk(author_id, {
+        attributes: ["username", "user_id"],
+      });
+
+      if (!user) {
+        return res.status(404).send("User not found");
+      }
+
+      // Vytvorenie odpovede s komentárom a informáciami o používateľovi
+      const response = {
+        ...comment.toJSON(), // Prevedie Sequelize model na plain object
+        User: {
+          username: user.username,
+          user_id: user.user_id,
+        },
+        // Ak je potrebné, pridajte ďalšie kľúče
+      };
+
+      res.status(201).json(response);
     } catch (error) {
       res.status(500).send(error.message);
     }
