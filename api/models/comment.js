@@ -35,10 +35,16 @@ const Comment = sequelize.define(
       type: DataTypes.DATE,
       defaultValue: DataTypes.NOW,
     },
+    updated_at: {
+      type: DataTypes.DATE,
+      defaultValue: null,
+    },
   },
   {
-    timestamps: false,
+    timestamps: true,
     tableName: "comments",
+    createdAt: "created_at",
+    updatedAt: "updated_at",
   }
 );
 

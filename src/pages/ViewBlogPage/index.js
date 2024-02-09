@@ -75,7 +75,7 @@ const ViewBlogPage = () => {
       </Row>
       <Row>
         <Col className="mg-5">
-          <CommentForm></CommentForm>
+          <CommentForm postId={blogData.post_id}></CommentForm>
         </Col>
       </Row>
       <Row>
