@@ -38,7 +38,7 @@ const useResultMessage = () => {
 
   const error = useCallback(
     (msg) => {
-      showMessage(msg, "error");
+      showMessage(msg, "danger");
     },
     [showMessage]
   );
