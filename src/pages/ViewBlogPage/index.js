@@ -80,7 +80,7 @@ const ViewBlogPage = () => {
       </Row>
       <Row>
         <Col className="mg-5">
-          <CommentList comments={comments}></CommentList>
+          <CommentList postId={blogData.post_id}></CommentList>
         </Col>
       </Row>
       {/* Tu môžete pridať ďalšie komponenty, napríklad pre zobrazenie komentárov alebo súvisiacich článkov */}

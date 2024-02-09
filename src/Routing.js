@@ -15,7 +15,6 @@ import ScrollToTop from "./ScrollToTop";
 import ProtectedRoute from "./ProtectedRoute";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
-import EditBlog from "./pages/ViewBlogPage/EditBlog";
 
 function Routing() {
   return (

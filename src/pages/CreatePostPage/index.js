@@ -3,6 +3,7 @@ import { Form, Container, Row, Col, Alert } from "react-bootstrap";
 import { useAuth } from "../../contexts/UserContext";
 import axios from "axios";
 import Button from "../../components/buttons/Button";
+import useResultMessage from "../../hooks/useResultMessage";
 
 const CreatePostPage = () => {
   const [title, setTitle] = useState("");
@@ -11,6 +12,8 @@ const CreatePostPage = () => {
   const { getAccessToken } = useAuth();
   const [message, setMessage] = useState(null);
   const [error, setError] = useState(null);
+
+  const [MessageComponent, successMessage, errorMessage] = useResultMessage();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -40,12 +43,12 @@ const CreatePostPage = () => {
       );
 
       console.log("Nový príspevok bol pridaný:", response.data);
-      setMessage(`Príspevok ${title} bol úspešne pridaný.`);
+      successMessage(`Príspevok ${title} bol úspešne pridaný.`);
       setTitle("");
       setContent("");
     } catch (error) {
       console.error("Chyba pri pridávaní príspevku:", error);
-      setError("Nepodarilo sa pridať príspevok. Skúste to znova.");
+      errorMessage("Nepodarilo sa pridať príspevok. Skúste to znova.");
     }
   };
 
@@ -60,8 +63,7 @@ const CreatePostPage = () => {
         <Col md={6}>
           <h1>Pridať Nový Blog</h1>
 
-          {message && <Alert variant="success">{message}</Alert>}
-          {error && <Alert variant="danger">{error}</Alert>}
+          {MessageComponent}
 
           <Form onSubmit={handleSubmit}>
             <Form.Group controlId="blogTitle">

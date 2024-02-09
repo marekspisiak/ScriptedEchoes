@@ -25,6 +25,12 @@ const User = sequelize.define(
       type: DataTypes.DATE,
       defaultValue: DataTypes.NOW,
     },
+    displayUsername: {
+      type: DataTypes.VIRTUAL,
+      get() {
+        return `${this.username}#${this.user_id}`;
+      },
+    },
   },
   {
     timestamps: false,

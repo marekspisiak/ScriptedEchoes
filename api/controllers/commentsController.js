@@ -6,18 +6,37 @@ const commentsController = {
   // Získanie všetkých komentárov pre konkrétny post
   getAllCommentsForPost: async (req, res) => {
     try {
+      // Získanie parametra postId z URL
       const postId = req.params.postId;
+
+      // Získanie parametrov page a limit z query, s predvolenými hodnotami
+      const page = parseInt(req.query.page) || 1;
+      const limit = parseInt(req.query.limit) || 10;
+
+      const offset = (page - 1) * limit;
+
+      // Vytvorenie query s použitím limit a offset pre stránkovanie
       const comments = await Comment.findAll({
         where: { post_id: postId },
         include: [
           {
             model: User,
-            attributes: ["username", "email"], // Príklad toho, čo by ste mohli chcieť zahrnúť
+            attributes: ["username", "user_id"], // Príklad toho, čo by ste mohli chcieť zahrnúť
           },
         ],
+        limit: limit,
+        offset: offset,
+        order: [["created_at", "DESC"]], // Zoradenie komentárov od najnovších po najstaršie
       });
-      res.json(comments);
+
+      // Odpoveď s komentármi
+      res.json({
+        comments: comments,
+        currentPage: page,
+        totalPages: Math.ceil(comments.count / limit), // Potrebujete celkový počet komentárov pre výpočet, môže vyžadovať ďalší dotaz
+      });
     } catch (error) {
+      console.error("Error fetching comments:", error);
       res.status(500).send(error.message);
     }
   },

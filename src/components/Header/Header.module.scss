@@ -3,9 +3,10 @@
 .header {
   background-color: $primary-color;
   color: $secondary-color;
-  position: sticky;
+  position: fixed;
   top: 0;
   z-index: 99;
+  width: 100vw;
 }
 
 .headerBlock {

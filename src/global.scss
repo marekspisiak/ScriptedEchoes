@@ -1,25 +1,32 @@
-  @import 'theme';
-  // Globálne štýly
+@import "theme";
+// Globálne štýly
 body {
-    font-family: $primary-font;
-    font-size: $base-font-size;
-    color: $text-color;
-    background-color: $background-color;
+  font-family: $primary-font;
+  font-size: $base-font-size;
+  color: $text-color;
+  background-color: $background-color;
 }
 
 // Štýly pre nadpisy
-h1, h2, h3, h4, h5, h6 {
-    font-size: $heading-font-size;
-    color: $primary-color;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: $heading-font-size;
+  color: $primary-color;
 }
 
 // Štýly pre odkazy
 a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 // Štýly pre základné elementy layoutu
-html, body, #root {
+html,
+body,
+#root {
   height: 100%;
 }
 
@@ -30,4 +37,6 @@ html, body, #root {
 
 .content {
   flex: 1 0 auto;
+  margin-top: 50px;
+  width: 100vw;
 }
