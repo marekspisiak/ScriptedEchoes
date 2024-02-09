@@ -15,7 +15,7 @@ module.exports = jwtCheck;
 
 const userRoutes = require("./routes/userRoutes");
 const postRoutes = require("./routes/postRoutes");
-//const commentRoutes = require("./routes/commentRoutes");
+const commentRoutes = require("./routes/commentRoutes");
 const authRoutes = require("./routes/authRoutes");
 const testRoutes = require("./routes/testRoutes");
 
@@ -26,7 +26,7 @@ app.use(express.json());
 
 app.use("/", userRoutes);
 app.use("/", postRoutes);
-//app.use("/", commentRoutes);
+app.use("/", commentRoutes);
 app.use("/", authRoutes);
 app.use("/", testRoutes);
 

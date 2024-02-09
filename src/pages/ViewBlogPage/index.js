@@ -10,11 +10,13 @@ import EditBlog from "./EditBlog";
 import Loading from "../../components/Loading";
 import CommentForm from "./CommentSection/CommentForm";
 import CommentList from "./CommentSection/CommentList";
+import { useAuth } from "../../contexts/UserContext";
 
 const ViewBlogPage = () => {
   const [blogData, setBlogData] = useState(null);
 
   const { blogId } = useParams(); // Získanie ID blogu z URL, ak používate React Router
+  const { getAccessToken } = useAuth();
 
   useEffect(() => {
     const fetchBlogData = async (id) => {
@@ -35,13 +37,6 @@ const ViewBlogPage = () => {
   if (!blogData) {
     return <Loading />; // Zobrazenie načítavacieho stavu, kým sa dáta nenačítajú
   }
-
-  const comments = [
-    { author: "Patrik", content: "Super článok!" },
-    { author: "Janko", content: "Nesúhlasím s tvojím názorom." },
-  ];
-
-  console.log(blogData);
 
   return (
     <Container className={styles.viewBlogPage}>
