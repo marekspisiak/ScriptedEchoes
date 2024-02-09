@@ -5,11 +5,17 @@ import { useAuth } from "../../../contexts/UserContext";
 import axios from "axios";
 import Button from "../../../components/buttons/Button";
 import useResultMessage from "../../../hooks/useResultMessage";
+import { useNavigate } from "react-router-dom";
 
 const CommentForm = ({ postId }) => {
   const [content, setContent] = useState("");
   const { isAuthenticated, getAccessToken } = useAuth();
   const [ResultComponent, successMessage, errorMessage] = useResultMessage();
+  const navigate = useNavigate();
+
+  const refreshPage = () => {
+    navigate(0);
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -42,6 +48,8 @@ const CommentForm = ({ postId }) => {
     } catch (error) {
       console.error("Error creating comment:", error);
       errorMessage("Nepodarilo sa pridať komentár.");
+    } finally {
+      refreshPage();
     }
   };
 

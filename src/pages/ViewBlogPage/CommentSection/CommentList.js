@@ -1,72 +1,71 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import CommentCard from "../../../components/cards/CommentCard/CommentCard";
-import ListGroup from "react-bootstrap/ListGroup";
-import Button from "react-bootstrap/Button";
+import InfiniteScroll from "react-infinite-scroll-component";
 import styles from "./CommentList.module.scss";
 
 const CommentList = ({ postId }) => {
   const [comments, setComments] = useState([]);
+  const [hasMore, setHasMore] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1); // Predpokladáme, že API poskytuje informáciu o celkovom počte strán
 
-  useEffect(() => {
-    const fetchComments = async () => {
-      try {
-        const response = await axios.get(
-          `http://localhost:3001/posts/${postId}/comments`,
-          {
-            params: { page: currentPage, limit: 10 },
-          }
-        );
-        setComments(response.data.comments); // Aktualizujte podľa formátu vašej odpovede
-        setTotalPages(response.data.totalPages); // Aktualizujte podľa formátu vašej odpovede
-      } catch (error) {
-        console.error("Error fetching comments:", error);
+  const fetchComments = async () => {
+    try {
+      const response = await axios.get(
+        `http://localhost:3001/posts/${postId}/comments`,
+        {
+          params: { page: currentPage, limit: 10 },
+        }
+      );
+
+      // Pridá nové komentáre k existujúcim
+      setComments((prevComments) => [
+        ...prevComments,
+        ...response.data.comments,
+      ]);
+      setCurrentPage((prevPage) => prevPage + 1);
+
+      // Kontrola, či sme načítali všetky komentáre
+      console.log(response.data.comments.length);
+      if (
+        response.data.comments.length === 0 ||
+        response.data.comments.length < 10
+      ) {
+        setHasMore(false);
       }
-    };
-
-    fetchComments();
-  }, [postId, currentPage]);
-
-  console.log(comments);
-  // Funkcia na zmenu stránky
-  const handlePageChange = (newPage) => {
-    setCurrentPage(newPage);
+    } catch (error) {
+      console.error("Error fetching comments:", error);
+      setHasMore(false);
+    }
   };
 
+  useEffect(() => {
+    fetchComments(); // Počiatočné načítanie komentárov
+  }, [postId]);
+
   return (
-    <div>
-      <ListGroup className={styles.commentList}>
-        {comments.map((comment) => (
-          <ListGroup.Item key={comment.id} className={styles.commentListItem}>
-            <CommentCard
-              author={`${comment.User.username}#${comment.User.user_id}`} // Upravte podľa štruktúry dát
-              content={comment.content}
-              createdAt={comment.created_at}
-            />
-          </ListGroup.Item>
-        ))}
-      </ListGroup>
-      <div className={styles.pagination}>
-        <Button
-          onClick={() => handlePageChange(currentPage - 1)}
-          disabled={currentPage <= 1}
-        >
-          Predchádzajúca
-        </Button>
-        <span>
-          {" "}
-          Strana {currentPage} z {totalPages}{" "}
-        </span>
-        <Button
-          onClick={() => handlePageChange(currentPage + 1)}
-          disabled={currentPage >= totalPages}
-        >
-          Ďalšia
-        </Button>
-      </div>
-    </div>
+    <InfiniteScroll
+      dataLength={comments.length}
+      next={fetchComments}
+      hasMore={hasMore}
+      loader={<h4>Loading...</h4>}
+      endMessage={
+        <p style={{ textAlign: "center" }}>
+          <b>Koniec komentárov</b>
+        </p>
+      }
+      className={styles.commentList}
+    >
+      {comments.map((comment) => (
+        <div key={comment.comment_id} className={styles.commentListItem}>
+          <CommentCard
+            author={`${comment.User.username}#${comment.User.user_id}`}
+            content={comment.content}
+            createdAt={comment.created_at}
+          />
+        </div>
+      ))}
+    </InfiniteScroll>
   );
 };
 
