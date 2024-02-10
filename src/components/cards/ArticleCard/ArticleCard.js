@@ -25,6 +25,9 @@ function ArticleCard({ article, onDelete, userProfile }) {
           <Card.Text className={styles.articleCardText}>
             {article.description}
           </Card.Text>
+          <Card.Text className={styles.articleCardText}>
+            {article.Category?.name}
+          </Card.Text>
         </Card.Body>
       </Link>
       <Card.Footer

@@ -1,9 +1,12 @@
 const Post = require("../models/post.js");
 const User = require("../models/user.js");
+const Category = require("../models/category.js");
 
 exports.getAllPosts = async (req, res) => {
   try {
-    const posts = await Post.findAll();
+    const posts = await Post.findAll({
+      include: [{ model: Category, attributes: ["name", "description"] }],
+    });
     res.json(posts);
   } catch (error) {
     res.status(500).send(error.message);
@@ -17,6 +20,10 @@ exports.getPostById = async (req, res) => {
         {
           model: User,
           attributes: ["username", "user_id"], // Vyberieme len meno užívateľa
+        },
+        {
+          model: Category,
+          attributes: ["name", "description"], // Vyberieme len názov kategórie
         },
       ],
     });
@@ -77,7 +84,6 @@ exports.deletePost = async (req, res) => {
 
     await post.destroy();
 
-    //await Post.destroy({ where: { post_id: postId } });
     res.status(204).send();
   } catch (error) {
     res.status(500).send(error.message);
