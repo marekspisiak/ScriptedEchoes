@@ -194,3 +194,35 @@ exports.updatePost = async (req, res) => {
     res.status(500).send(error.message);
   }
 };
+
+exports.getFeaturedPosts = async (req, res) => {
+  try {
+    // Vytvorenie dvoch dotazov: jeden pre 3 najnovšie príspevky, druhý pre 3 najpopulárnejšie
+    const newestPostsPromise = Post.findAll({
+      limit: 3,
+      order: [["created_at", "DESC"]],
+      include: [{ model: Category, attributes: ["name"] }],
+    });
+
+    const mostPopularPostsPromise = Post.findAll({
+      limit: 3,
+      order: [["view_count", "DESC"]],
+      include: [{ model: Category, attributes: ["name"] }],
+    });
+
+    // Súčasné spustenie dotazov a čakanie na ich výsledky
+    const [newestPosts, mostPopularPosts] = await Promise.all([
+      newestPostsPromise,
+      mostPopularPostsPromise,
+    ]);
+
+    // Vrátenie oboch sád dát v odpovedi
+    res.json({
+      newestPosts,
+      mostPopularPosts,
+    });
+  } catch (error) {
+    console.error("Error fetching featured posts:", error);
+    res.status(500).send(error.message);
+  }
+};

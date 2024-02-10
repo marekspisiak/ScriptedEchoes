@@ -4,48 +4,27 @@ import HomeArticles from "./HomeArticles/HomeArticles";
 import SignUpCTA from "./SignUpCTA/SignUpCTA";
 import { Container, Row, Col } from "react-bootstrap";
 import styles from "./HomePage.module.scss";
-const HomePage = () => {
-  const latestArticles = [
-    {
-      title: "Najnovší článok 1",
-      description: "Popis článku...",
-      image: "/holder.jpg",
-      date: "24.10.2023",
-    },
-    {
-      title: "Najnovší článok 2",
-      description: "Popis článku...",
-      image: "/holder.jpg",
-      date: "23.10.2023",
-    },
-    {
-      title: "Najnovší článok 2",
-      description: "Popis článku...",
-      image: "/holder.jpg",
-      date: "23.10.2023",
-    },
-  ];
+import axios from "axios";
+import { useEffect, useState } from "react";
 
-  const popularArticles = [
-    {
-      title: "Populárny článok 1",
-      description: "Popis článku...",
-      image: "/holder.jpg",
-      date: "15.10.2023",
-    },
-    {
-      title: "Populárny článok 2",
-      description: "Popis článku...",
-      image: "/holder.jpg",
-      date: "10.10.2023",
-    },
-    {
-      title: "Populárny článok 2",
-      description: "Popis článku...",
-      image: "/holder.jpg",
-      date: "10.10.2023",
-    },
-  ];
+const HomePage = () => {
+  const [newestPosts, setNewestPosts] = useState([]);
+  const [mostPopularPosts, setMostPopularPosts] = useState([]);
+
+  const fetchFeaturedPosts = async () => {
+    try {
+      const response = await axios.get("http://localhost:3001/featured");
+      setNewestPosts(response.data.newestPosts);
+      setMostPopularPosts(response.data.mostPopularPosts);
+    } catch (error) {
+      console.error("Error fetching featured articles:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchFeaturedPosts();
+  }, []);
+
   return (
     <div className={styles.container}>
       <HeroSection />
@@ -57,14 +36,14 @@ const HomePage = () => {
         </Row>
         <Row>
           <Col>
-            <HomeArticles title="Najnovšie články" articles={latestArticles} />
+            <HomeArticles title="Najnovšie články" articles={newestPosts} />
           </Col>
         </Row>
         <Row>
           <Col>
             <HomeArticles
               title="Najpopulárnejšie články"
-              articles={popularArticles}
+              articles={mostPopularPosts}
             />
           </Col>
         </Row>

@@ -22,4 +22,6 @@ router.post(
   commentsController.createCommentForPost
 );
 
+router.get("/featured", postsController.getFeaturedPosts);
+
 module.exports = router;
