@@ -2,29 +2,24 @@ import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import BlogHeroSection from "./BlogHeroSection";
 import FilterSection from "./FilterSection";
 import Articles from "../../components/Articles/Articles";
-import useFetchPosts from "../../hooks/useFetchPosts";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useAuth } from "../../contexts/UserContext";
 
 const BlogPage = () => {
-  const { posts, loading, error } = useFetchPosts(
-    "http://localhost:3001/posts"
-  );
   const { getAccessToken } = useAuth();
   const accessToken = getAccessToken();
 
   const [articles, setArticles] = useState([]);
-  useEffect(() => {
-    if (posts.length > 0) {
-      const updatedPosts = posts.map((post) => ({
-        ...post,
-        image: "/holder.jpg",
-      }));
 
-      setArticles(updatedPosts);
+  const handleFetchPosts = async () => {
+    try {
+      const response = await axios.get("http://localhost:3001/posts");
+      setArticles(response.data.posts);
+    } catch (error) {
+      console.error("Error fetching posts:", error);
     }
-  }, [posts]);
+  };
 
   const deleteArticle = async (articleId) => {
     try {
@@ -39,6 +34,10 @@ const BlogPage = () => {
       console.error("Chyba pri odstraňovaní článku:", error);
     }
   };
+
+  useEffect(() => {
+    handleFetchPosts();
+  }, []);
 
   return (
     <>

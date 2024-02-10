@@ -44,6 +44,8 @@ const PostForm = ({
     handleFetchCategories();
   }, []);
 
+  console.log(categories);
+
   return (
     <Form onSubmit={handleSubmit}>
       <Form.Group controlId="blogTitle">
@@ -77,13 +79,16 @@ const PostForm = ({
       <Form.Group controlId="blogCategory">
         <Form.Label>Kategória</Form.Label>
         <Form.Select
-          value={category}
+          value={category || ""}
           onChange={(e) => setCategory(e.target.value)}
         >
           <option value="">Vyberte kategóriu</option>
           {categories &&
             categories.map((category) => (
-              <option key={category.category_id} value={category.category_id}>
+              <option
+                key={category.category_id}
+                value={category.category_id || ""}
+              >
                 {category.name}
               </option>
             ))}

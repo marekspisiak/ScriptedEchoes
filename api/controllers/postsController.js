@@ -4,11 +4,53 @@ const Category = require("../models/category.js");
 
 exports.getAllPosts = async (req, res) => {
   try {
-    const posts = await Post.findAll({
+    // Získanie parametrov z query
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 10;
+    const sort = req.query.sort || "newest";
+    const offset = (page - 1) * limit;
+
+    // Rozlíšenie logiky zoradenia na základe hodnoty sort
+    let order;
+    switch (sort) {
+      case "newest":
+        order = [["created_at", "DESC"]];
+        break;
+      case "oldest":
+        order = [["created_at", "ASC"]];
+        break;
+      case "recentlyUpdated":
+        order = [["updated_at", "DESC"]];
+        break;
+      case "leastRecentlyUpdated":
+        order = [["updated_at", "ASC"]];
+        break;
+      case "mostPopular":
+        // Predpokladá, že máte stĺpec alebo spôsob, ako určiť popularitu, napr. počet lajkov alebo zobrazení
+        order = [["view_count", "DESC"]]; // Zmeniť 'popularity' na váš relevantný stĺpec
+        break;
+      case "leastPopular":
+        order = [["view_count", "ASC"]]; // Zmeniť 'popularity' na váš relevantný stĺpec
+        break;
+      default:
+        order = [["created_at", "DESC"]];
+    }
+
+    const { count, rows } = await Post.findAndCountAll({
       include: [{ model: Category, attributes: ["name", "description"] }],
+      limit,
+      offset,
+      order,
     });
-    res.json(posts);
+
+    res.json({
+      posts: rows,
+      currentPage: page,
+      totalPages: Math.ceil(count / limit),
+      totalPosts: count,
+    });
   } catch (error) {
+    console.error("Error fetching posts:", error);
     res.status(500).send(error.message);
   }
 };

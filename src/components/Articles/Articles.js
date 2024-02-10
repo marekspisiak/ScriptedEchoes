@@ -4,7 +4,7 @@ import { useAuth } from "../../contexts/UserContext";
 import ArticleCard from "../cards/ArticleCard/ArticleCard";
 
 function Articles({ articles, onDelete }) {
-  const { user } = useAuth();
+  // const { user, isAuthenticated } = useAuth();
   const handleDelete = (articleId) => {
     onDelete(articleId);
   };
@@ -16,7 +16,8 @@ function Articles({ articles, onDelete }) {
           <ArticleCard
             article={article}
             onDelete={handleDelete}
-            userProfile={user}
+            // userProfile={user}
+            // isAuthenticated={isAuthenticated}
           />
         </Col>
       ))}

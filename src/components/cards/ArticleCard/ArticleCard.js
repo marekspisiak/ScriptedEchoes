@@ -3,9 +3,9 @@ import { Card } from "react-bootstrap";
 import Button from "../../buttons/Button";
 import styles from "./ArticleCard.module.scss";
 import { Link } from "react-router-dom";
-import { formatDate } from "../../../modules/formatDate";
+import { formatFullDate } from "../../../modules/formatDate";
 
-function ArticleCard({ article, onDelete, userProfile }) {
+function ArticleCard({ article, onDelete, userProfile, isAuthenticated }) {
   const handleDelete = (articleId) => {
     onDelete(articleId);
   };
@@ -35,13 +35,13 @@ function ArticleCard({ article, onDelete, userProfile }) {
       <Card.Footer
         className={`d-flex justify-content-around align-items-center ${styles.articleCardTextMuted}`}
       >
-        <small>{formatDate(article.created_at)}</small>
+        <small>{formatFullDate(article.created_at)}</small>
       </Card.Footer>
-      {article?.author_id === userProfile?.user_id ? (
+      {/* {article?.author_id === userProfile?.user_id ? (
         <Button variant="danger" onClick={() => handleDelete(article.post_id)}>
           Vymazať
         </Button>
-      ) : null}
+      ) : null} */}
     </Card>
   );
 }

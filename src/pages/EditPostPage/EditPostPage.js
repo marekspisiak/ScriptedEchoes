@@ -19,7 +19,13 @@ const EditPostPage = () => {
   const [content, setContent] = useState("");
   const [category, setCategory] = useState("");
 
-  const handleSubmit = async ({ title, content, description, ...rest }) => {
+  const handleSubmit = async ({
+    title,
+    content,
+    description,
+    category,
+    ...rest
+  }) => {
     if (!title.trim() || !content.trim()) {
       errorMessage("Prosím, vyplňte názov, popisok a obsah blogu.");
       return;
@@ -34,6 +40,7 @@ const EditPostPage = () => {
           title,
           content,
           description,
+          category: category || undefined,
           ...rest,
         },
         {
