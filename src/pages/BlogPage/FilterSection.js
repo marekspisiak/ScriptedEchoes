@@ -8,6 +8,7 @@ function FilterSection({ filterArticles }) {
   const [categories, setCategories] = useState([]);
   const [selected, setSelected] = useState([]);
   const [sortOrder, setSortOrder] = useState("newest"); // Nový stav pre udržiavanie vybranej možnosti zoradenia
+  const [search, setSearch] = useState();
 
   const handleFetchCategories = async () => {
     try {
@@ -43,7 +44,9 @@ function FilterSection({ filterArticles }) {
             type="text"
             placeholder="Hľadať článok"
             className="mb-1"
+            onChange={(e) => setSearch(e.target.value)}
           />
+
           <MultiSelect
             options={categories}
             value={selected}
@@ -72,7 +75,8 @@ function FilterSection({ filterArticles }) {
             onClick={() => {
               filterArticles(
                 selected.map((category) => category.value),
-                sortOrder
+                sortOrder,
+                search
               );
             }}
           >

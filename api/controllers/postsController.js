@@ -1,6 +1,7 @@
 const Post = require("../models/post.js");
 const User = require("../models/user.js");
 const Category = require("../models/category.js");
+const { Sequelize } = require("sequelize");
 
 exports.getAllPosts = async (req, res) => {
   try {
@@ -10,8 +11,7 @@ exports.getAllPosts = async (req, res) => {
     const sort = req.query.sort || "newest";
     const categories = req.query.categories; // Získanie kategórií (ID) z query stringu
     const offset = (page - 1) * limit;
-
-    console.log(sort);
+    const search = req.query.search;
 
     // Rozlíšenie logiky zoradenia na základe hodnoty sort
     let order;
@@ -45,6 +45,21 @@ exports.getAllPosts = async (req, res) => {
       const categoryIds = categories.split(",").map((id) => parseInt(id)); // Konverzia na pole čísel
       whereCondition.category_id =
         categoryIds.length > 1 ? categoryIds : categoryIds[0];
+    }
+
+    if (search) {
+      whereCondition[Sequelize.Op.or] = [
+        {
+          title: {
+            [Sequelize.Op.like]: `%${search}%`, // Použitie 'like' pre MySQL
+          },
+        },
+        {
+          description: {
+            [Sequelize.Op.like]: `%${search}%`,
+          },
+        },
+      ];
     }
 
     const { count, rows } = await Post.findAndCountAll({
