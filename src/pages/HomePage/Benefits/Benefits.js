@@ -8,19 +8,19 @@ function Benefits() {
       title: "Jednoduchá publikácia",
       description:
         "Rýchlo a ľahko publikujte svoje články bez technických znalostí.",
-      icon: "/holder.jpg",
+      icon: "/images/posts/easy-publication.jpg",
     },
     {
       title: "Dosiahnite širšie publikum",
       description:
         "Využite našu rastúcu komunitu čitateľov a zdieľajte svoje myšlienky so svetom.",
-      icon: "/holder.jpg",
+      icon: "/images/posts/realtime-updates.jpg",
     },
     {
       title: "Úpravy v reálnom čase",
       description:
         "Editujte a aktualizujte svoje články kedykoľvek potrebujete.",
-      icon: "/holder.jpg",
+      icon: "/images/posts/siroke-publikum.jpg",
     },
   ];
 
