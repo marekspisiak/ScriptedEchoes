@@ -41,6 +41,10 @@ const Post = sequelize.define(
       type: DataTypes.STRING(45),
       allowNull: false,
     },
+    view_count: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0,
+    },
   },
   {
     timestamps: true,

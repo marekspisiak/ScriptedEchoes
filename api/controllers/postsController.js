@@ -34,6 +34,8 @@ exports.getPostById = async (req, res) => {
         User: { username: `${post.User.username}#${post.User.user_id}` }, // Pridáme username priamo do objektu
       };
       res.json(result);
+      post.view_count += 1;
+      post.save();
     } else {
       res.status(404).send("Príspevok nebol nájdený");
     }
