@@ -36,15 +36,12 @@ function ArticleCard({ article, onDelete, userProfile }) {
         className={`d-flex justify-content-around align-items-center ${styles.articleCardTextMuted}`}
       >
         <small>{formatDate(article.created_at)}</small>
-        {article?.author_id === userProfile?.user_id ? (
-          <Button
-            variant="danger"
-            onClick={() => handleDelete(article.post_id)}
-          >
-            Delete
-          </Button>
-        ) : null}
       </Card.Footer>
+      {article?.author_id === userProfile?.user_id ? (
+        <Button variant="danger" onClick={() => handleDelete(article.post_id)}>
+          Delete
+        </Button>
+      ) : null}
     </Card>
   );
 }
