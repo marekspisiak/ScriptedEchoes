@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { MultiSelect } from "react-multi-select-component";
 
-function FilterSection() {
+function FilterSection({ filterArticles }) {
   const [categories, setCategories] = useState([]);
   const [selected, setSelected] = useState([]);
 
@@ -39,7 +39,6 @@ function FilterSection() {
       <Col md={12}>
         <Form className="d-flex">
           <Form.Control type="text" placeholder="Hľadať článok" />
-          <Button variant="primary">Hľadať</Button>
         </Form>
         <MultiSelect
           className="mt-1"
@@ -49,6 +48,14 @@ function FilterSection() {
           hasSelectAll={false}
           valueRenderer={valueRenderer}
         />
+        <Button
+          variant="primary"
+          onClick={() => {
+            filterArticles(selected.map((category) => category.value));
+          }}
+        >
+          Filtrovať
+        </Button>
       </Col>
     </Row>
   );

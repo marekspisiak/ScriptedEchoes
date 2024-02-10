@@ -8,6 +8,7 @@ exports.getAllPosts = async (req, res) => {
     const page = parseInt(req.query.page) || 1;
     const limit = parseInt(req.query.limit) || 10;
     const sort = req.query.sort || "newest";
+    const categories = req.query.categories; // Získanie kategórií (ID) z query stringu
     const offset = (page - 1) * limit;
 
     // Rozlíšenie logiky zoradenia na základe hodnoty sort
@@ -36,8 +37,22 @@ exports.getAllPosts = async (req, res) => {
         order = [["created_at", "DESC"]];
     }
 
+    // Filtrovanie podľa kategórií, ak sú špecifikované
+    let whereCondition = {};
+    if (categories) {
+      const categoryIds = categories.split(",").map((id) => parseInt(id)); // Konverzia na pole čísel
+      whereCondition.category_id =
+        categoryIds.length > 1 ? categoryIds : categoryIds[0];
+    }
+
     const { count, rows } = await Post.findAndCountAll({
-      include: [{ model: Category, attributes: ["name", "description"] }],
+      include: [
+        {
+          model: Category,
+          attributes: ["name", "description"],
+        },
+      ],
+      where: whereCondition,
       limit,
       offset,
       order,

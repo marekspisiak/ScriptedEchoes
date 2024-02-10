@@ -10,9 +10,17 @@ const BlogPage = () => {
   const [articles, setArticles] = useState([]);
   const { getAccessToken } = useAuth();
 
-  const handleFetchPosts = async () => {
+  const filterArticles = (selected) => {
+    handleFetchPosts(selected);
+  };
+
+  const handleFetchPosts = async (selected = []) => {
     try {
-      const response = await axios.get("http://localhost:3001/posts");
+      const response = await axios.get("http://localhost:3001/posts", {
+        params: {
+          categories: selected.join(","), // Predpokladá, že `selected` je pole ID kategórií
+        },
+      });
       setArticles(response.data.posts);
     } catch (error) {
       console.error("Error fetching posts:", error);
@@ -49,7 +57,7 @@ const BlogPage = () => {
 
         <Row className="content-section mb-5">
           <Col lg={3} className="mb-5">
-            <FilterSection />
+            <FilterSection filterArticles={filterArticles} />
           </Col>
 
           <Col lg={9}>
