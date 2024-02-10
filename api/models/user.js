@@ -31,10 +31,15 @@ const User = sequelize.define(
         return `${this.username}#${this.user_id}`;
       },
     },
+    image: {
+      type: DataTypes.STRING(45),
+      allowNull: true,
+    },
   },
   {
     timestamps: false,
     tableName: "users",
+    createdAt: "created_at",
   }
 );
 

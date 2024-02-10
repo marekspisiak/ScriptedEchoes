@@ -19,7 +19,7 @@ const ProfileButton = () => {
   return (
     <div className={styles.profileButton}>
       <img
-        src="path_to_profile_image.jpg" // Nahraďte cestou k obrázku profilu
+        src={user?.image ?? "/images/users/default.jpg"} // Nahraďte cestou k obrázku profilu
         alt="Profilový obrázok"
         onClick={handleToggle}
         className={styles.profileImage}
@@ -27,7 +27,7 @@ const ProfileButton = () => {
       <Dropdown show={showDropdown} onToggle={handleToggle}>
         <Dropdown.Toggle as="div" className={styles.dropdownToggle} />
 
-        <Dropdown.Menu className={styles.dropdownMenu}>
+        <Dropdown.Menu className={styles.dropdownMenu} align={"end"}>
           <Dropdown.Item as={Link} to={"/profile"}>
             Profil
           </Dropdown.Item>
