@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useDebugValue, useEffect, useState } from "react";
 import { Form, Container, Row, Col, Alert } from "react-bootstrap";
 import Button from "./buttons/Button";
-import { set } from "date-fns";
+import axios from "axios";
 
 const PostForm = ({
   handleSubmitParent,
@@ -12,6 +12,8 @@ const PostForm = ({
   const [title, setTitle] = useState(initialTitle);
   const [content, setContent] = useState(initialContent);
   const [description, setDescription] = useState(initialDescription);
+  //const [categories, setCategories] = useState([]);
+  const [category, setCategory] = useState("");
 
   const lengthLimits = {
     title: 20,
@@ -24,7 +26,28 @@ const PostForm = ({
     setTitle("");
     setContent("");
     setDescription("");
+    setCategory("");
   };
+
+  // const handleFetchCategories = async () => {
+  //   try {
+  //     const response = await axios.get("http://localhost:3001/categories");
+  //     setCategories(response.data.categories);
+  //   } catch (error) {
+  //     console.error("Error fetching categories:", error);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   handleFetchCategories();
+  // }, []);
+
+  const categories = [
+    { id: 1, name: "Technológia" },
+    { id: 2, name: "Cestovanie" },
+    { id: 3, name: "Jedlo" },
+    // pridajte ďalšie kategórie podľa potreby
+  ];
 
   return (
     <Form onSubmit={handleSubmit}>
@@ -65,6 +88,21 @@ const PostForm = ({
           value={content}
           onChange={(e) => setContent(e.target.value)}
         />
+      </Form.Group>
+
+      <Form.Group controlId="blogCategory">
+        <Form.Label>Kategória</Form.Label>
+        <Form.Select
+          value={category}
+          onChange={(e) => setCategory(e.target.value)}
+        >
+          <option value="">Vyberte kategóriu</option>
+          {categories.map((category) => (
+            <option key={category.id} value={category.id}>
+              {category.name}
+            </option>
+          ))}
+        </Form.Select>
       </Form.Group>
 
       <Button className={"mt-2"} type="submit" variant={"primary"}>

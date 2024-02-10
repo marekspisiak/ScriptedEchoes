@@ -18,6 +18,7 @@ const postRoutes = require("./routes/postRoutes");
 const commentRoutes = require("./routes/commentRoutes");
 const authRoutes = require("./routes/authRoutes");
 const testRoutes = require("./routes/testRoutes");
+const categoryRoutes = require("./routes/categoryRoutes");
 
 const app = express();
 
@@ -29,6 +30,7 @@ app.use("/", postRoutes);
 app.use("/", commentRoutes);
 app.use("/", authRoutes);
 app.use("/", testRoutes);
+app.use("/", categoryRoutes);
 
 app.use("/", (req, res) => {
   res.send("Welcome to the ScriptedEchoes API!");
