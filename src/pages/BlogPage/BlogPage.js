@@ -7,10 +7,8 @@ import axios from "axios";
 import { useAuth } from "../../contexts/UserContext";
 
 const BlogPage = () => {
-  const { getAccessToken } = useAuth();
-  const accessToken = getAccessToken();
-
   const [articles, setArticles] = useState([]);
+  const { getAccessToken } = useAuth();
 
   const handleFetchPosts = async () => {
     try {
@@ -23,6 +21,7 @@ const BlogPage = () => {
 
   const deleteArticle = async (articleId) => {
     try {
+      const accessToken = await getAccessToken();
       await axios.delete(`http://localhost:3001/posts/${articleId}`, {
         headers: {
           Authorization: `Bearer ${accessToken}`,

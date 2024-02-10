@@ -37,11 +37,11 @@ function ArticleCard({ article, onDelete, userProfile, isAuthenticated }) {
       >
         <small>{formatFullDate(article.created_at)}</small>
       </Card.Footer>
-      {/* {article?.author_id === userProfile?.user_id ? (
+      {article?.author_id === userProfile?.user_id ? (
         <Button variant="danger" onClick={() => handleDelete(article.post_id)}>
           Vymazať
         </Button>
-      ) : null} */}
+      ) : null}
     </Card>
   );
 }
