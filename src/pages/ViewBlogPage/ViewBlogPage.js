@@ -38,11 +38,18 @@ const ViewBlogPage = () => {
     return <Loading />; // Zobrazenie načítavacieho stavu, kým sa dáta nenačítajú
   }
 
+  console.log(blogData);
+
   return (
     <Container className={styles.viewBlogPage}>
       <Row>
         <Col>
-          <BlogHeader title={blogData.title} author={blogData.User.username} />
+          <BlogHeader
+            title={blogData.title}
+            author={blogData.User.username}
+            image={blogData.image}
+            description={blogData.description}
+          />
         </Col>
       </Row>
       <Row>

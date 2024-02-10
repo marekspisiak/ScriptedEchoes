@@ -31,6 +31,7 @@ app.use("/", commentRoutes);
 app.use("/", authRoutes);
 app.use("/", testRoutes);
 app.use("/", categoryRoutes);
+app.use("/storage", express.static("storage"));
 
 app.use("/", (req, res) => {
   res.send("Welcome to the ScriptedEchoes API!");

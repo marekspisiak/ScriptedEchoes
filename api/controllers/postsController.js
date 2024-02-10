@@ -1,6 +1,7 @@
 const Post = require("../models/post.js");
 const User = require("../models/user.js");
 const Category = require("../models/category.js");
+const fs = require("fs");
 const { Sequelize } = require("sequelize");
 
 exports.getAllPosts = async (req, res) => {
@@ -123,8 +124,15 @@ exports.createPost = async (req, res) => {
   const author_id = req.auth.payload.user_id;
 
   if (!title || !content || !author_id || !description) {
-    return res.status(400).send("Názov, obsah a autor sú povinné údaje.");
+    return res
+      .status(400)
+      .send("Názov, obsah, autor a popisok sú povinné údaje.");
   }
+
+  // Získanie informácií o obrázku
+  const imagePath = req.file ? req.file.path : null;
+  // Generovanie URL pre obrázok
+  const imageUrl = imagePath ? `http://localhost:3001/${imagePath}` : null;
 
   try {
     const newPost = await Post.create({
@@ -133,9 +141,16 @@ exports.createPost = async (req, res) => {
       author_id,
       description,
       category_id,
+      image: imageUrl, // Pridanie URL obrázka do databázy
     });
     res.status(201).json(newPost);
   } catch (error) {
+    if (req.file) {
+      fs.unlink(req.file.path, (err) => {
+        if (err) console.error("Chyba pri odstraňovaní obrázka", err);
+      });
+    }
+
     console.error("Chyba pri vytváraní príspevku:", error);
     res.status(500).send(error.message);
   }
@@ -158,7 +173,19 @@ exports.deletePost = async (req, res) => {
         .send("Nemáte oprávnenie odstrániť tento príspevok");
     }
 
+    const oldImagePath = post.image;
+
     await post.destroy();
+
+    if (oldImagePath) {
+      const oldImageFilePath = oldImagePath.replace(
+        "http://localhost:3001/",
+        ""
+      );
+      fs.unlink(oldImageFilePath, (err) => {
+        if (err) console.error("Chyba pri odstraňovaní obrázka", err);
+      });
+    }
 
     res.status(204).send();
   } catch (error) {
@@ -182,12 +209,35 @@ exports.updatePost = async (req, res) => {
       return res.status(403).send("Nemáte oprávnenie upraviť tento príspevok");
     }
 
+    // Získanie informácií o obrázku
+    const imagePath = req.file ? req.file.path : null;
+    // Generovanie URL pre obrázok
+    const imageUrl = imagePath ? `http://localhost:3001/${imagePath}` : null;
+
+    const oldImagePath = post.image;
+
     await post.update({
       title,
       content,
       description,
       category_id,
+      image: imageUrl, // Pridanie URL obrázka do databázy
     });
+
+    // Odstránenie starého obrázka z disku
+    //musis odstranit http://localhost:3001/ z cesty
+
+    if (oldImagePath && imageUrl) {
+      const oldImageFilePath = oldImagePath.replace(
+        "http://localhost:3001/",
+        ""
+      );
+      fs.unlink(oldImageFilePath, (err) => {
+        if (err) console.error("Chyba pri odstraňovaní obrázka", err);
+      });
+    }
+
+    //posli ako odpoved upraveny príspevok
 
     res.status(204).send();
   } catch (error) {

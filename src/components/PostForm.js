@@ -1,4 +1,4 @@
-import React, { useDebugValue, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Form, Container, Row, Col, Alert } from "react-bootstrap";
 import Button from "./buttons/Button";
 import axios from "axios";
@@ -9,12 +9,14 @@ const PostForm = ({
   initialContent = "",
   initialDescription = "",
   initialCategory = "",
+  initialImage = "", // Pridaná nová inicializačná hodnota pre obrázok, ak je to potrebné
 }) => {
   const [title, setTitle] = useState(initialTitle);
   const [content, setContent] = useState(initialContent);
   const [description, setDescription] = useState(initialDescription);
   const [categories, setCategories] = useState([]);
   const [category, setCategory] = useState(initialCategory);
+  const [image, setImage] = useState(initialImage); // Stav pre uchovanie nahraného obrázka
 
   const lengthLimits = {
     title: 20,
@@ -23,18 +25,22 @@ const PostForm = ({
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    await handleSubmitParent({ title, content, description, category });
-    setTitle("");
-    setContent("");
-    setDescription("");
-    setCategory("");
+
+    // Pripravíme dáta pre odoslanie, vrátane nahraného obrázka
+    const data = { title, content, description, category, image };
+
+    await handleSubmitParent(data); // Zmena na odosielanie FormData objektu
+    // setTitle("");
+    // setContent("");
+    // setDescription("");
+    // setCategory("");
+    // setImage(""); // Reset stavu obrázka
   };
 
   const handleFetchCategories = async () => {
     try {
       const response = await axios.get("http://localhost:3001/categories");
       setCategories(response.data);
-      console.log(response.data);
     } catch (error) {
       console.error("Error fetching categories:", error);
     }
@@ -44,10 +50,8 @@ const PostForm = ({
     handleFetchCategories();
   }, []);
 
-  console.log(categories);
-
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit} encType="multipart/form-data">
       <Form.Group controlId="blogTitle">
         <Form.Label>Názov</Form.Label>
         <Form.Control
@@ -103,6 +107,14 @@ const PostForm = ({
           placeholder="Zadajte obsah blogu"
           value={content}
           onChange={(e) => setContent(e.target.value)}
+        />
+      </Form.Group>
+
+      <Form.Group controlId="blogImage">
+        <Form.Label>Náhľadový obrázok</Form.Label>
+        <Form.Control
+          type="file"
+          onChange={(e) => setImage(e.target.files[0])}
         />
       </Form.Group>
 

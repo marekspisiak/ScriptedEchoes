@@ -46,7 +46,7 @@ const Post = sequelize.define(
       defaultValue: 0,
     },
     image: {
-      type: DataTypes.STRING(45),
+      type: DataTypes.STRING(2048),
       allowNull: true,
     },
   },

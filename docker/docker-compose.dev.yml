@@ -12,7 +12,6 @@ services:
       - "3000:3000"
     volumes:
       - ../:/app
-      - /app/node_modules
     environment:
       - WATCHPACK_POLLING=true
 
@@ -44,6 +43,7 @@ services:
       - /app/node_modules
     environment:
       - NODE_ENV=development
+      - WATCHPACK_POLLING=true
 
 volumes:
   mysql-data:

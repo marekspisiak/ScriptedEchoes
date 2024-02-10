@@ -32,7 +32,7 @@ const User = sequelize.define(
       },
     },
     image: {
-      type: DataTypes.STRING(45),
+      type: DataTypes.STRING(2048),
       allowNull: true,
     },
   },
