@@ -61,7 +61,6 @@ exports.createPost = async (req, res) => {
 exports.deletePost = async (req, res) => {
   try {
     const user_id = req.auth.payload.user_id;
-    console.log(user_id);
     const postId = req.params.id;
 
     const post = await Post.findOne({ where: { post_id: postId } });
@@ -76,7 +75,9 @@ exports.deletePost = async (req, res) => {
         .send("Nemáte oprávnenie odstrániť tento príspevok");
     }
 
-    await Post.destroy({ where: { post_id: postId } });
+    await post.destroy();
+
+    //await Post.destroy({ where: { post_id: postId } });
     res.status(204).send();
   } catch (error) {
     res.status(500).send(error.message);
@@ -99,12 +100,13 @@ exports.updatePost = async (req, res) => {
       return res.status(403).send("Nemáte oprávnenie upraviť tento príspevok");
     }
 
-    await Post.update(
-      { title, content, description, category_id },
-      {
-        where: { post_id: postId },
-      }
-    );
+    await post.update({
+      title,
+      content,
+      description,
+      category_id,
+    });
+
     res.status(204).send();
   } catch (error) {
     res.status(500).send(error.message);

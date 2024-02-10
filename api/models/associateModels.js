@@ -6,7 +6,7 @@ const Category = require("./category");
 User.hasMany(Post, { foreignKey: "author_id" });
 Post.belongsTo(User, { foreignKey: "author_id" });
 
-Post.hasMany(Comment, { foreignKey: "post_id" });
+Post.hasMany(Comment, { foreignKey: "post_id", onDelete: "CASCADE" });
 Comment.belongsTo(Post, { foreignKey: "post_id" });
 
 User.hasMany(Comment, { foreignKey: "author_id" });

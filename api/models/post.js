@@ -47,6 +47,18 @@ const Post = sequelize.define(
     createdAt: "created_at",
     updatedAt: "updated_at",
     tableName: "posts",
+    hooks: {
+      beforeCreate: (post, options) => {
+        if (post.category_id === "") {
+          post.category_id = null; // Nastavíme category_id na null, ak je prázdny reťazec
+        }
+      },
+      beforeUpdate: (post, options) => {
+        if (post.category_id === "") {
+          post.category_id = null; // Rovnaká logika pre aktualizáciu
+        }
+      },
+    },
   }
 );
 
