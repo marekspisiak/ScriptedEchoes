@@ -2,7 +2,6 @@ import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import BlogHeroSection from "./BlogHeroSection";
 import FilterSection from "./FilterSection";
 import Articles from "../../components/Articles/Articles";
-import Sidebar from "./Sidebar";
 import useFetchPosts from "../../hooks/useFetchPosts";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -41,17 +40,6 @@ const BlogPage = () => {
     }
   };
 
-  const sidebarData = {
-    categories: [
-      "Technológia",
-      "Cestovanie",
-      "Jedlo a pitie",
-      "Umenie",
-      "Osobný rast",
-      "Zábava",
-    ],
-  };
-
   return (
     <>
       <Container fluid className="blog-container mt-5">
@@ -62,9 +50,8 @@ const BlogPage = () => {
         </Row>
 
         <Row className="content-section mb-5">
-          <Col lg={3}>
+          <Col lg={3} className="mb-5">
             <FilterSection />
-            <Sidebar categories={sidebarData.categories} />
           </Col>
 
           <Col lg={9}>
