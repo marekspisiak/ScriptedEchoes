@@ -39,7 +39,7 @@ function ArticleCard({ article, onDelete, userProfile }) {
       </Card.Footer>
       {article?.author_id === userProfile?.user_id ? (
         <Button variant="danger" onClick={() => handleDelete(article.post_id)}>
-          Delete
+          Vymazať
         </Button>
       ) : null}
     </Card>
