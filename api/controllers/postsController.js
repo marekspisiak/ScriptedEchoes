@@ -11,6 +11,8 @@ exports.getAllPosts = async (req, res) => {
     const categories = req.query.categories; // Získanie kategórií (ID) z query stringu
     const offset = (page - 1) * limit;
 
+    console.log(sort);
+
     // Rozlíšenie logiky zoradenia na základe hodnoty sort
     let order;
     switch (sort) {

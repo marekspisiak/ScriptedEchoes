@@ -10,15 +10,16 @@ const BlogPage = () => {
   const [articles, setArticles] = useState([]);
   const { getAccessToken } = useAuth();
 
-  const filterArticles = (selected) => {
-    handleFetchPosts(selected);
+  const filterArticles = (selected, sortOrder) => {
+    handleFetchPosts(selected, sortOrder);
   };
 
-  const handleFetchPosts = async (selected = []) => {
+  const handleFetchPosts = async (selected = [], sortOrder = "newest") => {
     try {
       const response = await axios.get("http://localhost:3001/posts", {
         params: {
           categories: selected.join(","), // Predpokladá, že `selected` je pole ID kategórií
+          sort: sortOrder,
         },
       });
       setArticles(response.data.posts);

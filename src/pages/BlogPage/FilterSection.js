@@ -1,14 +1,13 @@
-// components/FilterSection.jsx
-
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import { Form, Row, Col } from "react-bootstrap";
 import Button from "../../components/buttons/Button";
-import { useEffect, useState } from "react";
-import axios from "axios";
 import { MultiSelect } from "react-multi-select-component";
 
 function FilterSection({ filterArticles }) {
   const [categories, setCategories] = useState([]);
   const [selected, setSelected] = useState([]);
+  const [sortOrder, setSortOrder] = useState("newest"); // Nový stav pre udržiavanie vybranej možnosti zoradenia
 
   const handleFetchCategories = async () => {
     try {
@@ -19,7 +18,6 @@ function FilterSection({ filterArticles }) {
       }));
 
       setCategories(updatedCategories);
-      console.log(response.data);
     } catch (error) {
       console.error("Error fetching categories:", error);
     }
@@ -31,31 +29,56 @@ function FilterSection({ filterArticles }) {
 
   const valueRenderer = (selected) => {
     if (selected.length === 0) return "Vyberte kategórie";
-    return selected.map((selected) => selected.label).join(", ");
+    return selected.map((s) => s.label).join(", ");
   };
 
   return (
     <Row className="filter-section">
       <Col md={12}>
-        <Form className="d-flex">
-          <Form.Control type="text" placeholder="Hľadať článok" />
-        </Form>
-        <MultiSelect
-          className="mt-1"
-          options={categories}
-          value={selected}
-          onChange={setSelected}
-          hasSelectAll={false}
-          valueRenderer={valueRenderer}
-        />
-        <Button
-          variant="primary"
-          onClick={() => {
-            filterArticles(selected.map((category) => category.value));
-          }}
+        <Form
+          className="d-flex flex-column"
+          onSubmit={(e) => e.preventDefault()}
         >
-          Filtrovať
-        </Button>
+          <Form.Control
+            type="text"
+            placeholder="Hľadať článok"
+            className="mb-1"
+          />
+          <MultiSelect
+            options={categories}
+            value={selected}
+            onChange={setSelected}
+            hasSelectAll={false}
+            valueRenderer={valueRenderer}
+            labelledBy="Vyberte kategórie"
+          />
+          <Form.Select
+            className="mt-1"
+            value={sortOrder}
+            onChange={(e) => setSortOrder(e.target.value)}
+          >
+            <option value="newest">Najnovšie</option>
+            <option value="oldest">Najstaršie</option>
+            <option value="recentlyUpdated">Nedávno aktualizované</option>
+            <option value="leastRecentlyUpdated">
+              Najmenej nedávno aktualizované
+            </option>
+            <option value="mostPopular">Najpopulárnejšie</option>
+            <option value="leastPopular">Najmenej populárne</option>
+          </Form.Select>
+          <Button
+            variant="primary"
+            className="mt-1"
+            onClick={() => {
+              filterArticles(
+                selected.map((category) => category.value),
+                sortOrder
+              );
+            }}
+          >
+            Filtrovať
+          </Button>
+        </Form>
       </Col>
     </Row>
   );
