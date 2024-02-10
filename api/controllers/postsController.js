@@ -36,7 +36,7 @@ exports.getPostById = async (req, res) => {
 };
 
 exports.createPost = async (req, res) => {
-  const { title, content, description } = req.body;
+  const { title, content, description, category: category_id } = req.body;
   const author_id = req.auth.payload.user_id;
 
   if (!title || !content || !author_id || !description) {
@@ -49,6 +49,7 @@ exports.createPost = async (req, res) => {
       content,
       author_id,
       description,
+      category_id,
     });
     res.status(201).json(newPost);
   } catch (error) {
@@ -86,7 +87,7 @@ exports.updatePost = async (req, res) => {
   try {
     const user_id = req.auth.payload.user_id;
     const postId = req.params.id;
-    const { title, content, description } = req.body;
+    const { title, content, description, category: category_id } = req.body;
 
     const post = await Post.findOne({ where: { post_id: postId } });
 
@@ -99,7 +100,7 @@ exports.updatePost = async (req, res) => {
     }
 
     await Post.update(
-      { title, content, description },
+      { title, content, description, category_id },
       {
         where: { post_id: postId },
       }

@@ -18,6 +18,9 @@ const Post = sequelize.define(
         key: "user_id",
       },
     },
+    category_id: {
+      type: DataTypes.INTEGER,
+    },
     title: {
       type: DataTypes.STRING(20),
       allowNull: false,

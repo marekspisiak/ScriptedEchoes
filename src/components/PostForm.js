@@ -8,12 +8,13 @@ const PostForm = ({
   initialTitle = "",
   initialContent = "",
   initialDescription = "",
+  initialCategory = "",
 }) => {
   const [title, setTitle] = useState(initialTitle);
   const [content, setContent] = useState(initialContent);
   const [description, setDescription] = useState(initialDescription);
-  //const [categories, setCategories] = useState([]);
-  const [category, setCategory] = useState("");
+  const [categories, setCategories] = useState([]);
+  const [category, setCategory] = useState(initialCategory);
 
   const lengthLimits = {
     title: 20,
@@ -22,32 +23,26 @@ const PostForm = ({
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    await handleSubmitParent({ title, content, description });
+    await handleSubmitParent({ title, content, description, category });
     setTitle("");
     setContent("");
     setDescription("");
     setCategory("");
   };
 
-  // const handleFetchCategories = async () => {
-  //   try {
-  //     const response = await axios.get("http://localhost:3001/categories");
-  //     setCategories(response.data.categories);
-  //   } catch (error) {
-  //     console.error("Error fetching categories:", error);
-  //   }
-  // };
+  const handleFetchCategories = async () => {
+    try {
+      const response = await axios.get("http://localhost:3001/categories");
+      setCategories(response.data);
+      console.log(response.data);
+    } catch (error) {
+      console.error("Error fetching categories:", error);
+    }
+  };
 
-  // useEffect(() => {
-  //   handleFetchCategories();
-  // }, []);
-
-  const categories = [
-    { id: 1, name: "Technológia" },
-    { id: 2, name: "Cestovanie" },
-    { id: 3, name: "Jedlo" },
-    // pridajte ďalšie kategórie podľa potreby
-  ];
+  useEffect(() => {
+    handleFetchCategories();
+  }, []);
 
   return (
     <Form onSubmit={handleSubmit}>
@@ -79,6 +74,22 @@ const PostForm = ({
         </Form.Text>
       </Form.Group>
 
+      <Form.Group controlId="blogCategory">
+        <Form.Label>Kategória</Form.Label>
+        <Form.Select
+          value={category}
+          onChange={(e) => setCategory(e.target.value)}
+        >
+          <option value="">Vyberte kategóriu</option>
+          {categories &&
+            categories.map((category) => (
+              <option key={category.category_id} value={category.category_id}>
+                {category.name}
+              </option>
+            ))}
+        </Form.Select>
+      </Form.Group>
+
       <Form.Group controlId="blogContent">
         <Form.Label>Obsah</Form.Label>
         <Form.Control
@@ -88,21 +99,6 @@ const PostForm = ({
           value={content}
           onChange={(e) => setContent(e.target.value)}
         />
-      </Form.Group>
-
-      <Form.Group controlId="blogCategory">
-        <Form.Label>Kategória</Form.Label>
-        <Form.Select
-          value={category}
-          onChange={(e) => setCategory(e.target.value)}
-        >
-          <option value="">Vyberte kategóriu</option>
-          {categories.map((category) => (
-            <option key={category.id} value={category.id}>
-              {category.name}
-            </option>
-          ))}
-        </Form.Select>
       </Form.Group>
 
       <Button className={"mt-2"} type="submit" variant={"primary"}>

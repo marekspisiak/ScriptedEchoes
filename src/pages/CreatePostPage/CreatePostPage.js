@@ -11,7 +11,7 @@ const CreatePostPage = () => {
 
   const [MessageComponent, successMessage, errorMessage] = useResultMessage();
 
-  const handleSubmit = async ({ title, content, description }) => {
+  const handleSubmit = async ({ title, content, description, ...rest }) => {
     if (!title.trim() || !content.trim()) {
       errorMessage("Prosím, vyplňte názov, popisok a obsah blogu.");
       return;
@@ -26,6 +26,7 @@ const CreatePostPage = () => {
           title,
           content,
           description,
+          ...rest,
         },
         {
           headers: {

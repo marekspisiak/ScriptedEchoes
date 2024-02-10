@@ -17,8 +17,9 @@ const EditPostPage = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [content, setContent] = useState("");
+  const [category, setCategory] = useState("");
 
-  const handleSubmit = async ({ title, content, description }) => {
+  const handleSubmit = async ({ title, content, description, ...rest }) => {
     if (!title.trim() || !content.trim()) {
       errorMessage("Prosím, vyplňte názov, popisok a obsah blogu.");
       return;
@@ -33,6 +34,7 @@ const EditPostPage = () => {
           title,
           content,
           description,
+          ...rest,
         },
         {
           headers: {
@@ -57,6 +59,7 @@ const EditPostPage = () => {
         setDescription(response.data.description);
         setContent(response.data.content);
         setAuthorId(response.data.author_id);
+        setCategory(response.data.category_id);
       } catch (error) {
         console.error("Error fetching blog data:", error);
         // Ošetrenie chyby, napríklad nastavenie stavu chyby alebo zobrazenie správy používateľovi
@@ -76,6 +79,7 @@ const EditPostPage = () => {
             initialTitle={title}
             initialDescription={description}
             initialContent={content}
+            initialCategory={category}
           ></PostForm>
         </Col>
       </Row>
