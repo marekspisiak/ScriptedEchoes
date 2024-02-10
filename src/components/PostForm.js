@@ -14,6 +14,7 @@ const PostForm = ({
   initialDescription = "",
   initialCategory = "",
   initialImage = "",
+  returnBack,
 }) => {
   const [title, setTitle] = useState(initialTitle);
   const [content, setContent] = useState(initialContent);
@@ -45,6 +46,10 @@ const PostForm = ({
   useEffect(() => {
     handleFetchCategories();
   }, []);
+
+  const returnToPreview = () => {
+    // Implementujte logiku pre návrat na náhľad blogu
+  };
 
   return (
     <Form onSubmit={handleSubmit} className={styles.formContainer}>
@@ -114,6 +119,14 @@ const PostForm = ({
 
       <Button type="submit" className={styles.button} variant={"primary"}>
         Potvrdit
+      </Button>
+      <Button
+        type="button"
+        className={styles.buttonReturn}
+        variant={"secondary"}
+        onClick={returnBack}
+      >
+        Zrušiť
       </Button>
     </Form>
   );

@@ -12,6 +12,10 @@ const CreatePostPage = () => {
 
   const [MessageComponent, successMessage, errorMessage] = useResultMessage();
 
+  const returnBack = () => {
+    navigate(`/blog`);
+  };
+
   const handleSubmit = async ({
     title,
     content,
@@ -67,7 +71,10 @@ const CreatePostPage = () => {
 
           {MessageComponent}
 
-          <PostForm handleSubmitParent={handleSubmit}></PostForm>
+          <PostForm
+            handleSubmitParent={handleSubmit}
+            returnBack={returnBack}
+          ></PostForm>
         </Col>
       </Row>
     </Container>

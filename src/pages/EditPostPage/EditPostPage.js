@@ -22,6 +22,10 @@ const EditPostPage = () => {
 
   const navigate = useNavigate();
 
+  const returnBack = () => {
+    navigate(`/blog/${blogId}`);
+  };
+
   const handleSubmit = async ({
     title,
     content,
@@ -101,6 +105,7 @@ const EditPostPage = () => {
             initialDescription={description}
             initialContent={content}
             initialCategory={category}
+            returnBack={returnBack}
           ></PostForm>
         </Col>
       </Row>
