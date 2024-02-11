@@ -38,7 +38,7 @@ const ChangePasswordCard = () => {
       <Card className="mb-3">
         <Card.Body>
           <Card.Title>Zmena Hesla</Card.Title>
-          <Card.Text>Zmena hesla pre váš účet.</Card.Text>
+          <Card.Text>Vyžiadajte email pre zmenu hesla na váš účet.</Card.Text>
           <Button onClick={sendPasswordResetEmail} variant={"accent"}>
             Zmeniť Heslo
           </Button>
