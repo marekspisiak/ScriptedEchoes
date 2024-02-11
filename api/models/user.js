@@ -25,6 +25,7 @@ const User = sequelize.define(
           msg: "Username nesmie byť prázdny",
         },
       },
+      defaultValue: "anonym",
     },
     email: {
       type: DataTypes.STRING,

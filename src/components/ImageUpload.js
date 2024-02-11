@@ -48,6 +48,8 @@ const ImageUpload = ({ onImageSelected, existingImageUrl }) => {
         </Form.Group>
       )}
 
+      <Form.Label className={styles.label}>Obrázok</Form.Label>
+
       <Form.Group controlId="blogImage" className={styles.formGroup}>
         <Form.Control
           type="file"
