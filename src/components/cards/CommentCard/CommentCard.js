@@ -47,15 +47,15 @@ const CommentCard = ({
   return (
     <Card className={styles.commentCard}>
       <Card.Body className={styles.cardBody}>
-        {image && (
+        {
           <div className={styles.imageWrapper}>
             <img
-              src={image}
+              src={user.image}
               alt="Profilový obrázok"
               className={styles.commentImage}
             />
           </div>
-        )}
+        }
         <div className={styles.textWrapper}>
           {ResultComponent}
           <Card.Title className={styles.commentAuthor}>{author}</Card.Title>

@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
 import useHandleLogin from "./useHandleLogin";
+import { set } from "ramda";
 
 const useAuthHook = () => {
   const [accessToken, setAccessToken] = useState(null);
@@ -36,6 +37,12 @@ const useAuthHook = () => {
       });
       setAccessToken(response.data.token);
       setUserProfile(response.data.user);
+      if (!response.data.user.image) {
+        setUserProfile((prev) => ({
+          ...prev,
+          image: "/defaultUser.jpg",
+        }));
+      }
     } catch (err) {
       setError(err);
     }
@@ -68,7 +75,7 @@ const useAuthHook = () => {
       setUserProfile((prev) => ({
         ...prev,
         username: newUsername,
-        image: response.data.imageUrl,
+        image: response.data.imageUrl || "/defaultUser.jpg",
       }));
     } catch (err) {
       setError(err);

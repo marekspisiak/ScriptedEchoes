@@ -11,7 +11,6 @@ const CommentList = ({ postId }) => {
   const { getAccessToken } = useAuth();
   const [comments, setComments] = useState([]);
   const [initialLoad, setInitialLoad] = useState(true);
-  console.log(comments.length);
 
   const fetchComments = async () => {
     try {
