@@ -3,6 +3,7 @@
 const fs = require("fs");
 
 const getFullImageUrl = (imagePath) => {
+  if (!imagePath) return null;
   const baseUrl = "http://localhost:3001";
   return `${baseUrl}/${imagePath}`;
 };

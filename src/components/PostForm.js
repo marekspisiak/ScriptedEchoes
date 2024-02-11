@@ -16,10 +16,17 @@ const PostForm = ({ handleSubmitParent, data, returnBack }) => {
   const [category, setCategory] = useState(data?.category_id || "");
   const [image, setImage] = useState(data?.image || null);
   const [imagePreview, setImagePreview] = useState(data?.image || null);
-  console.log(image);
+  const [removeImage, setRemoveImage] = useState(false);
+
   const lengthLimits = {
     title: 20,
     description: 45,
+  };
+
+  const handleRemoveImage = () => {
+    setRemoveImage(true);
+    setImagePreview(null); // Ak ukladáte náhľad v state
+    setImage(null); // Ak obrázok pochádza z input type="file"
   };
 
   useEffect(() => {
@@ -34,7 +41,14 @@ const PostForm = ({ handleSubmitParent, data, returnBack }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const data = { title, content, description, category, image };
+    const data = {
+      title,
+      content,
+      description,
+      category,
+      image: removeImage ? "REMOVE_IMAGE" : image,
+    };
+
     await handleSubmitParent(data);
   };
 
@@ -118,6 +132,9 @@ const PostForm = ({ handleSubmitParent, data, returnBack }) => {
               className={styles.imagePreview}
             />
           </div>
+          <Button variant="danger" onClick={handleRemoveImage}>
+            Odstrániť obrázok
+          </Button>
         </Form.Group>
       )}
 

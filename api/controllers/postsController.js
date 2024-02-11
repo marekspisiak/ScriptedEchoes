@@ -185,7 +185,14 @@ exports.deletePost = async (req, res) => {
 exports.updatePost = async (req, res) => {
   try {
     const postId = req.params.id;
-    const { title, content, description, category: category_id } = req.body;
+    const {
+      title,
+      content,
+      description,
+      category: category_id,
+      image,
+    } = req.body;
+    const removeImage = image === "REMOVE_IMAGE";
 
     const post = await Post.findOne({ where: { post_id: postId } });
 
@@ -193,29 +200,35 @@ exports.updatePost = async (req, res) => {
       return res.status(404).send("Príspevok nebol nájdený");
     }
 
-    // Získanie informácií o obrázku
-    const imagePath = req.file ? req.file.path : null;
-    console.log(imagePath);
-    // Generovanie URL pre obrázok
-    const imageUrl = getFullImageUrl(imagePath);
-    console.log(imageUrl);
+    let imageUrl = post.image;
+    let oldImagePath = null;
 
-    const oldImagePath = post.image;
+    if (req.file) {
+      // Užívateľ nahral nový obrázok
+      imageUrl = getFullImageUrl(req.file.path);
+      oldImagePath = post.image; // Uloženie cesty k starému obrázku pre možné neskoršie odstránenie
+    } else if (removeImage) {
+      oldImagePath = post.image; // Uloženie cesty k starému obrázku pre možné neskoršie odstránenie
+      imageUrl = null;
+    }
 
+    // Aktualizácia záznamu v databáze
     await post.update({
       title,
       content,
       description,
       category_id,
-      image: imageUrl, // Pridanie URL obrázka do databázy
+      image: imageUrl,
     });
 
-    if (oldImagePath && imageUrl) {
+    // Odstránenie starého obrázka z disku, ak je potrebné
+    if (oldImagePath) {
       deleteOldImage(oldImagePath);
     }
 
     res.status(204).send();
   } catch (error) {
+    console.error("Chyba pri aktualizácii príspevku:", error);
     res.status(500).send(error.message);
   }
 };
