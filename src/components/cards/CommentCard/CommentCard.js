@@ -49,7 +49,7 @@ const CommentCard = ({
         {
           <div className={styles.imageWrapper}>
             <img
-              src={user.image}
+              src={user?.image}
               alt="Profilový obrázok"
               className={styles.commentImage}
             />
