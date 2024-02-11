@@ -53,6 +53,7 @@ const ImageUpload = ({ onImageSelected, existingImageUrl }) => {
       <Form.Group controlId="blogImage" className={styles.formGroup}>
         <Form.Control
           type="file"
+          accept="image/*"
           onChange={(e) => setImage(e.target.files[0])}
           className={styles.fileInput}
           ref={fileInputRef}
