@@ -2,24 +2,21 @@ import React, { useState } from "react";
 import { Dropdown } from "react-bootstrap";
 import styles from "./ProfileButton.module.scss";
 import useAuthHook from "../../hooks/useAuthHook";
+import { useAuth } from "../../contexts/UserContext";
 import { Link } from "react-router-dom";
-import LogoutButton from "../buttons/LogoutButton";
 
 const ProfileButton = () => {
   const [showDropdown, setShowDropdown] = useState(false);
 
-  const { user, logout } = useAuthHook();
+  const { logout } = useAuthHook();
+  const { user } = useAuth();
 
   const handleToggle = () => setShowDropdown(!showDropdown);
-  const handleLogout = () => {
-    // Implement logout logic
-    console.log("Logout");
-  };
 
   return (
     <div className={styles.profileButton}>
       <img
-        src={user?.image ?? "/images/users/default.jpg"} // Nahraďte cestou k obrázku profilu
+        src={user?.image} // Nahraďte cestou k obrázku profilu
         alt="Profilový obrázok"
         onClick={handleToggle}
         className={styles.profileImage}

@@ -10,8 +10,6 @@ const useAuthHook = () => {
   const [userProfile, setUserProfile] = useState(null);
   const handleLogin = useHandleLogin();
 
-  console.log(userProfile);
-
   const { getAccessTokenSilently, isAuthenticated, isLoading, user, logout } =
     useAuth0();
   const [loading, setLoading] = useState(isLoading);
@@ -67,7 +65,6 @@ const useAuthHook = () => {
           },
         }
       );
-      console.log(response.data.image);
       setUserProfile((prev) => ({
         ...prev,
         username: newUsername,
