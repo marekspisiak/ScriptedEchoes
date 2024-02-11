@@ -21,7 +21,7 @@ const EditPostPage = () => {
   const [image, setImage] = useState(""); // Nový stav pre obrázok
 
   const canEdit = usePermission({
-    requiredPermissions: ["edit_post"],
+    requiredPermissions: ["edit:post"],
     requiredUserId: authorId,
   });
 
@@ -99,8 +99,6 @@ const EditPostPage = () => {
   useEffect(() => {
     fetchBlogData(blogId);
   }, [blogId]);
-
-  console.log("canEdit", canEdit);
 
   return canEdit ? (
     <Container>

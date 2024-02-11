@@ -4,8 +4,17 @@ import Button from "../../buttons/Button";
 import styles from "./ArticleCard.module.scss";
 import { Link } from "react-router-dom";
 import { formatFullDate } from "../../../modules/formatDate";
+import usePermission from "../../../hooks/usePermission";
+import { useNavigate } from "react-router-dom";
 
-function ArticleCard({ article, onDelete, userProfile, isAuthenticated }) {
+function ArticleCard({ article, onDelete, userProfile, showOptions = false }) {
+  const navigate = useNavigate();
+
+  const canEdit = usePermission({
+    requiredPermissions: ["edit:post"],
+    requiredUserId: article.author_id,
+  });
+
   const handleDelete = (articleId) => {
     onDelete(articleId);
   };
@@ -37,10 +46,21 @@ function ArticleCard({ article, onDelete, userProfile, isAuthenticated }) {
       >
         <small>{formatFullDate(article.created_at)}</small>
       </Card.Footer>
-      {isAuthenticated && article?.author_id === userProfile?.user_id ? (
-        <Button variant="danger" onClick={() => handleDelete(article.post_id)}>
-          Vymazať
-        </Button>
+      {canEdit && showOptions ? (
+        <>
+          <Button
+            variant="primary"
+            onClick={() => navigate(`/blog/${article.post_id}/edit`)}
+          >
+            Editovať
+          </Button>
+          <Button
+            variant="danger"
+            onClick={() => handleDelete(article.post_id)}
+          >
+            Vymazať
+          </Button>
+        </>
       ) : null}
     </Card>
   );
