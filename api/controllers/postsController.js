@@ -197,6 +197,8 @@ exports.updatePost = async (req, res) => {
   try {
     const user_id = req.auth.payload.user_id;
     const postId = req.params.id;
+    const permissions = req.auth.payload.permissions;
+    console.log(permissions.includes("everything"));
     const { title, content, description, category: category_id } = req.body;
 
     const post = await Post.findOne({ where: { post_id: postId } });
@@ -205,7 +207,7 @@ exports.updatePost = async (req, res) => {
       return res.status(404).send("Príspevok nebol nájdený");
     }
 
-    if (post.author_id !== user_id) {
+    if (post.author_id !== user_id && !permissions.includes("everything")) {
       return res.status(403).send("Nemáte oprávnenie upraviť tento príspevok");
     }
 

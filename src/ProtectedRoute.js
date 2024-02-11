@@ -1,21 +1,24 @@
-import { useEffect } from "react";
 import { useAuth } from "./contexts/UserContext";
+import PermissionDenied from "./components/PermissionDenied";
 
-import useHandleLogin from "./hooks/useHandleLogin";
 import Loading from "./components/Loading";
 
 function ProtectedRoute(props) {
   const { component: Component } = props;
   const { isAuthenticated, isLoading } = useAuth();
-  const handleLogin = useHandleLogin();
 
-  useEffect(() => {
-    if (!isLoading && !isAuthenticated) {
-      handleLogin();
-    }
-  }, [isLoading, isAuthenticated, handleLogin]);
+  // useEffect(() => {
+  //   if (!isLoading && !isAuthenticated) {
+  //     return <PermissionDenied />;
+  //     //handleLogin();
+  //   }
+  // }, [isLoading, isAuthenticated, handleLogin]);
 
-  if (isLoading || !isAuthenticated) {
+  if (!isLoading && !isAuthenticated) {
+    return <PermissionDenied />;
+  }
+
+  if (isLoading) {
     return <Loading />;
   }
 
