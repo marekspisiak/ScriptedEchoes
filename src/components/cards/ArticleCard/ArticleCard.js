@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 import { formatFullDate } from "../../../modules/formatDate";
 import usePermission from "../../../hooks/usePermission";
 import { useNavigate } from "react-router-dom";
+import "react-tippy/dist/tippy.css";
+import { Tooltip } from "react-tippy";
 
 function ArticleCard({ article, onDelete, userProfile, showOptions = false }) {
   const navigate = useNavigate();
@@ -36,7 +38,9 @@ function ArticleCard({ article, onDelete, userProfile, showOptions = false }) {
           </Card.Text>
           {article.Category?.name && (
             <Card.Text className={styles.articleCardText}>
-              {article.Category?.name}
+              <Tooltip title={article.Category?.description} position="bottom">
+                {article.Category?.name}
+              </Tooltip>
             </Card.Text>
           )}
         </Card.Body>

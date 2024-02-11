@@ -1,26 +1,27 @@
+@import "../../../theme.scss";
+
 .blogHeader {
   margin-bottom: 20px;
   padding: 20px;
-  background-color: #f8f9fa;
+  background-color: $secondary-color;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .title {
   font-size: 2rem;
-  color: #333;
   margin-bottom: 10px;
 }
 
 .description {
   font-size: 1rem;
-  color: #666;
+  color: $light-primary;
   margin-bottom: 10px;
 }
 
 .author {
   font-size: 1rem;
-  color: #666;
+  color: $light-primary;
   font-style: italic;
 }
 

@@ -21,6 +21,7 @@ const BlogList = ({ articles, setArticles, filters }) => {
 
   // Získanie hodnoty pre konkrétny parameter, napríklad 'name'
   const userId = queryParams.get("userId");
+  console.log("userId", userId);
 
   const filterArticles = () => {
     setHasMore(true);
