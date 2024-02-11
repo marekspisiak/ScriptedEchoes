@@ -54,6 +54,7 @@ const BlogList = ({ articles, setArticles, filters }) => {
         }
         setCurrentPage(page + 1);
       } else {
+        if (page === 1) setArticles([]);
         setHasMore(false);
       }
     } catch (error) {
