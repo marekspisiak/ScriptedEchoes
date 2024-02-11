@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from "react";
 import { Form } from "react-bootstrap";
 import Button from "./buttons/Button";
 import styles from "./ImageUpload.module.scss"; // Predpokladajme, že ste vytvorili štýly
-import { set } from "ramda";
 
 const ImageUpload = ({ onImageSelected, existingImageUrl }) => {
   const [removeImage, setRemoveImage] = useState(false);

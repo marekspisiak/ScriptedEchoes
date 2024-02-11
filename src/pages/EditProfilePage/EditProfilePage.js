@@ -5,13 +5,15 @@ import useResultMessage from "../../hooks/useResultMessage";
 import { useAuth } from "../../contexts/UserContext";
 import { useNavigate } from "react-router-dom";
 import LinkButton from "../../components/buttons/LinkButton";
+import ImageUpload from "../../components/ImageUpload";
 
 const EditProfilePage = () => {
-  const [username, setUsername] = useState("");
-  const [image, setImage] = useState(null); // Stav pre obrázok
-  const { updateProfile } = useAuth(); // Predpokladajme, že existuje funkcia updateProfile
+  const { updateProfile, user } = useAuth(); // Predpokladajme, že existuje funkcia updateProfile
   const navigate = useNavigate();
   const [ResultComponent, successMessage, errorMessage] = useResultMessage();
+
+  const [image, setImage] = useState(user?.image); // Stav pre obrázok
+  const [username, setUsername] = useState(user?.username || "");
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -50,14 +52,7 @@ const EditProfilePage = () => {
               />
             </Form.Group>
 
-            {/* Pridajte nový vstup pre súbory (obrázok) */}
-            <Form.Group controlId="image">
-              <Form.Label>Profilový obrázok</Form.Label>
-              <Form.Control
-                type="file"
-                onChange={(e) => setImage(e.target.files[0])}
-              />
-            </Form.Group>
+            <ImageUpload onImageSelected={setImage} existingImageUrl={image} />
 
             <Button type="submit" className="mt-3" variant="primary">
               Uložiť Zmeny

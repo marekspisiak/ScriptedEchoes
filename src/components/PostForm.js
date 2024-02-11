@@ -24,7 +24,6 @@ const PostForm = ({ handleSubmitParent, data, returnBack }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(image);
     const data = {
       title,
       content,

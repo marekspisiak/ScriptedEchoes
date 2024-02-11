@@ -1,4 +1,8 @@
 const User = require("../models/user.js");
+const {
+  getFullImageUrl,
+  deleteOldImage,
+} = require("../services/imageService.js");
 
 exports.getAllUsers = async (req, res) => {
   try {
@@ -46,19 +50,27 @@ const fs = require("fs");
 
 exports.changeProfile = async (req, res) => {
   try {
-    const { username } = req.body;
+    const { username, image } = req.body;
     const userId = req.auth.payload.user_id;
     const user = await User.findOne({ where: { user_id: userId } });
+
+    const removeImage = image === "REMOVE_IMAGE";
 
     if (!user) {
       return res.status(404).send("Užívateľ nebol nájdený");
     }
 
-    // Získanie informácií o obrázku
-    const imagePath = req.file ? req.file.path : user.image; // Použitie existujúcej cesty k obrázku, ak nie je nahraný nový
-    const imageUrl = imagePath ? `http://localhost:3001/${imagePath}` : null;
+    let imageUrl = user.image;
+    let oldImagePath = null;
 
-    const oldImagePath = user.image;
+    if (req.file) {
+      // Užívateľ nahral nový obrázok
+      imageUrl = getFullImageUrl(req.file.path);
+      oldImagePath = user.image; // Uloženie cesty k starému obrázku pre možné neskoršie odstránenie
+    } else if (removeImage) {
+      oldImagePath = user.image; // Uloženie cesty k starému obrázku pre možné neskoršie odstránenie
+      imageUrl = null;
+    }
 
     // Aktualizácia užívateľa v databáze
     await user.update({
@@ -66,14 +78,8 @@ exports.changeProfile = async (req, res) => {
       image: imageUrl, // Aktualizácia URL obrázka
     });
 
-    if (oldImagePath && imageUrl) {
-      const oldImageFilePath = oldImagePath.replace(
-        "http://localhost:3001/",
-        ""
-      );
-      fs.unlink(oldImageFilePath, (err) => {
-        if (err) console.error("Chyba pri odstraňovaní obrázka", err);
-      });
+    if (oldImagePath) {
+      deleteOldImage(oldImagePath);
     }
 
     res.json({
