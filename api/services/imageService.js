@@ -9,6 +9,7 @@ const getFullImageUrl = (imagePath) => {
 };
 
 const deleteOldImage = (oldImagePath) => {
+  if (!oldImagePath) return;
   const oldImageFilePath = oldImagePath.replace("http://localhost:3001/", "");
   fs.unlink(oldImageFilePath, (err) => {
     if (err) console.error("Chyba pri odstraňovaní obrázka", err);

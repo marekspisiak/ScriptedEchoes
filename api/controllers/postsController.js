@@ -154,6 +154,7 @@ exports.createPost = async (req, res) => {
 };
 
 exports.deletePost = async (req, res) => {
+  console.log("tu som");
   try {
     const postId = req.params.id;
 
@@ -163,7 +164,7 @@ exports.deletePost = async (req, res) => {
       return res.status(404).send("Príspevok nebol nájdený");
     }
 
-    const oldImagePath = post.image;
+    const oldImagePath = post?.image;
 
     await post.destroy();
 
