@@ -15,11 +15,22 @@ const PostForm = ({ handleSubmitParent, data, returnBack }) => {
   const [categories, setCategories] = useState([]);
   const [category, setCategory] = useState(data?.category_id || "");
   const [image, setImage] = useState(data?.image || null);
-
+  const [imagePreview, setImagePreview] = useState(data?.image || null);
+  console.log(image);
   const lengthLimits = {
     title: 20,
     description: 45,
   };
+
+  useEffect(() => {
+    if (image && typeof image === "object") {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImagePreview(reader.result);
+      };
+      reader.readAsDataURL(image);
+    }
+  }, [image]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -96,6 +107,19 @@ const PostForm = ({ handleSubmitParent, data, returnBack }) => {
           className={styles.quill}
         />
       </Form.Group>
+
+      {imagePreview && (
+        <Form.Group controlId="imagePreview" className={styles.formGroup}>
+          <Form.Label className={styles.label}>Aktuálny obrázok</Form.Label>
+          <div className={styles.imagePreviewContainer}>
+            <img
+              src={imagePreview}
+              alt="Náhľad obrázka"
+              className={styles.imagePreview}
+            />
+          </div>
+        </Form.Group>
+      )}
 
       <Form.Group controlId="blogImage" className={styles.formGroup}>
         <Form.Label className={styles.label}>Náhľadový obrázok</Form.Label>

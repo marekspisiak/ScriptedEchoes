@@ -31,32 +31,6 @@
   background-color: $secondary-color;
 }
 
-.quill {
-  .ql-toolbar,
-  .ql-container {
-    border: 1px solid $light-primary;
-  }
-  .ql-container {
-    height: auto; // Nastavte výšku podľa vašich potrieb
-  }
-}
-
-.button {
-  background-color: $primary-color;
-  color: $secondary-color;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-family: $primary-font;
-  font-size: 1rem;
-  transition: background-color 0.2s;
-
-  &:hover {
-    background-color: $light-primary;
-  }
-}
-
 .fileInput {
   border: none;
   padding: 10px;
@@ -67,4 +41,20 @@
   font-size: 0.875rem;
   color: $tertiary-color;
   margin-top: 5px;
+}
+
+.imagePreviewContainer {
+  margin-top: 10px;
+  border: 1px solid $light-primary;
+  border-radius: 4px;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f9f9f9;
+}
+
+.imagePreview {
+  max-width: 100%;
+  max-height: 200px; // Prispôsobte podľa potreby
 }
