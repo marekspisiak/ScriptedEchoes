@@ -11,8 +11,8 @@ import useResultMessage from "../../hooks/useResultMessage";
 import { useNavigate } from "react-router-dom";
 
 const EditPostPage = () => {
-  const { getAccessToken, user } = useAuth();
-  const { blogId, isAuthenticated } = useParams();
+  const { getAccessToken, user, isAuthenticated } = useAuth();
+  const { blogId } = useParams();
   const [authorId, setAuthorId] = useState(null);
   const [ResultComponent, successMessage, errorMessage] = useResultMessage();
   const [title, setTitle] = useState("");

@@ -74,6 +74,7 @@ const BlogList = ({ articles, setArticles, filters }) => {
 
   return (
     <InfiniteScroll
+      className="p-3"
       dataLength={articles.length}
       next={() => handleFetchPosts(currentPage)}
       hasMore={hasMore}
