@@ -133,10 +133,8 @@ exports.createPost = async (req, res) => {
       .send("Názov, obsah, autor a popisok sú povinné údaje.");
   }
 
-  // Získanie informácií o obrázku
-  const imagePath = req.file ? req.file.path : null;
   // Generovanie URL pre obrázok
-  const imageUrl = getFullImageUrl(imagePath);
+  const imageUrl = getFullImageUrl(req.file?.path);
 
   try {
     const newPost = await Post.create({
@@ -149,11 +147,8 @@ exports.createPost = async (req, res) => {
     });
     res.status(201).json(newPost);
   } catch (error) {
-    if (req.file) {
-      fs.unlink(req.file.path, (err) => {
-        if (err) console.error("Chyba pri odstraňovaní obrázka", err);
-      });
-    }
+    // Odstránenie obrázka z disku, ak nastala chyba pri vytváraní príspevku
+    deleteOldImage(req.file?.path);
 
     console.error("Chyba pri vytváraní príspevku:", error);
     res.status(500).send(error.message);
