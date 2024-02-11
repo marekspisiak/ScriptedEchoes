@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const usersController = require("../controllers/usersController");
 const checkAuth = require("../middleware/checkAuth");
+const upload = require("../middleware/fileUpload");
 
 router.get("/users", usersController.getAllUsers);
 
@@ -13,6 +14,11 @@ router.get("/users/:id", usersController.getUserById);
 
 // router.put("/users/:id", usersController.updateUser);
 
-router.patch("/users/username", checkAuth, usersController.changeUsername);
+router.patch(
+  "/users/profile",
+  checkAuth,
+  upload.single("image"),
+  usersController.changeProfile
+);
 
 module.exports = router;

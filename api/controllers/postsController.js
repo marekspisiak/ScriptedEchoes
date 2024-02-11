@@ -198,7 +198,6 @@ exports.updatePost = async (req, res) => {
     const user_id = req.auth.payload.user_id;
     const postId = req.params.id;
     const permissions = req.auth.payload.permissions;
-    console.log(permissions.includes("everything"));
     const { title, content, description, category: category_id } = req.body;
 
     const post = await Post.findOne({ where: { post_id: postId } });

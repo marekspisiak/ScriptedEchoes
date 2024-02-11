@@ -42,30 +42,49 @@ exports.getUserProfileById = async (req, res) => {
   }
 };
 
-exports.changeUsername = async (req, res) => {
+const fs = require("fs");
+
+exports.changeProfile = async (req, res) => {
   try {
     const { username } = req.body;
+    const userId = req.auth.payload.user_id;
+    const user = await User.findOne({ where: { user_id: userId } });
 
-    const validUsernameRegex = /^[a-zA-Z0-9_-]+$/;
-
-    if (!username) {
-      return res.status(400).send("Username je povinný");
+    if (!user) {
+      return res.status(404).send("Užívateľ nebol nájdený");
     }
 
-    if (!validUsernameRegex.test(username)) {
+    const validUsernameRegex = /^[a-zA-Z0-9_-]+$/;
+    if (!username || !validUsernameRegex.test(username)) {
       return res.status(400).send("Neplatný formát užívateľského mena");
     }
 
-    const result = await User.update(
-      { username },
-      { where: { user_id: req.auth.payload.user_id } }
-    );
+    // Získanie informácií o obrázku
+    const imagePath = req.file ? req.file.path : user.image; // Použitie existujúcej cesty k obrázku, ak nie je nahraný nový
+    const imageUrl = imagePath ? `http://localhost:3001/${imagePath}` : null;
 
-    if (result[0] > 0) {
-      res.send("Užívateľ bol úspešne aktualizovaný.");
-    } else {
-      res.status(404).send("Užívateľ nebol nájdený alebo žiadna zmena.");
+    const oldImagePath = user.image;
+
+    // Aktualizácia užívateľa v databáze
+    await user.update({
+      username,
+      image: imageUrl, // Aktualizácia URL obrázka
+    });
+
+    if (oldImagePath && imageUrl) {
+      const oldImageFilePath = oldImagePath.replace(
+        "http://localhost:3001/",
+        ""
+      );
+      fs.unlink(oldImageFilePath, (err) => {
+        if (err) console.error("Chyba pri odstraňovaní obrázka", err);
+      });
     }
+
+    res.json({
+      message: "Užívateľ bol úspešne aktualizovaný.",
+      imageUrl: imageUrl, // Vráti URL aktualizovaného obrázka
+    });
   } catch (error) {
     console.error("Chyba pri aktualizácii užívateľa:", error);
     res.status(500).send("Interná chyba servera");

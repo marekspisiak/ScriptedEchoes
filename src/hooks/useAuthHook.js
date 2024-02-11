@@ -43,7 +43,8 @@ const useAuthHook = () => {
     }
   }, [getAccessTokenSilently]);
 
-  const changeUsername = async (newUsername) => {
+  const updateProfile = async (formData) => {
+    const newUsername = formData.get("username");
     if (!accessToken) {
       return;
     }
@@ -58,17 +59,20 @@ const useAuthHook = () => {
 
     try {
       const response = await axios.patch(
-        `http://localhost:3001/users/username`,
-        {
-          username: newUsername,
-        },
+        `http://localhost:3001/users/profile`,
+        formData,
         {
           headers: {
             Authorization: `Bearer ${accessToken}`,
           },
         }
       );
-      setUserProfile((prev) => ({ ...prev, username: newUsername }));
+      console.log(response.data.image);
+      setUserProfile((prev) => ({
+        ...prev,
+        username: newUsername,
+        image: response.data.imageUrl,
+      }));
     } catch (err) {
       setError(err);
     }
@@ -102,7 +106,7 @@ const useAuthHook = () => {
     error,
     isAuthenticated: isAuthenticated2,
     user: userProfile,
-    changeUsername,
+    updateProfile,
     logout,
   };
 };

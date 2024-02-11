@@ -5,7 +5,7 @@ import useAuthHook from "../hooks/useAuthHook";
 const UserContext = createContext(null);
 
 export const UserProvider = ({ children }) => {
-  const { isAuthenticated, getAccessToken, isLoading, user, changeUsername } =
+  const { isAuthenticated, getAccessToken, isLoading, user, updateProfile } =
     useAuthHook();
 
   return (
@@ -15,7 +15,7 @@ export const UserProvider = ({ children }) => {
         getAccessToken,
         isAuthenticated,
         isLoading,
-        changeUsername,
+        updateProfile,
       }}
     >
       {children}
