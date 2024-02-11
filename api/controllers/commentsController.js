@@ -21,7 +21,7 @@ const commentsController = {
         include: [
           {
             model: User,
-            attributes: ["username", "user_id"], // Príklad toho, čo by ste mohli chcieť zahrnúť
+            attributes: ["username", "user_id", "image"], // Príklad toho, čo by ste mohli chcieť zahrnúť
           },
         ],
         limit: limit,

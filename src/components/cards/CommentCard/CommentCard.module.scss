@@ -6,6 +6,30 @@
   border-color: $light-primary;
 }
 
+.cardBody {
+  display: flex;
+
+  align-items: center;
+}
+
+.imageWrapper {
+  flex-shrink: 0; // Zabezpečí, že obrázok si zachová svoje rozmery
+  max-width: 100px; // Nastavenie šírky obrázka
+  max-height: 100px; // Nastavenie výšky obrázka
+  border-radius: 50%; // Vytvorí kruhový obrázok
+  overflow: hidden; // Zabránenie presahovaniu obrázka mimo kruhový obrys
+  margin-right: 15px; // Medzera medzi obrázkom a textom
+}
+
+.commentImage {
+  width: 100%;
+  height: auto;
+}
+
+.textWrapper {
+  flex-grow: 1; // Zabezpečí, že text zaujme zvyšok priestoru v karte
+}
+
 .commentAuthor {
   color: $primary-color;
 }

@@ -101,6 +101,7 @@ const CommentList = ({ postId }) => {
             createdAt={comment.created_at}
             authorId={comment.User.user_id}
             commentId={comment.comment_id}
+            image={comment.User.image}
             handleDeleteComment={handleDeleteComment}
           />
         </div>

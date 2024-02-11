@@ -4,14 +4,18 @@
   background-color: #f8f9fa;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  display: flex;
-  align-items: center; // Zarovnanie obsahu stĺpcov vertikálne na stred
 }
 
 .title {
   font-size: 2rem;
   color: #333;
   margin-bottom: 10px;
+}
+
+.description {
+  font-size: 1rem; /* Menšia veľkosť písma pre popisok */
+  color: #666;
+  margin-bottom: 10px; /* Odsadenie popisku pod titulkom */
 }
 
 .author {
@@ -21,14 +25,11 @@
 }
 
 .imageCol {
-  display: flex;
-  justify-content: center; // Centrování obrázku v jeho stĺpci
-  align-items: center;
+  text-align: center;
 }
 
 .blogImage {
-  max-width: 100%; // Zabezpečenie, že obrázok nebude širší ako jeho kontajner
-  max-height: 200px; // Obmedzenie maximálnej výšky obrázku
-  object-fit: cover; // Zabezpečenie, že obrázok pokryje dostupný priestor bez deformácie
-  border-radius: 8px; // Pridanie zaoblených rohov k obrázku, ak je to žiaduce
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
 }

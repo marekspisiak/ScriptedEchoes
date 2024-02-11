@@ -15,6 +15,7 @@ const CommentCard = ({
   authorId,
   commentId,
   handleDeleteComment,
+  image,
 }) => {
   const { getAccessToken, isAuthenticated, user } = useAuth();
   const [content2, setContent2] = useState(content);
@@ -46,61 +47,71 @@ const CommentCard = ({
 
   return (
     <Card className={styles.commentCard}>
-      <Card.Body>
-        {ResultComponent}
-        <Card.Title className={styles.commentAuthor}>{author}</Card.Title>
-        <Card.Text className={styles.commentContent}>
-          {isEditing ? (
-            <textarea
-              className={styles.commentTextarea}
-              value={content2}
-              onChange={(e) => setContent2(e.target.value)}
+      <Card.Body className={styles.cardBody}>
+        {image && (
+          <div className={styles.imageWrapper}>
+            <img
+              src={image}
+              alt="Profilový obrázok"
+              className={styles.commentImage}
             />
-          ) : (
-            content2
-          )}
-        </Card.Text>
-        <Card.Text className={styles.commentCreatedAt}>
-          {formatFullDate(createdAt)}
-        </Card.Text>
-
-        {isAuthenticated && user.user_id === authorId && (
-          <>
-            {isEditing ? (
-              <>
-                <Button
-                  variant="primary"
-                  onClick={() => {
-                    handleUpadateComment();
-                  }}
-                >
-                  Uložiť
-                </Button>
-                <Button
-                  variant="danger"
-                  onClick={() => {
-                    handleDeleteComment(commentId);
-                  }}
-                >
-                  Vymazať
-                </Button>
-                <Button
-                  variant="secondary"
-                  onClick={() => {
-                    setContent2(content);
-                    setIsEditing(false);
-                  }}
-                >
-                  Zrušiť
-                </Button>
-              </>
-            ) : (
-              <Button variant="primary" onClick={() => setIsEditing(true)}>
-                Editovať
-              </Button>
-            )}
-          </>
+          </div>
         )}
+        <div className={styles.textWrapper}>
+          {ResultComponent}
+          <Card.Title className={styles.commentAuthor}>{author}</Card.Title>
+          <Card.Text className={styles.commentContent}>
+            {isEditing ? (
+              <textarea
+                className={styles.commentTextarea}
+                value={content2}
+                onChange={(e) => setContent2(e.target.value)}
+              />
+            ) : (
+              content2
+            )}
+          </Card.Text>
+          <Card.Text className={styles.commentCreatedAt}>
+            {formatFullDate(createdAt)}
+          </Card.Text>
+          {isAuthenticated && user.user_id === authorId && (
+            <>
+              {isEditing ? (
+                <>
+                  <Button
+                    variant="primary"
+                    onClick={() => {
+                      handleUpadateComment();
+                    }}
+                  >
+                    Uložiť
+                  </Button>
+                  <Button
+                    variant="danger"
+                    onClick={() => {
+                      handleDeleteComment(commentId);
+                    }}
+                  >
+                    Vymazať
+                  </Button>
+                  <Button
+                    variant="secondary"
+                    onClick={() => {
+                      setContent2(content);
+                      setIsEditing(false);
+                    }}
+                  >
+                    Zrušiť
+                  </Button>
+                </>
+              ) : (
+                <Button variant="primary" onClick={() => setIsEditing(true)}>
+                  Editovať
+                </Button>
+              )}
+            </>
+          )}
+        </div>
       </Card.Body>
     </Card>
   );

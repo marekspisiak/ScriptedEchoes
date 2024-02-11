@@ -24,7 +24,7 @@ function ArticleCard({ article, onDelete, userProfile, showOptions = false }) {
       <Link to={`/blog/${article.post_id}`}>
         <Card.Img
           variant="top"
-          src={article?.image ?? "/images/posts/default.jpg"}
+          src={article?.image}
           className={styles.articleCardImgTop}
         />
         <Card.Body>
