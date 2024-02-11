@@ -115,7 +115,6 @@ const commentsController = {
   },
 
   updateComment: async (req, res) => {
-    console.log("som tu ");
     try {
       const id = req.params.id;
       const { content } = req.body;

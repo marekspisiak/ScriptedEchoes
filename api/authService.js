@@ -13,8 +13,6 @@ exports.generateToken = async (auth0Payload) => {
       user_id: user.user_id,
     };
 
-    console.log(process.env.YOUR_JWT_SECRET);
-
     return jwt.sign(newPayload, process.env.YOUR_JWT_SECRET, {
       expiresIn: "1h",
     });

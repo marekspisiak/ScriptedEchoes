@@ -14,15 +14,12 @@ const CommentList = ({ postId }) => {
 
   const fetchComments = async () => {
     try {
-      console.log("current page" + currentPage);
       const response = await axios.get(
         `http://localhost:3001/posts/${postId}/comments`,
         {
           params: { page: currentPage, limit: 10 },
         }
       );
-
-      console.log("mam odpoved", response.data.comments);
 
       setComments((prevComments) => [
         ...prevComments,
@@ -56,7 +53,6 @@ const CommentList = ({ postId }) => {
       setComments((prevComments) =>
         prevComments.filter((comment) => comment.comment_id !== commentId)
       );
-      console.log(response);
       console.log("Comment deleted:", response.data);
     } catch (error) {
       console.error("Error deleting comment:", error);

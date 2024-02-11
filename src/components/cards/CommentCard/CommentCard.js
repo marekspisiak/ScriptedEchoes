@@ -34,7 +34,6 @@ const CommentCard = ({
           },
         }
       );
-      console.log(response);
       console.log("Comment updated:", response.data);
       successMessage("Komentár bol úspešne upravený.");
       setIsEditing(false);

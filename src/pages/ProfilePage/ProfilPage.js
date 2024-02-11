@@ -6,8 +6,6 @@ import { useAuth } from "../../contexts/UserContext";
 const ProfilePage = () => {
   const { user } = useAuth();
 
-  console.log(user);
-
   return (
     <Container className="mt-5">
       <Row className="justify-content-center">

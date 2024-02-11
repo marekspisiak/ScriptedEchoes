@@ -67,8 +67,6 @@ const EditPostPage = () => {
       console.log("Príspevok bol editovaný:", response.data);
       successMessage(`Príspevok ${title} bol úspešne editovaný.`);
 
-      console.log(response.data);
-
       navigate(`/blog/${blogId}`);
     } catch (error) {
       console.error("Chyba pri editovaní príspevku:", error);

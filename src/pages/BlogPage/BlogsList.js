@@ -23,7 +23,6 @@ const BlogList = ({ articles, setArticles, filters }) => {
   }, [filters]);
 
   const handleFetchPosts = async (page = currentPage) => {
-    console.log(page);
     try {
       const response = await axios.get("http://localhost:3001/posts", {
         params: {

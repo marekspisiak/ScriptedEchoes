@@ -18,7 +18,6 @@ const ViewBlogPage = () => {
   const { blogId } = useParams();
 
   useEffect(() => {
-    console.log("fetching");
     const fetchBlogData = async (id) => {
       try {
         const response = await axios.get(`http://localhost:3001/posts/${id}`);
@@ -36,8 +35,6 @@ const ViewBlogPage = () => {
   if (!blogData) {
     return <Loading />;
   }
-
-  console.log(blogData);
 
   return (
     <Container className={styles.viewBlogPage}>

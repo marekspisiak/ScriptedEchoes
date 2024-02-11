@@ -8,7 +8,6 @@ import Button from "./buttons/Button";
 import ImageUpload from "./ImageUpload";
 
 const PostForm = ({ handleSubmitParent, data, returnBack }) => {
-  console.log(data);
   const [title, setTitle] = useState(data?.title || "");
   const [content, setContent] = useState(data?.content || "");
   const [description, setDescription] = useState(data?.description || "");

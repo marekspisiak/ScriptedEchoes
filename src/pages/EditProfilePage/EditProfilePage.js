@@ -29,7 +29,6 @@ const EditProfilePage = () => {
       successMessage("Profil bol úspešne aktualizovaný.");
       navigate("/profile");
     } catch (error) {
-      console.log(error.message);
       errorMessage(error.message);
     }
   };
