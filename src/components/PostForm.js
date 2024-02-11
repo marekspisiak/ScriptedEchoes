@@ -6,6 +6,7 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import styles from "./PostForm.module.scss"; // Uistite sa, že ste vytvorili tento SCSS modul
 import Button from "./buttons/Button";
+import ImageUpload from "./ImageUpload";
 
 const PostForm = ({ handleSubmitParent, data, returnBack }) => {
   console.log(data);
@@ -15,38 +16,21 @@ const PostForm = ({ handleSubmitParent, data, returnBack }) => {
   const [categories, setCategories] = useState([]);
   const [category, setCategory] = useState(data?.category_id || "");
   const [image, setImage] = useState(data?.image || null);
-  const [imagePreview, setImagePreview] = useState(data?.image || null);
-  const [removeImage, setRemoveImage] = useState(false);
 
   const lengthLimits = {
     title: 20,
     description: 45,
   };
 
-  const handleRemoveImage = () => {
-    setRemoveImage(true);
-    setImagePreview(null); // Ak ukladáte náhľad v state
-    setImage(null); // Ak obrázok pochádza z input type="file"
-  };
-
-  useEffect(() => {
-    if (image && typeof image === "object") {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setImagePreview(reader.result);
-      };
-      reader.readAsDataURL(image);
-    }
-  }, [image]);
-
   const handleSubmit = async (event) => {
     event.preventDefault();
+    console.log(image);
     const data = {
       title,
       content,
       description,
       category,
-      image: removeImage ? "REMOVE_IMAGE" : image,
+      image,
     };
 
     await handleSubmitParent(data);
@@ -122,30 +106,7 @@ const PostForm = ({ handleSubmitParent, data, returnBack }) => {
         />
       </Form.Group>
 
-      {imagePreview && (
-        <Form.Group controlId="imagePreview" className={styles.formGroup}>
-          <Form.Label className={styles.label}>Aktuálny obrázok</Form.Label>
-          <div className={styles.imagePreviewContainer}>
-            <img
-              src={imagePreview}
-              alt="Náhľad obrázka"
-              className={styles.imagePreview}
-            />
-          </div>
-          <Button variant="danger" onClick={handleRemoveImage}>
-            Odstrániť obrázok
-          </Button>
-        </Form.Group>
-      )}
-
-      <Form.Group controlId="blogImage" className={styles.formGroup}>
-        <Form.Label className={styles.label}>Náhľadový obrázok</Form.Label>
-        <Form.Control
-          type="file"
-          onChange={(e) => setImage(e.target.files[0])}
-          className={styles.fileInput}
-        />
-      </Form.Group>
+      <ImageUpload onImageSelected={setImage} existingImageUrl={image} />
 
       <Button type="submit" className={styles.button} variant={"primary"}>
         Potvrdit
