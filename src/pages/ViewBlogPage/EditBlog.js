@@ -37,7 +37,7 @@ const EditBlog = ({ author_id, post_id }) => {
               Editovať
             </Button>
             <Button variant="danger" onClick={() => deleteArticle(post_id)}>
-              Delete
+              Vymazať
             </Button>
           </>
         ) : null}

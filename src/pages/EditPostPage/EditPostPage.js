@@ -12,7 +12,7 @@ import { useNavigate } from "react-router-dom";
 
 const EditPostPage = () => {
   const { getAccessToken, user } = useAuth();
-  const { blogId } = useParams();
+  const { blogId, isAuthenticated } = useParams();
   const [authorId, setAuthorId] = useState(null);
   const [ResultComponent, successMessage, errorMessage] = useResultMessage();
   const [title, setTitle] = useState("");
@@ -95,7 +95,7 @@ const EditPostPage = () => {
     fetchBlogData(blogId);
   }, [blogId]);
 
-  return authorId === user.user_id ? (
+  return isAuthenticated && authorId === user?.user_id ? (
     <Container>
       <Row className="justify-content-md-center mt-3">
         <Col md={6}>
