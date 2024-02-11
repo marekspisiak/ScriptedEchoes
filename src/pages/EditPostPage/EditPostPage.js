@@ -8,21 +8,18 @@ import PostForm from "../../components/PostForm";
 import useResultMessage from "../../hooks/useResultMessage";
 import { useNavigate } from "react-router-dom";
 import usePermission from "../../hooks/usePermission";
+import { set } from "ramda";
 
 const EditPostPage = () => {
   const { getAccessToken } = useAuth();
   const { blogId } = useParams();
-  const [authorId, setAuthorId] = useState(null);
   const [ResultComponent, successMessage, errorMessage] = useResultMessage();
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [content, setContent] = useState("");
-  const [category, setCategory] = useState("");
-  const [image, setImage] = useState(""); // Nový stav pre obrázok
+
+  const [data, setData] = useState(); // Nový stav pre obrázok
 
   const canEdit = usePermission({
     requiredPermissions: ["edit:post"],
-    requiredUserId: authorId,
+    requiredUserId: data?.author_id,
   });
 
   const navigate = useNavigate();
@@ -84,12 +81,7 @@ const EditPostPage = () => {
   const fetchBlogData = async (id) => {
     try {
       const response = await axios.get(`http://localhost:3001/posts/${id}`);
-      setTitle(response.data.title);
-      setDescription(response.data.description);
-      setContent(response.data.content);
-      setAuthorId(response.data.author_id);
-      setCategory(response.data.category_id);
-      setImage(response.data.image);
+      setData(response.data);
     } catch (error) {
       console.error("Error fetching blog data:", error);
       // Ošetrenie chyby, napríklad nastavenie stavu chyby alebo zobrazenie správy používateľovi
@@ -106,15 +98,13 @@ const EditPostPage = () => {
         <Col md={6}>
           <h1>Editovať blog</h1>
           {ResultComponent}
-          <PostForm
-            handleSubmitParent={handleSubmit}
-            initialTitle={title}
-            initialDescription={description}
-            initialContent={content}
-            initialCategory={category}
-            initialImage={image}
-            returnBack={returnBack}
-          ></PostForm>
+          {data && (
+            <PostForm
+              handleSubmitParent={handleSubmit}
+              data={data}
+              returnBack={returnBack}
+            ></PostForm>
+          )}
         </Col>
       </Row>
     </Container>

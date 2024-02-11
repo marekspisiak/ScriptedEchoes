@@ -3,6 +3,10 @@ const User = require("../models/user.js");
 const Category = require("../models/category.js");
 const fs = require("fs");
 const { Sequelize } = require("sequelize");
+const {
+  getFullImageUrl,
+  deleteOldImage,
+} = require("../services/imageService.js");
 
 exports.getAllPosts = async (req, res) => {
   try {
@@ -132,7 +136,7 @@ exports.createPost = async (req, res) => {
   // Získanie informácií o obrázku
   const imagePath = req.file ? req.file.path : null;
   // Generovanie URL pre obrázok
-  const imageUrl = imagePath ? `http://localhost:3001/${imagePath}` : null;
+  const imageUrl = getFullImageUrl(imagePath);
 
   try {
     const newPost = await Post.create({
@@ -170,15 +174,7 @@ exports.deletePost = async (req, res) => {
 
     await post.destroy();
 
-    if (oldImagePath) {
-      const oldImageFilePath = oldImagePath.replace(
-        "http://localhost:3001/",
-        ""
-      );
-      fs.unlink(oldImageFilePath, (err) => {
-        if (err) console.error("Chyba pri odstraňovaní obrázka", err);
-      });
-    }
+    deleteOldImage(oldImagePath);
 
     res.status(204).send();
   } catch (error) {
@@ -199,8 +195,10 @@ exports.updatePost = async (req, res) => {
 
     // Získanie informácií o obrázku
     const imagePath = req.file ? req.file.path : null;
+    console.log(imagePath);
     // Generovanie URL pre obrázok
-    const imageUrl = imagePath ? `http://localhost:3001/${imagePath}` : null;
+    const imageUrl = getFullImageUrl(imagePath);
+    console.log(imageUrl);
 
     const oldImagePath = post.image;
 
@@ -212,17 +210,8 @@ exports.updatePost = async (req, res) => {
       image: imageUrl, // Pridanie URL obrázka do databázy
     });
 
-    // Odstránenie starého obrázka z disku
-    //musis odstranit http://localhost:3001/ z cesty
-
     if (oldImagePath && imageUrl) {
-      const oldImageFilePath = oldImagePath.replace(
-        "http://localhost:3001/",
-        ""
-      );
-      fs.unlink(oldImageFilePath, (err) => {
-        if (err) console.error("Chyba pri odstraňovaní obrázka", err);
-      });
+      deleteOldImage(oldImagePath);
     }
 
     res.status(204).send();

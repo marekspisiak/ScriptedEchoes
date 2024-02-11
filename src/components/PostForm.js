@@ -7,21 +7,14 @@ import "react-quill/dist/quill.snow.css";
 import styles from "./PostForm.module.scss"; // Uistite sa, že ste vytvorili tento SCSS modul
 import Button from "./buttons/Button";
 
-const PostForm = ({
-  handleSubmitParent,
-  initialTitle = "",
-  initialContent = "",
-  initialDescription = "",
-  initialCategory = "",
-  initialImage = "",
-  returnBack,
-}) => {
-  const [title, setTitle] = useState(initialTitle);
-  const [content, setContent] = useState(initialContent);
-  const [description, setDescription] = useState(initialDescription);
+const PostForm = ({ handleSubmitParent, data, returnBack }) => {
+  console.log(data);
+  const [title, setTitle] = useState(data?.title || "");
+  const [content, setContent] = useState(data?.content || "");
+  const [description, setDescription] = useState(data?.description || "");
   const [categories, setCategories] = useState([]);
-  const [category, setCategory] = useState(initialCategory);
-  const [image, setImage] = useState(initialImage);
+  const [category, setCategory] = useState(data?.category_id || "");
+  const [image, setImage] = useState(data?.image || null);
 
   const lengthLimits = {
     title: 20,
