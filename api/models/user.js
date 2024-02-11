@@ -15,11 +15,23 @@ const User = sequelize.define(
     },
     username: {
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: false,
+      validate: {
+        is: /^[a-zA-Z0-9_-]+$/, // Používa regulárny výraz pre validáciu
+        notNull: {
+          msg: "Username je povinný",
+        },
+        notEmpty: {
+          msg: "Username nesmie byť prázdny",
+        },
+      },
     },
     email: {
       type: DataTypes.STRING,
       allowNull: false,
+      validate: {
+        isEmail: true, // Zabezpečí, že email je platný
+      },
     },
     created_at: {
       type: DataTypes.DATE,

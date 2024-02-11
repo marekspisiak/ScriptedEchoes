@@ -54,11 +54,6 @@ exports.changeProfile = async (req, res) => {
       return res.status(404).send("Užívateľ nebol nájdený");
     }
 
-    const validUsernameRegex = /^[a-zA-Z0-9_-]+$/;
-    if (!username || !validUsernameRegex.test(username)) {
-      return res.status(400).send("Neplatný formát užívateľského mena");
-    }
-
     // Získanie informácií o obrázku
     const imagePath = req.file ? req.file.path : user.image; // Použitie existujúcej cesty k obrázku, ak nie je nahraný nový
     const imageUrl = imagePath ? `http://localhost:3001/${imagePath}` : null;

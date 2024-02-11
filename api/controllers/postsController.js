@@ -158,19 +158,12 @@ exports.createPost = async (req, res) => {
 
 exports.deletePost = async (req, res) => {
   try {
-    const user_id = req.auth.payload.user_id;
     const postId = req.params.id;
 
     const post = await Post.findOne({ where: { post_id: postId } });
 
     if (!post) {
       return res.status(404).send("Príspevok nebol nájdený");
-    }
-
-    if (post.author_id !== user_id) {
-      return res
-        .status(403)
-        .send("Nemáte oprávnenie odstrániť tento príspevok");
     }
 
     const oldImagePath = post.image;
@@ -195,19 +188,13 @@ exports.deletePost = async (req, res) => {
 
 exports.updatePost = async (req, res) => {
   try {
-    const user_id = req.auth.payload.user_id;
     const postId = req.params.id;
-    const permissions = req.auth.payload.permissions;
     const { title, content, description, category: category_id } = req.body;
 
     const post = await Post.findOne({ where: { post_id: postId } });
 
     if (!post) {
       return res.status(404).send("Príspevok nebol nájdený");
-    }
-
-    if (post.author_id !== user_id && !permissions.includes("everything")) {
-      return res.status(403).send("Nemáte oprávnenie upraviť tento príspevok");
     }
 
     // Získanie informácií o obrázku
@@ -237,8 +224,6 @@ exports.updatePost = async (req, res) => {
         if (err) console.error("Chyba pri odstraňovaní obrázka", err);
       });
     }
-
-    //posli ako odpoved upraveny príspevok
 
     res.status(204).send();
   } catch (error) {
