@@ -92,9 +92,7 @@ const PostForm = ({ handleSubmitParent, data, returnBack }) => {
             </option>
           ))}
         </Form.Select>
-        <div className={styles.categoryDescription}>
-          {categories[category - 1]?.description}
-        </div>
+        <p>{categories[category - 1]?.description}</p>
       </Form.Group>
 
       <Form.Group controlId="blogContent" className={styles.formGroup}>

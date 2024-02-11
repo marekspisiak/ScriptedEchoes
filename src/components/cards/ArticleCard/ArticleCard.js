@@ -37,11 +37,16 @@ function ArticleCard({ article, onDelete, userProfile, showOptions = false }) {
             {article.description}
           </Card.Text>
           {article.Category?.name && (
-            <Card.Text className={styles.articleCardText}>
-              <Tooltip title={article.Category?.description} position="bottom">
+            <Tooltip
+              title={article.Category?.description}
+              position="bottom"
+              hidden={true}
+              disabled={article.Category?.description ? false : true}
+            >
+              <Card.Text className={styles.articleCardText}>
                 {article.Category?.name}
-              </Tooltip>
-            </Card.Text>
+              </Card.Text>
+            </Tooltip>
           )}
         </Card.Body>
       </Link>
