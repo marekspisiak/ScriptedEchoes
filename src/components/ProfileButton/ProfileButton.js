@@ -28,7 +28,7 @@ const ProfileButton = () => {
           <Dropdown.Item as={Link} to={"/profile"}>
             Profil
           </Dropdown.Item>
-          <Dropdown.Item as={Link} to={"/profile  "}>
+          <Dropdown.Item as={Link} to={`/blog?userId=${user?.user_id}`}>
             Príspevky
           </Dropdown.Item>
           <Dropdown.Item className={styles.logout} onClick={logout}>

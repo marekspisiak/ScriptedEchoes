@@ -7,11 +7,20 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import axios from "axios";
 import { useAuth } from "../../contexts/UserContext";
 import { sort } from "ramda";
+import { useLocation } from "react-router-dom";
 
 const BlogList = ({ articles, setArticles, filters }) => {
   const [hasMore, setHasMore] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const { getAccessToken } = useAuth();
+
+  const location = useLocation();
+
+  // Analýza query stringu
+  const queryParams = new URLSearchParams(location.search);
+
+  // Získanie hodnoty pre konkrétny parameter, napríklad 'name'
+  const userId = queryParams.get("userId");
 
   const filterArticles = () => {
     setHasMore(true);
@@ -20,7 +29,7 @@ const BlogList = ({ articles, setArticles, filters }) => {
 
   useEffect(() => {
     filterArticles(filters);
-  }, [filters]);
+  }, [filters, userId]);
 
   const handleFetchPosts = async (page = currentPage) => {
     try {
@@ -29,6 +38,7 @@ const BlogList = ({ articles, setArticles, filters }) => {
           categories: filters.selected.join(","),
           sort: filters.sortOrder,
           search: filters.search,
+          userId: userId,
           page,
           limit: 9,
         },
@@ -84,7 +94,7 @@ const BlogList = ({ articles, setArticles, filters }) => {
         </p>
       }
     >
-      <Articles articles={articles} onDelete={deleteArticle} />
+      <Articles articles={articles} onDelete={deleteArticle} showOptions />
     </InfiniteScroll>
   );
 };

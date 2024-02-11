@@ -16,6 +16,7 @@ exports.getAllPosts = async (req, res) => {
     const categories = req.query.categories;
     const offset = (page - 1) * limit;
     const search = req.query.search;
+    const userId = req.query.userId;
 
     let order;
     switch (sort) {
@@ -44,8 +45,7 @@ exports.getAllPosts = async (req, res) => {
     let whereCondition = {};
     if (categories) {
       const categoryIds = categories.split(",").map((id) => parseInt(id));
-      whereCondition.category_id =
-        categoryIds.length > 1 ? categoryIds : categoryIds[0];
+      whereCondition.category_id = categoryIds;
     }
 
     if (search) {
@@ -61,6 +61,10 @@ exports.getAllPosts = async (req, res) => {
           },
         },
       ];
+    }
+
+    if (userId) {
+      whereCondition.author_id = userId;
     }
 
     const { count, rows } = await Post.findAndCountAll({

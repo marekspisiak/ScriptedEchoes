@@ -3,7 +3,7 @@ import { Row, Col } from "react-bootstrap";
 import { useAuth } from "../../contexts/UserContext";
 import ArticleCard from "../cards/ArticleCard/ArticleCard";
 
-function Articles({ articles, onDelete }) {
+function Articles({ articles, onDelete, showOptions }) {
   const { user, isAuthenticated } = useAuth();
   const handleDelete = (articleId) => {
     onDelete(articleId);
@@ -18,6 +18,7 @@ function Articles({ articles, onDelete }) {
             onDelete={handleDelete}
             userProfile={user}
             isAuthenticated={isAuthenticated}
+            showOptions={showOptions}
           />
         </Col>
       ))}
