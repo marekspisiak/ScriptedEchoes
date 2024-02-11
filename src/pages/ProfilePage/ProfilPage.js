@@ -2,6 +2,7 @@ import { useEffect, React } from "react";
 import { Container, Row, Col, Button, Card } from "react-bootstrap";
 import ProfileDetailsCard from "../../components/cards/ProfileDetailsCard";
 import { useAuth } from "../../contexts/UserContext";
+import ChangePasswordCard from "../../components/cards/ChangePasswordCard";
 
 const ProfilePage = () => {
   const { user } = useAuth();
@@ -16,6 +17,8 @@ const ProfilePage = () => {
             isEditable={true}
             image={user?.image}
           />
+
+          <ChangePasswordCard />
 
           {/* <ChangePasswordCard />
 
