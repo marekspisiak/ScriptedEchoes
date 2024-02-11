@@ -47,10 +47,6 @@ const PostForm = ({
     handleFetchCategories();
   }, []);
 
-  const returnToPreview = () => {
-    // Implementujte logiku pre návrat na náhľad blogu
-  };
-
   return (
     <Form onSubmit={handleSubmit} className={styles.formContainer}>
       <Form.Group controlId="blogTitle" className={styles.formGroup}>

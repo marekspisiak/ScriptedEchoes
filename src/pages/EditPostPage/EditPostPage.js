@@ -19,6 +19,7 @@ const EditPostPage = () => {
   const [description, setDescription] = useState("");
   const [content, setContent] = useState("");
   const [category, setCategory] = useState("");
+  const [image, setImage] = useState(""); // Nový stav pre obrázok
 
   const navigate = useNavigate();
 
@@ -85,6 +86,7 @@ const EditPostPage = () => {
         setContent(response.data.content);
         setAuthorId(response.data.author_id);
         setCategory(response.data.category_id);
+        setImage(response.data.image);
       } catch (error) {
         console.error("Error fetching blog data:", error);
         // Ošetrenie chyby, napríklad nastavenie stavu chyby alebo zobrazenie správy používateľovi
@@ -105,6 +107,7 @@ const EditPostPage = () => {
             initialDescription={description}
             initialContent={content}
             initialCategory={category}
+            initialImage={image}
             returnBack={returnBack}
           ></PostForm>
         </Col>
