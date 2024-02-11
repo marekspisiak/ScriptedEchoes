@@ -1,21 +1,32 @@
 import React from "react";
 import { Card } from "react-bootstrap";
 import LinkButton from "../buttons/LinkButton";
+import styles from "./ProfileDetailsCard.module.scss"; // Import štýlov
 
 const ProfileDetailsCard = ({ username, email, isEditable, image }) => {
   return (
-    <Card className="mb-3">
-      {image && <Card.Img variant="top" src={image} alt="Profilový obrázok" />}{" "}
-      {/* Pridané zobrazovanie obrázku */}
-      <Card.Body>
-        <Card.Title>Profilové Detaily</Card.Title>
-        <Card.Text>
+    <Card className={styles.cardContainer}>
+      {image && (
+        <Card.Img
+          variant="top"
+          src={image}
+          alt="Profilový obrázok"
+          className={styles.cardImage}
+        />
+      )}
+      <Card.Body className={styles.cardBody}>
+        <Card.Title className={styles.cardTitle}>Profilové Detaily</Card.Title>
+        <Card.Text className={styles.cardText}>
           <strong>Meno:</strong> {username}
           <br />
           <strong>E-mail:</strong> {email}
         </Card.Text>
         {isEditable && (
-          <LinkButton to="/edit-profile" variant="primary">
+          <LinkButton
+            to="/edit-profile"
+            variant="primary"
+            className={styles.editButton}
+          >
             Editovať Profil
           </LinkButton>
         )}
