@@ -1,5 +1,5 @@
 @import "theme";
-// Globálne štýly
+
 body {
   font-family: $primary-font;
   font-size: $base-font-size;
@@ -7,7 +7,6 @@ body {
   background-color: $background-color;
 }
 
-// Štýly pre nadpisy
 h1,
 h2,
 h3,
@@ -18,12 +17,10 @@ h6 {
   color: $primary-color;
 }
 
-// Štýly pre odkazy
 a {
   text-decoration: none;
 }
 
-// Štýly pre základné elementy layoutu
 html,
 body,
 #root {

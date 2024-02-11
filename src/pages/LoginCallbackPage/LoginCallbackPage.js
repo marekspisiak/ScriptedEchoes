@@ -7,8 +7,7 @@ const LoginCallbackPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    //TODO mozno upravit aby sa to vykonavalo naozaj len po registracii
-    if (isAuthenticated && !isLoading) {
+    if (isAuthenticated) {
       if (user?.username === "anonym") {
         navigate("/finish-signup");
       } else {

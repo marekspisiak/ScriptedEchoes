@@ -58,12 +58,12 @@ const Post = sequelize.define(
     hooks: {
       beforeCreate: (post, options) => {
         if (post.category_id === "") {
-          post.category_id = null; // Nastavíme category_id na null, ak je prázdny reťazec
+          post.category_id = null;
         }
       },
       beforeUpdate: (post, options) => {
         if (post.category_id === "") {
-          post.category_id = null; // Rovnaká logika pre aktualizáciu
+          post.category_id = null;
         }
       },
     },

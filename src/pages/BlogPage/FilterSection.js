@@ -7,7 +7,7 @@ import { MultiSelect } from "react-multi-select-component";
 function FilterSection({ filterArticles }) {
   const [categories, setCategories] = useState([]);
   const [selected, setSelected] = useState([]);
-  const [sortOrder, setSortOrder] = useState("newest"); // Nový stav pre udržiavanie vybranej možnosti zoradenia
+  const [sortOrder, setSortOrder] = useState("newest");
   const [search, setSearch] = useState();
 
   const handleFetchCategories = async () => {

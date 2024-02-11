@@ -21,7 +21,6 @@ const CommentCard = ({
   const [content2, setContent2] = useState(content);
   const [isEditing, setIsEditing] = useState(false);
   const [ResultComponent, successMessage, errorMessage] = useResultMessage();
-  //add edit and delete functionality
 
   const handleUpadateComment = async () => {
     try {

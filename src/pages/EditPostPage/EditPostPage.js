@@ -8,14 +8,13 @@ import PostForm from "../../components/PostForm";
 import useResultMessage from "../../hooks/useResultMessage";
 import { useNavigate } from "react-router-dom";
 import usePermission from "../../hooks/usePermission";
-import { set } from "ramda";
 
 const EditPostPage = () => {
   const { getAccessToken } = useAuth();
   const { blogId } = useParams();
   const [ResultComponent, successMessage, errorMessage] = useResultMessage();
 
-  const [data, setData] = useState(); // Nový stav pre obrázok
+  const [data, setData] = useState();
 
   const canEdit = usePermission({
     requiredPermissions: ["edit:post"],
@@ -33,7 +32,7 @@ const EditPostPage = () => {
     content,
     description,
     category,
-    image, // Pridaný obrázok ako nový parameter
+    image,
     ...rest
   }) => {
     if (!title.trim() || !content.trim()) {
@@ -42,26 +41,25 @@ const EditPostPage = () => {
     }
 
     try {
-      const accessToken = await getAccessToken(); // Získanie access tokenu (predpokladá sa asynchrónna funkcia)
+      const accessToken = await getAccessToken();
 
-      // Vytvorenie objektu FormData
       const formData = new FormData();
       formData.append("title", title);
       formData.append("content", content);
       formData.append("description", description);
       if (category) formData.append("category", category);
-      if (image) formData.append("image", image); // Pridanie obrázka len ak existuje
+      if (image) formData.append("image", image);
       Object.keys(rest).forEach((key) => {
         if (rest[key]) formData.append(key, rest[key]);
       });
 
       const response = await axios.patch(
         `http://localhost:3001/posts/${blogId}`,
-        formData, // Použitie FormData namiesto obyčajného objektu
+        formData,
         {
           headers: {
             Authorization: `Bearer ${accessToken}`,
-            "Content-Type": "multipart/form-data", // Dôležité pre správne spracovanie FormData na serveri
+            "Content-Type": "multipart/form-data",
           },
         }
       );
@@ -84,7 +82,6 @@ const EditPostPage = () => {
       setData(response.data);
     } catch (error) {
       console.error("Error fetching blog data:", error);
-      // Ošetrenie chyby, napríklad nastavenie stavu chyby alebo zobrazenie správy používateľovi
     }
   };
 

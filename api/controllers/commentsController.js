@@ -3,37 +3,32 @@ const Post = require("../models/post");
 const User = require("../models/user");
 
 const commentsController = {
-  // Získanie všetkých komentárov pre konkrétny post
   getAllCommentsForPost: async (req, res) => {
     try {
-      // Získanie parametra postId z URL
       const postId = req.params.postId;
 
-      // Získanie parametrov page a limit z query, s predvolenými hodnotami
       const page = parseInt(req.query.page) || 1;
       const limit = parseInt(req.query.limit) || 10;
 
       const offset = (page - 1) * limit;
 
-      // Vytvorenie query s použitím limit a offset pre stránkovanie
       const comments = await Comment.findAll({
         where: { post_id: postId },
         include: [
           {
             model: User,
-            attributes: ["username", "user_id", "image"], // Príklad toho, čo by ste mohli chcieť zahrnúť
+            attributes: ["username", "user_id", "image"],
           },
         ],
         limit: limit,
         offset: offset,
-        order: [["created_at", "DESC"]], // Zoradenie komentárov od najnovších po najstaršie
+        order: [["created_at", "DESC"]],
       });
 
-      // Odpoveď s komentármi
       res.json({
         comments: comments,
         currentPage: page,
-        totalPages: Math.ceil(comments.count / limit), // Potrebujete celkový počet komentárov pre výpočet, môže vyžadovať ďalší dotaz
+        totalPages: Math.ceil(comments.count / limit),
       });
     } catch (error) {
       console.error("Error fetching comments:", error);
@@ -41,7 +36,6 @@ const commentsController = {
     }
   },
 
-  // Získanie konkrétneho komentára podľa ID
   getCommentById: async (req, res) => {
     try {
       const id = req.params.id;
@@ -49,11 +43,11 @@ const commentsController = {
         include: [
           {
             model: User,
-            attributes: ["username", "email"], // Príklad toho, čo by ste mohli chcieť zahrnúť
+            attributes: ["username", "email"],
           },
           {
             model: Post,
-            attributes: ["title"], // Zahrnutie názvu príspevku
+            attributes: ["title"],
           },
         ],
       });
@@ -67,27 +61,23 @@ const commentsController = {
     }
   },
 
-  // Vytvorenie nového komentára pre post
   createCommentForPost: async (req, res) => {
     try {
       const { content } = req.body;
       const post_id = req.params.postId;
       const author_id = req.auth.payload.user_id;
 
-      // Overenie, či príspevok existuje
       const post = await Post.findByPk(post_id);
       if (!post) {
         return res.status(404).send("Post not found");
       }
 
-      // Vytvorenie komentára
       const comment = await Comment.create({
         post_id,
         author_id,
         content,
       });
 
-      // Načítanie informácií o používateľovi
       const user = await User.findByPk(author_id, {
         attributes: ["username", "user_id"],
       });
@@ -96,14 +86,12 @@ const commentsController = {
         return res.status(404).send("User not found");
       }
 
-      // Vytvorenie odpovede s komentárom a informáciami o používateľovi
       const response = {
-        ...comment.toJSON(), // Prevedie Sequelize model na plain object
+        ...comment.toJSON(),
         User: {
           username: user.username,
           user_id: user.user_id,
         },
-        // Ak je potrebné, pridajte ďalšie kľúče
       };
 
       res.status(201).json(response);
@@ -112,7 +100,6 @@ const commentsController = {
     }
   },
 
-  // Vymazanie konkrétneho komentára
   deleteComment: async (req, res) => {
     try {
       const id = req.params.id;
@@ -127,7 +114,6 @@ const commentsController = {
     }
   },
 
-  // Aktualizácia komentára
   updateComment: async (req, res) => {
     console.log("som tu ");
     try {

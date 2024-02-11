@@ -1,4 +1,4 @@
-@import "../../../theme.scss"; // Uistite sa, že cesta k súboru s premennými je správna
+@import "../../../theme.scss";
 
 .commentCard {
   margin-bottom: 1rem;
@@ -13,12 +13,12 @@
 }
 
 .imageWrapper {
-  flex-shrink: 0; // Zabezpečí, že obrázok si zachová svoje rozmery
-  max-width: 100px; // Nastavenie šírky obrázka
-  max-height: 100px; // Nastavenie výšky obrázka
-  border-radius: 50%; // Vytvorí kruhový obrázok
-  overflow: hidden; // Zabránenie presahovaniu obrázka mimo kruhový obrys
-  margin-right: 15px; // Medzera medzi obrázkom a textom
+  flex-shrink: 0;
+  max-width: 100px;
+  max-height: 100px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 15px;
 }
 
 .commentImage {
@@ -27,7 +27,7 @@
 }
 
 .textWrapper {
-  flex-grow: 1; // Zabezpečí, že text zaujme zvyšok priestoru v karte
+  flex-grow: 1;
 }
 
 .commentAuthor {
@@ -40,7 +40,7 @@
 
 .commentCreatedAt {
   color: $accent-color;
-  font-size: 0.875rem; // Menšia veľkosť pre dátum
+  font-size: 0.875rem;
   text-align: right;
 }
 

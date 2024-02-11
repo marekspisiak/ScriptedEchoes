@@ -6,7 +6,6 @@ const checkAuth = require("../middleware/checkAuth");
 const upload = require("../middleware/fileUpload");
 const { verifyPostPermission } = require("../middleware/verifyPermission");
 
-// Zmena POST route pre posts na použitie multer a checkAuth
 router.post(
   "/posts",
   checkAuth,
@@ -14,7 +13,6 @@ router.post(
   postsController.createPost
 );
 
-// Ostatné routes zostávajú nezmenené
 router.get("/posts", postsController.getAllPosts);
 router.get("/posts/:id", postsController.getPostById);
 router.delete(

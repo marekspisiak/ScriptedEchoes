@@ -10,15 +10,13 @@ const {
 
 exports.getAllPosts = async (req, res) => {
   try {
-    // Získanie parametrov z query
     const page = parseInt(req.query.page) || 1;
     const limit = parseInt(req.query.limit) || 10;
     const sort = req.query.sort || "newest";
-    const categories = req.query.categories; // Získanie kategórií (ID) z query stringu
+    const categories = req.query.categories;
     const offset = (page - 1) * limit;
     const search = req.query.search;
 
-    // Rozlíšenie logiky zoradenia na základe hodnoty sort
     let order;
     switch (sort) {
       case "newest":
@@ -34,20 +32,18 @@ exports.getAllPosts = async (req, res) => {
         order = [["updated_at", "ASC"]];
         break;
       case "mostPopular":
-        // Predpokladá, že máte stĺpec alebo spôsob, ako určiť popularitu, napr. počet lajkov alebo zobrazení
-        order = [["view_count", "DESC"]]; // Zmeniť 'popularity' na váš relevantný stĺpec
+        order = [["view_count", "DESC"]];
         break;
       case "leastPopular":
-        order = [["view_count", "ASC"]]; // Zmeniť 'popularity' na váš relevantný stĺpec
+        order = [["view_count", "ASC"]];
         break;
       default:
         order = [["created_at", "DESC"]];
     }
 
-    // Filtrovanie podľa kategórií, ak sú špecifikované
     let whereCondition = {};
     if (categories) {
-      const categoryIds = categories.split(",").map((id) => parseInt(id)); // Konverzia na pole čísel
+      const categoryIds = categories.split(",").map((id) => parseInt(id));
       whereCondition.category_id =
         categoryIds.length > 1 ? categoryIds : categoryIds[0];
     }
@@ -56,7 +52,7 @@ exports.getAllPosts = async (req, res) => {
       whereCondition[Sequelize.Op.or] = [
         {
           title: {
-            [Sequelize.Op.like]: `%${search}%`, // Použitie 'like' pre MySQL
+            [Sequelize.Op.like]: `%${search}%`,
           },
         },
         {
@@ -98,19 +94,19 @@ exports.getPostById = async (req, res) => {
       include: [
         {
           model: User,
-          attributes: ["username", "user_id"], // Vyberieme len meno užívateľa
+          attributes: ["username", "user_id"],
         },
         {
           model: Category,
-          attributes: ["name", "description"], // Vyberieme len názov kategórie
+          attributes: ["name", "description"],
         },
       ],
     });
 
     if (post) {
       const result = {
-        ...post.get({ plain: true }), // Konvertuje Sequelize model na obyčajný objekt
-        User: { username: `${post.User.username}#${post.User.user_id}` }, // Pridáme username priamo do objektu
+        ...post.get({ plain: true }),
+        User: { username: `${post.User.username}#${post.User.user_id}` },
       };
       res.json(result);
       post.view_count += 1;
@@ -133,7 +129,6 @@ exports.createPost = async (req, res) => {
       .send("Názov, obsah, autor a popisok sú povinné údaje.");
   }
 
-  // Generovanie URL pre obrázok
   const imageUrl = getFullImageUrl(req.file?.path);
 
   try {
@@ -143,11 +138,10 @@ exports.createPost = async (req, res) => {
       author_id,
       description,
       category_id,
-      image: imageUrl, // Pridanie URL obrázka do databázy
+      image: imageUrl,
     });
     res.status(201).json(newPost);
   } catch (error) {
-    // Odstránenie obrázka z disku, ak nastala chyba pri vytváraní príspevku
     deleteOldImage(req.file?.path);
 
     console.error("Chyba pri vytváraní príspevku:", error);
@@ -199,15 +193,13 @@ exports.updatePost = async (req, res) => {
     let oldImagePath = null;
 
     if (req.file) {
-      // Užívateľ nahral nový obrázok
       imageUrl = getFullImageUrl(req.file.path);
-      oldImagePath = post.image; // Uloženie cesty k starému obrázku pre možné neskoršie odstránenie
+      oldImagePath = post.image;
     } else if (removeImage) {
-      oldImagePath = post.image; // Uloženie cesty k starému obrázku pre možné neskoršie odstránenie
+      oldImagePath = post.image;
       imageUrl = null;
     }
 
-    // Aktualizácia záznamu v databáze
     await post.update({
       title,
       content,
@@ -216,7 +208,6 @@ exports.updatePost = async (req, res) => {
       image: imageUrl,
     });
 
-    // Odstránenie starého obrázka z disku, ak je potrebné
     if (oldImagePath) {
       deleteOldImage(oldImagePath);
     }
@@ -230,7 +221,6 @@ exports.updatePost = async (req, res) => {
 
 exports.getFeaturedPosts = async (req, res) => {
   try {
-    // Vytvorenie dvoch dotazov: jeden pre 3 najnovšie príspevky, druhý pre 3 najpopulárnejšie
     const newestPostsPromise = Post.findAll({
       limit: 3,
       order: [["created_at", "DESC"]],
@@ -243,13 +233,11 @@ exports.getFeaturedPosts = async (req, res) => {
       include: [{ model: Category, attributes: ["name"] }],
     });
 
-    // Súčasné spustenie dotazov a čakanie na ich výsledky
     const [newestPosts, mostPopularPosts] = await Promise.all([
       newestPostsPromise,
       mostPopularPostsPromise,
     ]);
 
-    // Vrátenie oboch sád dát v odpovedi
     res.json({
       newestPosts,
       mostPopularPosts,

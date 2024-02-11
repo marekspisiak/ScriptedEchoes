@@ -16,7 +16,7 @@ const ProfileButton = () => {
   return (
     <div className={styles.profileButton}>
       <img
-        src={user?.image} // Nahraďte cestou k obrázku profilu
+        src={user?.image}
         alt="Profilový obrázok"
         onClick={handleToggle}
         className={styles.profileImage}

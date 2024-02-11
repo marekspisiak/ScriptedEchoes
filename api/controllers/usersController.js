@@ -64,18 +64,16 @@ exports.changeProfile = async (req, res) => {
     let oldImagePath = null;
 
     if (req.file) {
-      // Užívateľ nahral nový obrázok
       imageUrl = getFullImageUrl(req.file.path);
-      oldImagePath = user.image; // Uloženie cesty k starému obrázku pre možné neskoršie odstránenie
+      oldImagePath = user.image;
     } else if (removeImage) {
-      oldImagePath = user.image; // Uloženie cesty k starému obrázku pre možné neskoršie odstránenie
+      oldImagePath = user.image;
       imageUrl = null;
     }
 
-    // Aktualizácia užívateľa v databáze
     await user.update({
       username,
-      image: imageUrl, // Aktualizácia URL obrázka
+      image: imageUrl,
     });
 
     if (oldImagePath) {
@@ -84,7 +82,7 @@ exports.changeProfile = async (req, res) => {
 
     res.json({
       message: "Užívateľ bol úspešne aktualizovaný.",
-      imageUrl: imageUrl, // Vráti URL aktualizovaného obrázka
+      imageUrl: imageUrl,
     });
   } catch (error) {
     console.error("Chyba pri aktualizácii užívateľa:", error);

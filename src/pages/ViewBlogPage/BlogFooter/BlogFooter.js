@@ -1,6 +1,6 @@
 import React from "react";
 import { Row, Col } from "react-bootstrap";
-import styles from "./BlogFooter.module.scss"; // Uistite sa, že ste vytvorili tento SCSS modul
+import styles from "./BlogFooter.module.scss";
 import { formatFullDate } from "../../../modules/formatDate";
 
 const BlogFooter = ({ creationDate, updateDate, categories, tags }) => {

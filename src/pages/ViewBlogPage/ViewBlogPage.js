@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import BlogHeader from "./BlogHeader/BlogHeader"; // Predpokladá, že existuje komponent pre zobrazenie hlavičky blogu
-import BlogContent from "./BlogContent/BlogContent"; // Predpokladá, že existuje komponent pre zobrazenie obsahu blogu
-import BlogFooter from "./BlogFooter/BlogFooter"; // Predpokladá, že existuje komponent pre zobrazenie pätičky alebo metadát blogu
-import { useParams } from "react-router-dom"; // Ak používate React Router pre navigáciu
-import styles from "./ViewBlogPage.module.scss"; // SCSS moduly pre štýlovanie
+import BlogHeader from "./BlogHeader/BlogHeader";
+import BlogContent from "./BlogContent/BlogContent";
+import BlogFooter from "./BlogFooter/BlogFooter";
+import { useParams } from "react-router-dom";
+import styles from "./ViewBlogPage.module.scss";
 import axios from "axios";
 import EditBlog from "./EditBlog";
 import Loading from "../../components/Loading";
@@ -13,9 +13,9 @@ import CommentList from "./CommentSection/CommentList";
 
 const ViewBlogPage = () => {
   const [blogData, setBlogData] = useState(null);
-  const [reloadComments, setReloadComments] = useState(false); // [1
+  const [reloadComments, setReloadComments] = useState(false);
 
-  const { blogId } = useParams(); // Získanie ID blogu z URL, ak používate React Router
+  const { blogId } = useParams();
 
   useEffect(() => {
     console.log("fetching");
@@ -25,17 +25,16 @@ const ViewBlogPage = () => {
         setBlogData(response.data);
       } catch (error) {
         console.error("Error fetching blog data:", error);
-        // Ošetrenie chyby, napríklad nastavenie stavu chyby alebo zobrazenie správy používateľovi
       }
     };
 
     if (blogId) {
       fetchBlogData(blogId);
     }
-  }, [blogId]); // Závislosť na blogId zaručí, že useEffect bu
+  }, [blogId]);
 
   if (!blogData) {
-    return <Loading />; // Zobrazenie načítavacieho stavu, kým sa dáta nenačítajú
+    return <Loading />;
   }
 
   console.log(blogData);
@@ -87,11 +86,10 @@ const ViewBlogPage = () => {
         <Col className="mg-5">
           <CommentList
             postId={blogData.post_id}
-            key={reloadComments} // [1] Zmena kľúča spôsobí, že sa komponent zresetuje a znova načíta dáta
+            key={reloadComments}
           ></CommentList>
         </Col>
       </Row>
-      {/* Tu môžete pridať ďalšie komponenty, napríklad pre zobrazenie komentárov alebo súvisiacich článkov */}
     </Container>
   );
 };

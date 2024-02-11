@@ -1,22 +1,14 @@
-# Použitie node:18 ako základného obrazu pre vývojové prostredie
 FROM node:18 as development
 
-# Nastavte pracovný adresár
 WORKDIR /app
 
-# Kopírujte package.json a package-lock.json (ak existuje)
 COPY package*.json ./
 
-# Nainštalujte závislosti vrátane 'nodemon' pre vývojové prostredie
 RUN npm install
 RUN npm install nodemon -g
 
-# Kopírujte zdrojový kód aplikácie
 COPY . .
 
-# Exponujte port, na ktorom beží vaša aplikácia
 EXPOSE 3001
 
-# Spustite aplikáciu pomocou 'nodemon' namiesto 'node' pre automatické reštartovanie
 CMD ["nodemon", "-L", "app.js"]
-

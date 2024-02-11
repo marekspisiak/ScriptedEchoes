@@ -1,4 +1,4 @@
-@import "../../../theme.scss"; // Importujte svoje globálne štýly/farby
+@import "../../../theme.scss";
 
 .commentList {
   margin: 5px 0;
@@ -11,6 +11,6 @@
   margin: 0px;
 
   &:last-child {
-    margin-bottom: 0; // Odstránime spodný margin pre poslednú položku
+    margin-bottom: 0;
   }
 }

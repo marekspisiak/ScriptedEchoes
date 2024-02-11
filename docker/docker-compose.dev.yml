@@ -33,13 +33,13 @@ services:
     container_name: api-dev
     image: api-dev
     build:
-      context: ../api  # Predpokladám, že váš API kód je v adresári 'api'
+      context: ../api  
       target: development
-      dockerfile: dockerfile  # Uistite sa, že máte Dockerfile v adresári 'api'
+      dockerfile: dockerfile  
     ports:
-      - "3001:3001"  # Port pre API
+      - "3001:3001"  
     volumes:
-      - ../api:/app  # Zmena kontextu pre API
+      - ../api:/app  
       - /app/node_modules
     environment:
       - NODE_ENV=development

@@ -1,10 +1,9 @@
-// PostForm.jsx
 import React, { useEffect, useState } from "react";
 import { Form } from "react-bootstrap";
 import axios from "axios";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import styles from "./PostForm.module.scss"; // Uistite sa, že ste vytvorili tento SCSS modul
+import styles from "./PostForm.module.scss";
 import Button from "./buttons/Button";
 import ImageUpload from "./ImageUpload";
 

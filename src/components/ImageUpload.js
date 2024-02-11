@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Form } from "react-bootstrap";
 import Button from "./buttons/Button";
-import styles from "./ImageUpload.module.scss"; // Predpokladajme, že ste vytvorili štýly
+import styles from "./ImageUpload.module.scss";
 
 const ImageUpload = ({ onImageSelected, existingImageUrl }) => {
   const [removeImage, setRemoveImage] = useState(false);
@@ -18,7 +18,7 @@ const ImageUpload = ({ onImageSelected, existingImageUrl }) => {
       reader.readAsDataURL(image);
       setRemoveImage(false);
     }
-    onImageSelected(removeImage ? "REMOVE_IMAGE" : image); // Posielanie vybraného obrázka nadradenému komponentu
+    onImageSelected(removeImage ? "REMOVE_IMAGE" : image);
   }, [image, removeImage]);
 
   const handleRemoveImage = () => {
@@ -26,8 +26,8 @@ const ImageUpload = ({ onImageSelected, existingImageUrl }) => {
       fileInputRef.current.value = "";
     }
     setRemoveImage(true);
-    setImagePreview(null); // Ak ukladáte náhľad v state
-    setImage(null); // Ak obrázok pochádza z input type="file"
+    setImagePreview(null);
+    setImage(null);
   };
 
   return (

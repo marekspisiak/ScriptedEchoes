@@ -8,11 +8,11 @@ import LinkButton from "../../components/buttons/LinkButton";
 import ImageUpload from "../../components/ImageUpload";
 
 const EditProfilePage = () => {
-  const { updateProfile, user } = useAuth(); // Predpokladajme, že existuje funkcia updateProfile
+  const { updateProfile, user } = useAuth();
   const navigate = useNavigate();
   const [ResultComponent, successMessage, errorMessage] = useResultMessage();
 
-  const [image, setImage] = useState(user?.image); // Stav pre obrázok
+  const [image, setImage] = useState(user?.image);
   const [username, setUsername] = useState(user?.username || "");
 
   const handleSubmit = async (event) => {
@@ -21,11 +21,11 @@ const EditProfilePage = () => {
     const formData = new FormData();
     formData.append("username", username);
     if (image) {
-      formData.append("image", image); // Pridajte obrázok len ak bol vybraný
+      formData.append("image", image);
     }
 
     try {
-      await updateProfile(formData); // Použite formData ako argument
+      await updateProfile(formData);
       successMessage("Profil bol úspešne aktualizovaný.");
       navigate("/profile");
     } catch (error) {

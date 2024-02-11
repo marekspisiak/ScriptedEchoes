@@ -20,13 +20,11 @@ const CommentForm = ({ postId, setReloadComments }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    // Definujeme dáta pre odoslanie
     const commentData = {
       content,
     };
 
     try {
-      // Použitie Axiosu na odoslanie POST požiadavky
       const accessToken = await getAccessToken();
       const response = await axios.post(
         `http://localhost:3001/posts/${postId}/comments`,
@@ -34,18 +32,15 @@ const CommentForm = ({ postId, setReloadComments }) => {
         {
           headers: {
             Authorization: `Bearer ${accessToken}`,
-            // Pridajte ďalšie hlavičky, napríklad pre autorizáciu, ak je potrebné
           },
         }
       );
 
       setReloadComments((oldValue) => !oldValue);
 
-      // Po úspešnom odoslaniu
       console.log("Comment created:", response.data);
       successMessage("Komentár bol úspešne pridaný.");
 
-      // Resetovanie stavu komponentu
       setContent("");
     } catch (error) {
       console.error("Error creating comment:", error);

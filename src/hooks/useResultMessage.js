@@ -13,17 +13,14 @@ const useResultMessage = () => {
       setMessageType(type);
       setIsVisible(true);
 
-      // Zrušenie existujúceho časovača
       if (timeoutId) clearTimeout(timeoutId);
 
-      // Nastavenie nového časovača
       const newTimeoutId = setTimeout(() => {
         setIsVisible(false);
         setMessage("");
-        setTimeoutId(null); // Reset identifikátora časovača po skončení
+        setTimeoutId(null);
       }, 5000);
 
-      // Uloženie identifikátora nového časovača
       setTimeoutId(newTimeoutId);
     },
     [timeoutId]
@@ -43,7 +40,6 @@ const useResultMessage = () => {
     [showMessage]
   );
 
-  // Čistenie na odpojenie komponentu
   useEffect(() => {
     return () => {
       if (timeoutId) clearTimeout(timeoutId);

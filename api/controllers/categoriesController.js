@@ -2,7 +2,6 @@ const Post = require("../models/post");
 const Category = require("../models/category");
 
 const categoriesController = {
-  // Získanie všetkých komentárov pre konkrétny post
   getAllCategories: async (req, res) => {
     try {
       const categories = await Category.findAll({

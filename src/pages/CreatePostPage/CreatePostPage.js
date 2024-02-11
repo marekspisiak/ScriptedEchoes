@@ -30,14 +30,14 @@ const CreatePostPage = () => {
     }
 
     try {
-      const accessToken = getAccessToken(); // Získanie access tokenu
+      const accessToken = getAccessToken();
 
       const formData = new FormData();
       formData.append("title", title);
       formData.append("content", content);
       formData.append("description", description);
       if (category) formData.append("category", category);
-      if (image) formData.append("image", image); // Pridanie obrázka len ak existuje
+      if (image) formData.append("image", image);
       Object.keys(rest).forEach((key) => {
         if (rest[key]) formData.append(key, rest[key]);
       });
@@ -48,14 +48,14 @@ const CreatePostPage = () => {
         {
           headers: {
             Authorization: `Bearer ${accessToken}`,
-            "Content-Type": "multipart/form-data", // Posielanie access tokenu v hlavičke
+            "Content-Type": "multipart/form-data",
           },
         }
       );
 
       console.log("Nový príspevok bol pridaný:", response.data);
       successMessage(`Príspevok ${title} bol úspešne pridaný.`);
-      //presmerovanie na prispevok
+
       navigate(`/blog/${response.data.post_id}`);
     } catch (error) {
       console.error("Chyba pri pridávaní príspevku:", error);

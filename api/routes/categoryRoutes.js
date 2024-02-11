@@ -3,7 +3,6 @@ const router = express.Router();
 const categoriesController = require("../controllers/categoriesController");
 const checkAuth = require("../middleware/checkAuth");
 
-// Získanie konkrétneho komentára podľa ID
 router.get("/categories/:id", categoriesController.getCategorieById);
 
 router.get("/categories", categoriesController.getAllCategories);

@@ -4,7 +4,6 @@ import CommentCard from "../../../components/cards/CommentCard/CommentCard";
 import InfiniteScroll from "react-infinite-scroll-component";
 import styles from "./CommentList.module.scss";
 import { useAuth } from "../../../contexts/UserContext";
-import { set } from "date-fns";
 
 const CommentList = ({ postId }) => {
   const [hasMore, setHasMore] = useState(true);
@@ -26,7 +25,6 @@ const CommentList = ({ postId }) => {
 
       console.log("mam odpoved", response.data.comments);
 
-      // Pridá nové komentáre k existujúcim
       setComments((prevComments) => [
         ...prevComments,
         ...response.data.comments,
@@ -56,7 +54,6 @@ const CommentList = ({ postId }) => {
           },
         }
       );
-      //delete comment from state by filtering out the comment with the commentId
       setComments((prevComments) =>
         prevComments.filter((comment) => comment.comment_id !== commentId)
       );
