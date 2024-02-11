@@ -43,13 +43,14 @@ const CommentCard = ({
     }
   };
 
+  console.log(image);
   return (
     <Card className={styles.commentCard}>
       <Card.Body className={styles.cardBody}>
         {
           <div className={styles.imageWrapper}>
             <img
-              src={user?.image}
+              src={image || "/defaultUser.jpg"}
               alt="Profilový obrázok"
               className={styles.commentImage}
             />
