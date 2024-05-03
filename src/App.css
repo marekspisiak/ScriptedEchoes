@@ -1,0 +1,357 @@
+html, body, #root {
+  height: 100%;
+}
+#root {
+  display: flex;
+  flex-direction: column;
+}
+.content {
+  flex: 1 0 auto;
+}
+.footer {
+  flex-shrink: 0;
+}
+
+.home-logo {
+  border-radius: 10px;
+  height: 60px;
+}
+
+.hero-section-home-page {
+  height: 70vh;
+  background-color: #1e2a38;
+  background-image: url("../public/heroBackground.png");
+  background-size: cover;
+  background-position: center;
+}
+
+.hero-section-home-page h1 {
+  color: #2c3e50;
+  font-size: 3.5rem;
+  font-weight: bold;
+  margin-bottom: 15px;
+  text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
+}
+
+.hero-section-home-page p {
+  color: #b0c1d4;
+  font-size: 1.5rem;
+  width: 60%;
+  margin: 0 auto 30px;
+  text-align: center;
+  text-shadow: 1px -1px rgba(0, 0, 0, 0.5);
+}
+
+.hero-section-home-page .btn:hover {
+  background-color: #d66347;
+}
+
+.hero-section-home-page h1 {
+  font-size: 3.5rem;
+}
+
+@media (max-width: 992px) {
+  .hero-section-home-page h1 {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .hero-section-home-page h1 {
+    font-size: 2.5rem;
+  }
+}
+
+body {
+  background-color: #f4f4f4;
+}
+
+.benefits-card {
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s;
+}
+
+.benefits-card:hover {
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+  transform: translateY(-3px);
+}
+
+.benefits-card .card-img-top {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  height: 120px;
+  object-fit: cover;
+}
+
+.benefits-card .card-title {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.benefits-card .card-text {
+  font-size: 1rem;
+  color: #777;
+}
+
+.article-card {
+  border: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+}
+
+.article-card:hover {
+  transform: scale(1.03);
+}
+
+.article-card .card-img-top {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.article-card .card-title {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.article-card .card-text {
+  font-size: 14px;
+  color: #666;
+}
+
+.article-card .text-muted {
+  font-size: 12px;
+  color: #999;
+}
+
+.cta-container {
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 50px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.cta-container h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.cta-container p {
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+  color: #555;
+}
+
+.cta-container .btn-primary {
+  background-color: #2c3e50;
+  border-color: #2c3e50;
+  color: #fff;
+}
+
+.cta-container .btn-primary:hover,
+.cta-container .btn-primary:focus {
+  background-color: #1a2836;
+  border-color: #1a2836;
+  color: #fff;
+}
+
+.articles-section {
+  margin-bottom: 40px;
+}
+
+.articles-section h2 {
+  font-size: 1.8rem;
+  color: #333;
+}
+
+.articles-section .btn-outline-primary {
+  border-color: #2c3e50;
+  color: #2c3e50;
+}
+
+.articles-section .btn-outline-primary:hover,
+.articles-section .btn-outline-primary:focus {
+  background-color: #2c3e50;
+  color: #fff;
+}
+
+.header-component {
+  background-color: #2c3e50;
+  border-bottom: 2px solid #34495e;
+  position: sticky;
+  top: 0;
+  z-index: 99;
+}
+
+.header-component .navbar-brand,
+.header-component .nav-link {
+  color: #eaeded;
+  font-weight: 500;
+}
+
+.header-component .navbar-brand:hover,
+.header-component .nav-link:hover {
+  color: #bdc3c7;
+  text-decoration: underline;
+}
+
+.header-component .btn-outline-primary {
+  border-color: #eaeded;
+  color: #eaeded;
+}
+
+.header-component .btn-outline-primary:hover,
+.header-component .btn-outline-primary:focus {
+  background-color: #eaeded;
+  color: #2c3e50;
+}
+
+.btn-start-writing {
+  background-color: #e76f51;
+  color: white;
+  font-size: 1.2rem;
+  padding: 10px 30px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+}
+
+.btn-start-writing:hover {
+  color: #ffffff;
+  transition: background-color 0.3s ease;
+  background-color: #d66347;
+}
+
+.login-container {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url("../public/heroBackground.png");
+  background-size: cover;
+  background-position: center;
+}
+
+.combined-form {
+  width: 350px;
+  padding: 30px;
+  background-color: rgba(28, 38, 56, 0.9);
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.combined-form h1,
+.combined-form label,
+.combined-form .additional-actions a {
+  color: #ffffff;
+}
+
+.additional-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+  flex-wrap: wrap;
+}
+
+.additional-actions a {
+  margin: 0 10px;
+  white-space: nowrap;
+}
+
+.additional-actions a:hover {
+  text-decoration: underline;
+}
+
+.sidebar {
+  background-color: #1e2a38;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar .navbar-text {
+  color: #eaeded;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.sidebar .navbar-toggler {
+  border-color: #eaeded;
+  background-color: #2c3e50;
+  color: #eaeded;
+}
+
+.sidebar .list-group-item {
+  background-color: #2c3e50;
+  color: #eaeded;
+  border: none;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.sidebar .list-group-item:hover {
+  background-color: #34495e;
+  cursor: pointer;
+}
+
+.filter-section {
+  background-color: #f1f1f1;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.filter-section .btn-outline-primary {
+  border: none;
+  background-color: #282a36;
+  color: #ffffff;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.filter-section .btn-outline-primary:hover {
+  background-color: #1e2029;
+  color: #ffffff;
+}
+
+.filter-section input[type="text"] {
+  border-radius: 5px;
+  border: 1px solid #c4c4c4;
+  transition: border-color 0.3s ease;
+}
+
+.filter-section input[type="text"]:focus {
+  border-color: #282a36;
+  box-shadow: 0 0 0 0.2rem rgba(40, 42, 54, 0.25);
+}
+
+.btn-basic {
+  background-color: #2c3e50;
+  border-color: #2c3e50;
+  color: #ffffff;
+}
+
+ .btn-basic:hover,
+ .btn-basic:active {
+  background-color: #ffffff;
+  color: #2c3e50;
+  border-color: #2c3e50;
+}
+
+.btn-flashy{
+  background-color: #e76f51;
+  border-color: #e76f51;
+}
+
+.btn-flashy:hover,
+.btn-flashy:active {
+  background-color: #ffffff;
+  color: #e76f51;
+  border-color: #e76f51;
+}
+

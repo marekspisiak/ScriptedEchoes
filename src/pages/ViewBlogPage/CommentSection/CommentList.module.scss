@@ -1,0 +1,16 @@
+@import "../../../theme.scss";
+
+.commentList {
+  margin: 5px 0;
+}
+
+.commentListItem {
+  background-color: $background-color;
+  border: none;
+
+  margin: 0px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}

@@ -1,0 +1,31 @@
+@import "../../theme.scss";
+
+.header {
+  background-color: $primary-color;
+  color: $secondary-color;
+  position: fixed;
+  top: 0;
+  z-index: 99;
+  width: 100vw;
+}
+
+.headerBlock {
+  > a,
+  > a:focus {
+    color: $secondary-color;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: $accent-color;
+    }
+  }
+}
+
+.brand,
+.brand:focus {
+  color: $secondary-color;
+  transition: color 0.3s ease;
+  &:hover {
+    color: $accent-color;
+  }
+}

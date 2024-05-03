@@ -1,0 +1,23 @@
+@import "../../theme.scss";
+
+.footerContainer {
+  background-color: $primary-color;
+  color: $secondary-color;
+}
+
+.footerBlock {
+  > h5 {
+    color: $secondary-color;
+  }
+  > p {
+    color: $secondary-color;
+  }
+  > a {
+    color: $accent-color;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: $tertiary-color;
+    }
+  }
+}

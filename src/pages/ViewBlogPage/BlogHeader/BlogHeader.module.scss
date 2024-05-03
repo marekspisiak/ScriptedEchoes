@@ -1,0 +1,36 @@
+@import "../../../theme.scss";
+
+.blogHeader {
+  margin-bottom: 20px;
+  padding: 20px;
+  background-color: $secondary-color;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.description {
+  font-size: 1rem;
+  color: $light-primary;
+  margin-bottom: 10px;
+}
+
+.author {
+  font-size: 1rem;
+  color: $light-primary;
+  font-style: italic;
+}
+
+.imageCol {
+  text-align: center;
+}
+
+.blogImage {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}

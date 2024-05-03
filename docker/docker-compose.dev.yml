@@ -1,0 +1,49 @@
+version: "3.8"
+
+services:
+  scripted-echoes:
+    container_name: scripted-echoes-dev
+    image: scripted-echoes-dev
+    build:
+      context: ..
+      target: development
+      dockerfile: docker/Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ../:/app
+    environment:
+      - WATCHPACK_POLLING=true
+
+  mysql:
+    container_name: mysql-dev
+    image: mysql:latest
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - ./mysql-init-scripts:/docker-entrypoint-initdb.d
+      - mysql-data:/var/lib/mysql
+
+  api:
+    container_name: api-dev
+    image: api-dev
+    build:
+      context: ../api  
+      target: development
+      dockerfile: dockerfile  
+    ports:
+      - "3001:3001"  
+    volumes:
+      - ../api:/app  
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+      - WATCHPACK_POLLING=true
+
+volumes:
+  mysql-data:
